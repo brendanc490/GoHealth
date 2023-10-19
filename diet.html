@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<head>
+    <title>Diet</title>
+    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" href="lib/fontawesome-free-6.4.2-web/css/all.css"></script>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div id="topBar" class="topBar">
+        <div id="dietHeader" style="text-align: center; height: 60%; font-size: 45px; background-color: #90EE90;"><b>Diet Information</b></div>
+        <div id="selectedDate" style="text-align: center; height: 35%; font-size: 35px;"><b>Thu, 10/19/23</b></div>
+    </div>
+    <!-- Container for diet content -->
+    <div id="dietLayout" class="dietContainer">
+        <!-- Weekly Bar -->
+        <div class="weekBar">
+            <div id="left" class="left">
+                <div style="position: relative; top: 38%; left: 25%">
+                    <i id="leftArrow" class="fa-solid fa-arrow-left fa-2x"></i>
+                </div>
+            </div>
+            <button id="monday" class="monday">
+                <div id="monDate" class="dateBlock">10/16</div>
+                <div class="iconBlock"><i id="monIcon" class="fa-solid fa-check fa-2x"></i></div>
+            </button>
+            <button id="tuesday" class="tuesday">
+                <div id="tueDate" class="dateBlock">10/17</div>
+                <div class="iconBlock"><i id="tueIcon" class="fa-solid fa-check fa-2x"></i></div>
+            </button>
+            <button id="wednesday" class="wednesday">
+                <div id="wedDate" class="dateBlock">10/18</div>
+                <div class="iconBlock"><i id="wedIcon" class="fa-solid fa-check fa-2x"></i></div>
+            </button>
+            <button id="thursday" class="thursday" style="background-color: #90EE90;">
+                <div id="thuDate" class="dateBlock">10/19</div>
+                <div class="iconBlock"><i id="thuIcon" class="fa-solid fa-check fa-2x" style="visibility: hidden"></i></div>
+            </button>
+            <button id="friday" class="friday">
+                <div id="friDate" class="dateBlock">10/20</div>
+                <div class="iconBlock"><i id="friIcon" class="fa-solid fa-check fa-2x" style="visibility: hidden"></i></div>
+            </button>
+            <button id="saturday" class="saturday">
+                <div id="satDate" class="dateBlock">10/21</div>
+                <div class="iconBlock"><i id="satIcon" class="fa-solid fa-check fa-2x" style="visibility: hidden"></i></div>
+            </button>
+            <button id="sunday" class="sunday">
+                <div id="sunDate" class="dateBlock">10/21</div>
+                <div class="iconBlock"><i id="sunIcon" class="fa-solid fa-check fa-2x" style="visibility: hidden"></i></div>
+            </button>
+            <div id="right" class="right">
+                <div style="position: relative; top: 38%; left: 17%">
+                    <i id="rightArrow" class="fa-solid fa-arrow-right fa-2x"></i>
+                </div>
+            </div>
+
+        </div>
+
+           <!-- Progress Bar -->
+        <div class="progressBar">
+            <div id="calorieHeader" class="calorieHeader">
+                <div id="goalHeader" class="goalHeader" style="text-align: center; padding-top: 2%">Calorie Goal</div>
+                <div id="burnedHeader" class="burnedHeader" style="text-align: center; padding-top: 2%">Calories Burned</div>
+                <div id="consumedHeader" class="consumedHeader" style="text-align: center; padding-top: 2%">Calories Consumed</div>
+                <div id="togoHeader" class="togoHeader" style="text-align: center; padding-top: 2%">Calories Remaining</div>
+            </div>
+            <div id="calorieActual" class="calorieActual">
+                <div id="goalActual" class="goalActual" style="text-align: center;">2000</div>
+                <div id="plus" class="plus"><i class="fa-solid fa-plus fa-lg"></i></div>
+                <div id="burnedActual" class="burnedActual" style="text-align: center;">200</div>
+                <div id="minus" class="minus"><i class="fa-solid fa-minus fa-lg"></i></div>
+                <div id="consumedActual" class="consumedActual" style="text-align: center;">1679</div>
+                <div id="equals" class="equals"><i class="fa-solid fa-equals fa-lg"></i></div>
+                <div id="togoActual" class="togoActual" style="text-align: center;">521</div>
+            </div>
+
+            <progress id="calorieProgress" value="76.3" max="100" style="width:90%;position: relative; left: 5%;"></progress>
+
+        </div>
+
+        <!-- Todays Page -->
+        <div class="dailyTracker">
+            <div id="calorieList" class="calorieList">
+                <button id="addMealButton" style="position: absolute; right:2%; top: 1%; width: 7%;"><i class="fa-solid fa-plus fa-3x"></i></button>
+                <div id="addMealButton" style="text-align: center;font-size: 35px; background-color: #90EE90;border-bottom: 2px solid grey;height: 7%;"><b style="position: relative; top:25%;">Meal List:</b></div>
+                <br>
+                <div id="breakfast" class="meal"><b>Breakfast:</b>
+                    <div class="food">1 Apple<div class="calorie">95</div></div>
+                    <div class="food">2 Whole Wheat Bread<div class="calorie">138</div></div>
+                    <div class="food">2 Peanut Butter<div class="calorie">376</div></div>
+                    <div class="food">3 Egg<div class="calorie">234</div></div>
+                    <br>
+                    <div class="food"><b>Total Calories</b><div class="calorie"><b>843</b></div></div>
+                    <br>
+                </div>
+
+                <div id="snack" class="meal"><b>Morning Snack:</b>
+                    <div class="food">1 Protein Shake<div class="calorie">250</div></div>
+                    <br>
+                    <div class="food"><b>Total Calories</b><div class="calorie"><b>250</b></div></div>
+                    <br>
+                </div>
+
+                <div id="snack" class="meal"><b>Lunch:</b>
+                    <div class="food">2 Whole Wheat Bread<div class="calorie">138</div></div>
+                    <div class="food">1 Cheddar Cheese<div class="calorie">113</div></div>
+                    <div class="food">3 Deli Turkey<div class="calorie">183</div></div>
+                    <div class="food">1 Potato Chips<div class="calorie">152</div></div>
+                    <br>
+                    <div class="food"><b>Total Calories</b><div class="calorie"><b>586</b></div></div>
+                    <br>
+                </div>
+
+            </div>
+
+        </div>
+        
+
+     
+        
+
+
+    </div>
+    
+
+
+    <!-- Navigation bar -->
+    <div id="navLayout" class="navContainer">
+        <div class="navHome"><button style="width: 100%; height: 100%;" id="homeButton" onclick="navigateTo(this)"><i id="homeIcon" class="fa-solid fa-home fa-3x"></i></button></div>
+        <div class="navFitness"><button style="width: 100%; height: 100%;" id="fitnessButton" onclick="navigateTo(this)"><i id="fitnessIcon" class="fa-solid fa-dumbbell fa-3x"></i></button></button></div>
+        <div class="navDiet"><button style="width: 100%; height: 100%;background-color: #90EE90;" id="dietButton"><i id="dietIcon" class="fa-solid fa-apple-whole fa-3x"></i></button></button></div>
+        <div class="navHabits"><button style="width: 100%; height: 100%;" id="habitsButton" onclick="navigateTo(this)"><i id="habitsIcon" class="fa-solid fa-brain fa-3x"></i></button></button></div>
+        <div class="navSettings"><button style="width: 100%; height: 100%;" id="settingsButton" onclick="navigateTo(this)"><i id="settingsIcon" class="fa-solid fa-gear fa-3x"></i></button></button></div>
+    </div>
+</body>
+<script src="navigation.js"></script>
