@@ -157,9 +157,9 @@ progress {
 
 .exerciseList{
     border: solid 3px black;
-    height: 96%;
-    width: 50%;
-    left: 25.6%;
+    height: 70%;
+    width: 95%;
+    left: 2.5%;
     position: relative;
     overflow-y: scroll;
     overflow-x: hidden;
