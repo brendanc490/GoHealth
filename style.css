@@ -44,6 +44,21 @@ body{
     left:0;
 }
 
+.habitContainer {
+    display: grid;
+    width: 100%;
+    height: 88%;
+    grid-template-columns: 100%;
+    grid-template-rows: 10% 10% 80%;
+    grid-template-areas: 
+    'weekBar'
+    'progressBar'
+    'dailyTracker';
+    position: fixed;
+    top: 7%;
+    left:0;
+}
+
 .weekBar {
     grid-area: weekBar;
     display: grid;
@@ -115,6 +130,16 @@ progress {
     overflow-x: hidden;
 }
 
+.todoList{
+    border: solid 3px black;
+    height: 70%;
+    width: 95%;
+    left: 2.5%;
+    position: relative;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
 .meal{
     font-size: 25px;
     position: relative;
@@ -127,6 +152,17 @@ progress {
 .food{
     position: relative;
     left: 3%;
+}
+
+.todoItem{
+    position: relative;
+    left: 3%;
+}
+
+.largerCheckbox {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
 }
 
 .calorie{
