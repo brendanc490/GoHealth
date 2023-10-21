@@ -2,6 +2,22 @@ body{
     font-family:Arial, Helvetica, sans-serif;
 }
 
+body.fontChanged1 {
+    font-family: "Times New Roman", serif;
+}
+
+body.fontChanged2 {
+    font-family: 'Courier New', monospace;
+}
+
+body.fontChanged3 {
+    font-family: 'Brush Script MT', cursive;
+}
+
+#increaseFontButton, #decreaseFontButton {
+    margin: 5px;
+}
+
 .topBar {
     position: absolute;
     width: 100%;
