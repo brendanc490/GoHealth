@@ -6,6 +6,97 @@
 </head>
 <body>
     <!-- Setting up app -->
+    <!-- Top Bar -->
+    <div id="topBar" class="topBar">
+        <div id="dietHeader" style="text-align: center; height: 60%; font-size: 45px; background-color: #90EE90;"><b>Healthy Habits</b></div>
+        <div id="selectedDate" style="text-align: center; height: 35%; font-size: 35px;"><b>Thu, 10/19/23</b></div>
+    </div>
+
+    <div id="dietLayout" class="dietContainer">
+        <!-- Weekly Bar -->
+        <div class="weekBar">
+            <div id="left" class="left">
+                <div style="position: relative; top: 38%; left: 25%">
+                    <i id="leftArrow" class="fa-solid fa-arrow-left fa-2x"></i>
+                </div>
+            </div>
+            <button id="monday" class="monday">
+                <div id="monDate" class="dateBlock">10/16</div>
+                <div class="iconBlock"><i id="monIcon" class="fa-solid fa-check fa-2x"></i></div>
+            </button>
+            <button id="tuesday" class="tuesday">
+                <div id="tueDate" class="dateBlock">10/17</div>
+                <div class="iconBlock"><i id="tueIcon" class="fa-solid fa-check fa-2x"></i></div>
+            </button>
+            <button id="wednesday" class="wednesday">
+                <div id="wedDate" class="dateBlock">10/18</div>
+                <div class="iconBlock"><i id="wedIcon" class="fa-solid fa-check fa-2x"></i></div>
+            </button>
+            <button id="thursday" class="thursday" style="background-color: #90EE90;">
+                <div id="thuDate" class="dateBlock">10/19</div>
+                <div class="iconBlock"><i id="thuIcon" class="fa-solid fa-check fa-2x" style="visibility: hidden"></i></div>
+            </button>
+            <button id="friday" class="friday">
+                <div id="friDate" class="dateBlock">10/20</div>
+                <div class="iconBlock"><i id="friIcon" class="fa-solid fa-check fa-2x" style="visibility: hidden"></i></div>
+            </button>
+            <button id="saturday" class="saturday">
+                <div id="satDate" class="dateBlock">10/21</div>
+                <div class="iconBlock"><i id="satIcon" class="fa-solid fa-check fa-2x" style="visibility: hidden"></i></div>
+            </button>
+            <button id="sunday" class="sunday">
+                <div id="sunDate" class="dateBlock">10/21</div>
+                <div class="iconBlock"><i id="sunIcon" class="fa-solid fa-check fa-2x" style="visibility: hidden"></i></div>
+            </button>
+            <div id="right" class="right">
+                <div style="position: relative; top: 38%; left: 17%">
+                    <i id="rightArrow" class="fa-solid fa-arrow-right fa-2x"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="dailyTracker">
+            <div id="todoList" class="todoList">
+                <button id="addMealButton" style="position: absolute; right:2%; top: 1%; width: 7%;"><i class="fa-solid fa-plus fa-3x"></i></button>
+                <div id="addMealButton" style="text-align: center;font-size: 35px; background-color: #90EE90;border-bottom: 2px solid grey;height: 9%;"><b style="position: relative; top:25%;">TODO:</b></div>
+                <br>
+                <div style="font-size: 36px">
+                    <input type="checkbox" class="largerCheckbox"><u>Read for 10 minutes</u>
+                </div>
+                <br>
+                <div style="font-size: 36px">
+                    <input type="checkbox" class="largerCheckbox"><u>Meditate for 5 minutes</u>
+                </div>
+                <br>
+                <div style="font-size: 36px">
+                    <input type="checkbox" class="largerCheckbox"><u>Drink 8 glasses of water</u>
+                </div>
+                <br>
+                <div style="font-size: 36px">
+                    <input type="checkbox" class="largerCheckbox"><u>Eat 1 apple</u>
+                </div>
+                <br>
+                <div style="font-size: 36px">
+                    <input type="checkbox" class="largerCheckbox"><u>Go on a 1 mile walk</u>
+                </div>
+                <br>
+                <div style="font-size: 36px">
+                    <input type="checkbox" class="largerCheckbox"><u>Take your daily medicine</u>
+                </div>
+                <br>
+                <div style="font-size: 36px">
+                    <input type="checkbox" class="largerCheckbox"><u>Do 10 sit-ups</u>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top:150%">
+            <p style="font-size: 36px; text-align:center">Screen Time: 50%</p>
+            <progress id="calorieProgress" value="50" max="100" style="height: 40px; width:90%;position: relative; left: 5%;"></progress>
+        </div>
+        
+
+
 
     <!-- Navigation bar -->
     <div id="navLayout" class="navContainer">
