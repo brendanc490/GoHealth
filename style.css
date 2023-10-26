@@ -96,10 +96,65 @@ body.fontChanged3 {
     border-bottom: 1px black;
     width: 100%;
     height: 100%;
-    grid-template-columns: 5% 12.85% 12.85% 12.85% 12.85% 12.85% 12.85% 12.85% 5%;
+    grid-template-columns: 5% 90% 5%;
     grid-template-rows: 100%;
     grid-template-areas: 
-    'left monday tuesday wednesday thursday friday saturday sunday right';
+    'left week right';
+}
+
+.week {
+    grid-area: week;
+    display: grid;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    grid-template-columns: 14.28% 14.28% 14.28% 14.28% 14.28% 14.28% 14.28%;
+    grid-template-rows: 100%;
+    grid-template-areas: 
+    'monday tuesday wednesday thursday friday saturday sunday';
+}
+
+.monday {
+    position: relative;
+    border: 1px solid grey;
+    left: 0%;
+    right: 0%;
+}
+.tuesday {
+    position: relative;
+    border: 1px solid grey;
+    left: 0%;
+    right: 0%;
+}
+.wednesday {
+    position: relative;
+    border: 1px solid grey;
+    left: 0%;
+    right: 0%;
+}
+.thursday {
+    position: relative;
+    border: 1px solid grey;
+    left: 0%;
+    right: 0%;
+}
+.friday {
+    position: relative;
+    border: 1px solid grey;
+    left: 0%;
+    right: 0%;
+}
+.saturday {
+    position: relative;
+    border: 1px solid grey;
+    left: 0%;
+    right: 0%;
+}
+.sunday {
+    position: relative;
+    border: 1px solid grey;
+    left: 0%;
+    right: 0%;
 }
 
 .dailyTracker {grid-area: dailyTracker;width: 100%; height: 100%}
@@ -220,3 +275,4 @@ progress {
     position: absolute;
     right: 5%;
 }
+

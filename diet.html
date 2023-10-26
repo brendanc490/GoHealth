@@ -8,53 +8,58 @@
     <!-- Top Bar -->
     <div id="topBar" class="topBar">
         <div id="dietHeader" style="text-align: center; height: 60%; font-size: 45px; background-color: #90EE90;"><b>Diet Information</b></div>
-        <div id="selectedDate" style="text-align: center; height: 35%; font-size: 35px;"><b>Thu, 10/19/23</b></div>
+        <div id="selectedDate" style="text-align: center; height: 35%; font-size: 35px;"><b>Thu, 10/19/2023</b></div>
     </div>
     <!-- Container for diet content -->
     <div id="dietLayout" class="dietContainer">
         <!-- Weekly Bar -->
         <div class="weekBar">
             <div id="left" class="left">
-                <div style="position: relative; top: 38%; left: 25%">
+                <div id="leftPos" style="position: relative; top: 38%; left: 25%">
                     <i id="leftArrow" class="fa-solid fa-arrow-left fa-2x"></i>
                 </div>
             </div>
-            <button id="monday" class="monday">
-                <div id="monDate" class="dateBlock">10/16</div>
-                <div class="iconBlock"><i id="monIcon" class="fa-solid fa-check fa-2x"></i></div>
-            </button>
-            <button id="tuesday" class="tuesday">
-                <div id="tueDate" class="dateBlock">10/17</div>
-                <div class="iconBlock"><i id="tueIcon" class="fa-solid fa-check fa-2x"></i></div>
-            </button>
-            <button id="wednesday" class="wednesday">
-                <div id="wedDate" class="dateBlock">10/18</div>
-                <div class="iconBlock"><i id="wedIcon" class="fa-solid fa-check fa-2x"></i></div>
-            </button>
-            <button id="thursday" class="thursday" style="background-color: #90EE90;">
-                <div id="thuDate" class="dateBlock">10/19</div>
-                <div class="iconBlock"><i id="thuIcon" class="fa-solid fa-check fa-2x" style="visibility: hidden"></i></div>
-            </button>
-            <button id="friday" class="friday">
-                <div id="friDate" class="dateBlock">10/20</div>
-                <div class="iconBlock"><i id="friIcon" class="fa-solid fa-check fa-2x" style="visibility: hidden"></i></div>
-            </button>
-            <button id="saturday" class="saturday">
-                <div id="satDate" class="dateBlock">10/21</div>
-                <div class="iconBlock"><i id="satIcon" class="fa-solid fa-check fa-2x" style="visibility: hidden"></i></div>
-            </button>
-            <button id="sunday" class="sunday">
-                <div id="sunDate" class="dateBlock">10/21</div>
-                <div class="iconBlock"><i id="sunIcon" class="fa-solid fa-check fa-2x" style="visibility: hidden"></i></div>
-            </button>
+            <div id="week" class="week">
+                <button id="monday" class="monday" onclick="changeDate(this)">
+                    <div id="monDate" class="dateBlock">10/16/23</div>
+                    <div class="iconBlock"><i id="monIcon" class="fa-solid fa-check fa-2x"></i></div>
+                </button>
+                <button id="tuesday" class="tuesday" onclick="changeDate(this)">
+                    <div id="tueDate" class="dateBlock">10/17/23</div>
+                    <div class="iconBlock"><i id="tueIcon" class="fa-solid fa-check fa-2x"></i></div>
+                </button>
+                <button id="wednesday" class="wednesday" onclick="changeDate(this)">
+                    <div id="wedDate" class="dateBlock">10/18/23</div>
+                    <div class="iconBlock"><i id="wedIcon" class="fa-solid fa-check fa-2x"></i></div>
+                </button>
+                <button id="thursday" class="thursday" style="background-color: #90EE90;" onclick="changeDate(this)">
+                    <div id="thuDate" class="dateBlock">10/19/23</div>
+                    <div class="iconBlock"><i id="thuIcon" class="fa-solid fa-check fa-2x" style="visibility: hidden"></i></div>
+                </button>
+                <button id="friday" class="friday" onclick="changeDate(this)">
+                    <div id="friDate" class="dateBlock">10/20/23</div>
+                    <div class="iconBlock"><i id="friIcon" class="fa-solid fa-check fa-2x" style="visibility: hidden"></i></div>
+                </button>
+                <button id="saturday" class="saturday" onclick="changeDate(this)">
+                    <div id="satDate" class="dateBlock">10/21/23</div>
+                    <div class="iconBlock"><i id="satIcon" class="fa-solid fa-check fa-2x" style="visibility: hidden"></i></div>
+                </button>
+                <button id="sunday" class="sunday" onclick="changeDate(this)">
+                    <div id="sunDate" class="dateBlock">10/22/23</div>
+                    <div class="iconBlock"><i id="sunIcon" class="fa-solid fa-check fa-2x" style="visibility: hidden"></i></div>
+                </button>
+
+            </div>
             <div id="right" class="right">
-                <div style="position: relative; top: 38%; left: 17%">
+                <div id="rightPos" style="position: relative; top: 38%; left: 17%">
                     <i id="rightArrow" class="fa-solid fa-arrow-right fa-2x"></i>
                 </div>
             </div>
-
         </div>
-
+        <div id="addMealForm" style="position: absolute; top:22%; left: 7.5%;display: none;background-color: grey;border: 1px solid black; width: 85%;height: 40%;z-index: 1;">
+            Enter Meal Name:
+            Enter Food 1
+        </div>
            <!-- Progress Bar -->
         <div class="progressBar">
             <div id="calorieHeader" class="calorieHeader">
@@ -132,4 +137,5 @@
         <div class="navSettings"><button style="width: 100%; height: 100%;" id="settingsButton" onclick="navigateTo(this)"><i id="settingsIcon" class="fa-solid fa-gear fa-3x"></i></button></button></div>
     </div>
 </body>
+<script src="dietFunc.js"></script>
 <script src="navigation.js"></script>
