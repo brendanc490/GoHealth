@@ -276,3 +276,19 @@ progress {
     right: 5%;
 }
 
+#thingTodo {
+    margin-top: 10px;
+    width: 600px;
+    font-size: 40px;
+    border: black;
+}
+
+#todoSubmitButton { 
+    color: black;
+    width: 9rem;
+    height: 50%; 
+    border: double black;
+    margin-top: 10px;
+    margin-left: 5px;  
+    font-size: 26px;
+} 
