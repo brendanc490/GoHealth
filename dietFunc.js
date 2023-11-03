@@ -21,6 +21,11 @@ const foodSelect = document.getElementById('foodSelect')
 const quantitySelect = document.getElementById('quantitySelect')
 const addFoodList = document.getElementById('addFoodList')
 const publishMealButton = document.getElementById('publishMealButton')
+const goalActual  = document.getElementById('goalActual')
+const burnedActual  = document.getElementById('burnedActual')
+const consumedActual  = document.getElementById('consumedActual')
+const togoActual  = document.getElementById('togoActual')
+const calorieProgress = document.getElementById('calorieProgress')
 
 
 
@@ -57,6 +62,8 @@ function changeDate(el){
     let date = new Date(selectedDate.innerText.split(', ')[1])
     const newDay = new Date(el.children[0].innerText);
     selectedDate.children[0].innerText = dayOfTheWeek[newDay.getDay()] +", "+newDay.toLocaleDateString()
+
+    updateUI()
 
 }
 
@@ -253,7 +260,8 @@ publishMealButton.addEventListener('click', () => {
     let el = document.createElement("div");
     el.className = "meal"
     el.id = mealNameInput.value
-
+    let br = document.createElement("br");
+    el.appendChild(br)
     let header = document.createElement("b");
     header.innerText = mealNameInput.value
     el.appendChild(header);
@@ -284,10 +292,6 @@ publishMealButton.addEventListener('click', () => {
 
         //update JSON
         foodMap[food] = quant
-        user['diet']['goal']['calories'] += foods[food].calories
-        user['diet']['goal']['protein'] += foods[food].protein
-        user['diet']['goal']['carbs'] += foods[food].carbs
-        user['diet']['goal']['fats'] += foods[food].fats
 
         el.appendChild(tmp)
         i++;
@@ -345,6 +349,110 @@ function addMealFormClear(){
     addFoodList.innerText = ''
 }
 
+
+function updateUI(date){
+    // update calorie amount and bar
+    let burnedAmt = user['exercise']['daysEntered'][selectedDate.innerText.split(' ')[1]] ? user['exercise']['daysEntered'][selectedDate.innerText.split(' ')[1]].caloriesBurned : 0
+    burnedActual.innerText = burnedAmt
+    let sum = 0;
+    if(user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]]){
+        let keys = Object.keys(user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]])
+        let i = 0;
+
+        
+        while(i < keys.length){
+            let mealKeys = Object.keys(user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]][keys[i]])
+            let dailySum = 0;
+            let el = document.createElement("div");
+            el.className = "meal"
+            el.id = keys[i]
+            let br = document.createElement("br");
+            el.appendChild(br)
+
+            let header = document.createElement("b");
+            header.innerText = keys[i]
+            el.appendChild(header);
+
+            let j = 0;
+            
+            while(j < mealKeys.length){
+                let food = mealKeys[j]
+                let quant = user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]][keys[i]][mealKeys[j]]
+                sum += Math.ceil(foods[food].calories * eval(quant))
+                dailySum += Math.ceil(foods[food].calories * eval(quant))
+
+                let tmp = document.createElement("div");
+                tmp.className = "food"
+
+                str = ``+quant
+                while(str.length < 3){
+                    str = str + `\u00A0`
+                    
+                }
+                if(quant.length != 3){
+                    str = str + `\u00A0`
+                }
+            
+                tmp.innerText = str+ `\u00A0\u00A0`+food
+                let calories = document.createElement("div");
+                calories.className = "calorie"
+                calories.innerText = foods[food].calories*eval(quant)
+                tmp.appendChild(calories)
+                el.appendChild(tmp)
+
+
+
+                j++;
+            }
+
+
+             // first line break
+            let br1 = document.createElement("br");
+            el.appendChild(br1)
+
+            // total calorie amount
+            let totalCalories = document.createElement("div")
+            totalCalories.className = "food"
+            let totalCalHeader = document.createElement("b");
+            totalCalHeader.innerText = "Total Calories"
+            totalCalories.appendChild(totalCalHeader)
+            let totalCalAmount = document.createElement("div")
+            totalCalAmount.className = "calorie"
+            let totalCalAmtHeader = document.createElement("b");
+            totalCalAmtHeader.innerText = dailySum
+            totalCalAmount.append(totalCalAmtHeader)
+            totalCalories.appendChild(totalCalAmount)
+            el.appendChild(totalCalories)
+
+            // second line break
+            let br2 = document.createElement("br");
+            el.appendChild(br2)
+
+            calorieList.appendChild(el)
+
+
+            i++;
+        }
+
+        
+        
+    } else {
+        calorieList.innerText = ""
+    }
+
+    consumedActual.innerText = sum;
+
+    togoActual.innerText = user['diet']['goal'].calories + burnedAmt - sum;
+
+    calorieProgress.value = Math.min(sum/(user['diet']['goal'].calories + burnedAmt)*100,100)
+
+
+
+}
+
+function updateUIPageLoad(){
+
+}
 
 // General TODO: create JSON structure that contains users and each diet, find or populate JSON containing food information
 

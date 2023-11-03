@@ -1,6 +1,10 @@
 const user = {
     "exercise": {
-        "caloriesBurned": 0
+        "daysEntered": {
+           "10/20/2023":{
+                "caloriesBurned": 0
+            }
+        }
     },
     "diet": {
         "goal": {
@@ -23,7 +27,25 @@ const user = {
                 "foods": {}
             }
         },
-        "daysEntered": {}
+        "daysEntered": {
+            "10/20/2023":{
+                "Breakfast": {
+                    "eggs": 3,
+                    "bread": 2,
+                    "banana": 1
+                },
+                "Lunch": {
+                    "salmon": 1,
+                    "white rice": 1,
+                    "carrots": 3
+                },
+                "Dinner": {
+                    "steak": 1,
+                    "white rice": 1,
+                    "broccoli": 3
+                }
+            }
+        }
     },
     "habits": {},
     "settings": {}
