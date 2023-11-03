@@ -30,19 +30,20 @@ const user = {
         "daysEntered": {
             "10/20/2023":{
                 "Breakfast": {
-                    "eggs": 3,
-                    "bread": 2,
-                    "banana": 1
+                    "eggs": "3",
+                    "bread": "2",
+                    "banana": "1",
                 },
                 "Lunch": {
-                    "salmon": 1,
-                    "white rice": 1,
-                    "carrots": 3
+                    "salmon": "1",
+                    "white rice": "1",
+                    "carrots": "3"
                 },
                 "Dinner": {
-                    "steak": 1,
-                    "white rice": 1,
-                    "broccoli": 3
+                    "steak": "1",
+                    "white rice": "1",
+                    "broccoli": "3",
+                    "olive oil": "1/2"
                 }
             }
         }
