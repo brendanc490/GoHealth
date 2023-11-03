@@ -212,8 +212,8 @@ progress {
     width: 95%;
     left: 2.5%;
     position: relative;
-    overflow-y: scroll;
     overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 .todoList{
@@ -238,7 +238,7 @@ progress {
 }
 
 .meal{
-    font-size: 25px;
+    font-size: 35px;
     position: relative;
     left: 0;
     padding-left: 1%;
@@ -258,6 +258,7 @@ progress {
 .food{
     position: relative;
     left: 3%;
+    font-size: 35px;
 }
 
 .todoItem{
