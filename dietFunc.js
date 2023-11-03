@@ -1,9 +1,3 @@
-import foods from './food.json' assert {type: "json"}
-
-import user from './user.json' assert {type: "json"}
-
-
-
 // elements
 const leftArrowContainer = document.getElementById('leftPos');
 const rightArrowContainer = document.getElementById('rightPos');
@@ -27,6 +21,7 @@ const foodSelect = document.getElementById('foodSelect')
 const quantitySelect = document.getElementById('quantitySelect')
 const addFoodList = document.getElementById('addFoodList')
 const publishMealButton = document.getElementById('publishMealButton')
+
 
 
 let foodKeys = Object.keys(foods)
