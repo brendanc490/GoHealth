@@ -287,7 +287,7 @@ publishMealButton.addEventListener('click', () => {
         let calories = document.createElement("div");
         calories.className = "calorie"
         calSum += foods[food].calories*eval(quant)
-        calories.innerText = foods[food].calories*eval(quant)
+        calories.innerText = Math.ceil(foods[food].calories*eval(quant))
         tmp.appendChild(calories)
 
         //update JSON
@@ -396,7 +396,7 @@ function updateUI(date){
                 tmp.innerText = str+ `\u00A0\u00A0`+food
                 let calories = document.createElement("div");
                 calories.className = "calorie"
-                calories.innerText = foods[food].calories*eval(quant)
+                calories.innerText = Math.ceil(foods[food].calories*eval(quant))
                 tmp.appendChild(calories)
                 el.appendChild(tmp)
 
