@@ -22,15 +22,15 @@
             <div id="week" class="week">
                 <button id="monday" class="monday" onclick="changeDate(this)">
                     <div id="monDate" class="dateBlock">10/16/23</div>
-                    <div class="iconBlock"><i id="monIcon" class="fa-solid fa-check fa-2x"></i></div>
+                    <div class="iconBlock"><i id="monIcon" class="fa-solid fa-check fa-2x" style="visibility: hidden"></i></div>
                 </button>
                 <button id="tuesday" class="tuesday" onclick="changeDate(this)">
                     <div id="tueDate" class="dateBlock">10/17/23</div>
-                    <div class="iconBlock"><i id="tueIcon" class="fa-solid fa-check fa-2x"></i></div>
+                    <div class="iconBlock"><i id="tueIcon" class="fa-solid fa-check fa-2x"  style="visibility: hidden"></i></div>
                 </button>
                 <button id="wednesday" class="wednesday" onclick="changeDate(this)">
                     <div id="wedDate" class="dateBlock">10/18/23</div>
-                    <div class="iconBlock"><i id="wedIcon" class="fa-solid fa-check fa-2x"></i></div>
+                    <div class="iconBlock"><i id="wedIcon" class="fa-solid fa-check fa-2x"  style="visibility: hidden"></i></div>
                 </button>
                 <button id="thursday" class="thursday" style="background-color: #90EE90;" onclick="changeDate(this)">
                     <div id="thuDate" class="dateBlock">10/19/23</div>
@@ -114,13 +114,16 @@
 
         <!-- Todays Page -->
         <div class="dailyTracker">
-            <div id="calorieList" class="calorieList">
+            <div id="calorieListExternal" class="calorieList">
                 <button id="addMealButton" style="position: absolute; right:2%; top: 1%; width: 7%;"><i class="fa-solid fa-plus fa-3x"></i></button>
                 <div id="addMeal" style="text-align: center;font-size: 35px; background-color: #90EE90;border-bottom: 2px solid grey;height: 7%;"><b style="position: relative; top:25%;">Meal List:</b></div>
-                <br>
+                <div id="calorieList" style="overflow-y: scroll;overflow-x: hidden;height: 93%">
                 
 
+                </div>
+                
             </div>
+            
 
         </div>
         
