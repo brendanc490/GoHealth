@@ -8,10 +8,10 @@
     <!-- Setting up app -->
     <!-- Top Bar -->
     <div id="topBar" class="topBar">
-        <div id="dietHeader" style="text-align: center; height: 60%; font-size: 45px; background-color: #90EE90;"><b>Healthy Habits</b></div>
-        <div id="selectedDate" style="text-align: center; height: 35%; font-size: 35px;"><b>Thu, 10/19/23</b></div>
+        <div id="dietHeader" style="text-align: center; height: 60%; font-size: 45px; background-color: #90EE90;"><b>Diet Information</b></div>
+        <div id="selectedDate" style="text-align: center; height: 35%; font-size: 35px;"><b>Thu, 10/19/2023</b></div>
     </div>
-
+    <!-- Container for diet content -->
     <div id="dietLayout" class="dietContainer">
         <!-- Weekly Bar -->
         <div class="weekBar">
@@ -49,6 +49,7 @@
                     <div id="sunDate" class="dateBlock">10/22/23</div>
                     <div class="iconBlock"><i id="sunIcon" class="fa-solid fa-check fa-2x" style="visibility: hidden"></i></div>
                 </button>
+
             </div>
             <div id="right" class="right">
                 <div id="rightPos" style="position: relative; top: 38%; left: 17%">
@@ -66,17 +67,14 @@
                 <button id="addTodoButton" style="position: absolute; right:2%; top: 1%; width: 7%;"><i class="fa-solid fa-plus fa-3x"></i></button>
                 <div id="addMealButton" style="text-align: center;font-size: 35px; background-color: #90EE90;border-bottom: 2px solid grey;height: 9%;"><b style="position: relative; top:25%;">TODO:</b></div>
                 <br>
+                <div id="todoContents" style="font-size: 36px">
+                    <input type='checkbox' class='largerCheckbox'><u>Take a 1 mile walk</u><br>
+                    <input type='checkbox' class='largerCheckbox'><u>Read for 10 minutes</u><br>
+                    <input type='checkbox' class='largerCheckbox'><u>Drink 8 glasses of water</u><br>
+                </div>
             </div>
         </div>
-
-        <div style="margin-top:150%">
-            <p style="font-size: 36px; text-align:center">Screen Time: 50%</p>
-            <progress id="calorieProgress" value="50" max="100" style="height: 40px; width:90%;position: relative; left: 5%;"></progress>
-        </div>
         
-
-
-
     <!-- Navigation bar -->
     <div id="navLayout" class="navContainer">
         <div class="navHome"><button style="width: 100%; height: 100%;" id="homeButton" onclick="navigateTo(this)"><i id="homeIcon" class="fa-solid fa-home fa-3x"></i></button></div>
@@ -86,5 +84,6 @@
         <div class="navSettings"><button style="width: 100%; height: 100%;" id="settingsButton" onclick="navigateTo(this)"><i id="settingsIcon" class="fa-solid fa-gear fa-3x"></i></button></button></div>
     </div>
 </body>
-<script src="navigation.js"></script>
+<script src="user.js"></script>
 <script src="habitsFunc.js"></script>
+<script src="navigation.js"></script>

@@ -14,6 +14,16 @@ const addTodoButton = document.getElementById('addTodoButton')
 const addTodoForm = document.getElementById('addTodoForm')
 const todoSubmitButton = document.getElementById('todoSubmitButton')
 
+let healthyHabits = ["Take a 1 mile walk",
+                    "Read for 10 minutes",
+                "Drink 8 glasses of water",
+                "Eat 1 apple",
+                "Meditate for 5 minutes",
+                "Do 10 situps",
+                "Do 10 pushups"]
+
+
+
 // calendar related code
 function changeDate(el){
     let i = 0;
@@ -31,10 +41,21 @@ function changeDate(el){
         i++;
     }
     el.style.backgroundColor = '#90EE90'
-    let date = new Date(selectedDate.innerText.split(', ')[1])
+    let dateText = selectedDate.innerText.split(', ')[1];
+    let date = new Date(dateText);
     const newDay = new Date(el.children[0].innerText);
     selectedDate.children[0].innerText = dayOfTheWeek[newDay.getDay()] +", "+newDay.toLocaleDateString()
+    updateHabits(dateText);
+}
 
+function updateHabits(date) {
+    if (date in user.habits.daysEntered) {
+
+    } else {
+        /* ADD TO THE DAYSENTERED PORTION IN HABITS DICTIONARY AND RANDOMLY
+            GENERATE HABITS AND USER. THEN ADD TO DIV
+        */
+    }
 }
 
 // change to previous week
