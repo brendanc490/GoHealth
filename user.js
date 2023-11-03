@@ -25,6 +25,9 @@ const user = {
         },
         "daysEntered": {}
     },
-    "habits": {},
+    "habits": {
+        "goals": 3,
+        "daysEntered": {"10/19/23": [[0,1,2],[False, False, False]]}
+    },
     "settings": {}
 }

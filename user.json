@@ -25,6 +25,11 @@
         },
         "daysEntered": {}
     },
-    "habits": {},
+    "habits": {
+        "goal": 3,
+        "daysEntered": {
+            
+        }
+    },
     "settings": {}
 }
