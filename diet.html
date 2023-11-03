@@ -56,9 +56,39 @@
                 </div>
             </div>
         </div>
-        <div id="addMealForm" style="position: absolute; top:22%; left: 7.5%;display: none;background-color: grey;border: 1px solid black; width: 85%;height: 40%;z-index: 1;">
-            Enter Meal Name:
-            Enter Food 1
+        <div id="addMealForm" style="position: absolute; font-size: 28px; top:22%; left: 7.5%;display: none;background-color: #eeeeee;border: 1px solid black; width: 85%;height: 40%;z-index: 1;grid-template-areas: 'Header Header' 'MealName MealName' 'FoodName FoodName' 'List List';grid-template-columns: 50% 50%;grid-template-rows: 10% 15% 15% 60%;">
+            <div id="mealHeader" style="grid-area: Header;text-align: center;font-size: 35px; background-color: #90EE90;border-bottom: 2px solid grey;">
+                <div style="position:relative;top: 10%;"><b>Add a Meal:</b></div>
+            </div>
+            <div id="mealName" style="grid-area: MealName;padding-top: 1%;padding-left: 1%;">
+                <b>Meal Name:</b>
+                <input type="text" id="mealNameInput" style="width: 50%; font-size: 25px; position: relative; left: 10%;border: 1px solid black"></input>
+            </div>
+            <div id="foodName" style="grid-area: FoodName;padding-left: 1%;">
+                <b>Food Name:</b>
+                <select id="foodSelect" style="width: 50%; font-size: 25px; position: relative; left: 10%;border: 1px solid black">
+                    <option disabled selected value="disabled"> -- select an option -- </option>
+                </select>
+                <select id="quantitySelect" style="position: relative; left: 15%;font-size: 25px;width: 10%;border: 1px solid black;">
+                    <option value="1/3">1/3</option>
+                    <option value="1/2">1/2</option>
+                    <option selected value="1">1</option>
+                </select>
+            </div>
+            <div id="addFoodListContainer" style="grid-area: List;padding-left: 1%;">
+                <b>Foods</b>
+                <div style="width: 80%; background-color: white;height: 82%;border: 1px solid black;padding-top: 1%;border-radius: 25px;" id="addFoodList"></div>
+            </div>
+                
+            
+            <button id="cancelEditMeal" style="position: absolute; right:2%; top: .5%; width: 7%;"><i class="fa-solid fa-xmark fa-3x"></i></button>
+            <!--<div id="editMeal" style="text-align: center;font-size: 35px; background-color: #90EE90;border-bottom: 2px solid grey;height: 12%;"><b style="position: relative; top:20%;">Edit Meal:</b></div>-->
+            
+            
+            <button id="addFoodButton" style="position: absolute; right:2%; bottom: 50%; width: 7%;"><i class="fa-solid fa-plus fa-3x"></i></button>
+
+            <button id="publishMealButton" style="position: absolute; right:2%; bottom: 4%; width: 7%;border: 1px solid black;"><i class="fa-solid fa-check fa-3x"></i></button>
+            
         </div>
            <!-- Progress Bar -->
         <div class="progressBar">
@@ -86,34 +116,9 @@
         <div class="dailyTracker">
             <div id="calorieList" class="calorieList">
                 <button id="addMealButton" style="position: absolute; right:2%; top: 1%; width: 7%;"><i class="fa-solid fa-plus fa-3x"></i></button>
-                <div id="addMealButton" style="text-align: center;font-size: 35px; background-color: #90EE90;border-bottom: 2px solid grey;height: 7%;"><b style="position: relative; top:25%;">Meal List:</b></div>
+                <div id="addMeal" style="text-align: center;font-size: 35px; background-color: #90EE90;border-bottom: 2px solid grey;height: 7%;"><b style="position: relative; top:25%;">Meal List:</b></div>
                 <br>
-                <div id="breakfast" class="meal"><b>Breakfast:</b>
-                    <div class="food">1 Apple<div class="calorie">95</div></div>
-                    <div class="food">2 Whole Wheat Bread<div class="calorie">138</div></div>
-                    <div class="food">2 Peanut Butter<div class="calorie">376</div></div>
-                    <div class="food">3 Egg<div class="calorie">234</div></div>
-                    <br>
-                    <div class="food"><b>Total Calories</b><div class="calorie"><b>843</b></div></div>
-                    <br>
-                </div>
-
-                <div id="snack" class="meal"><b>Morning Snack:</b>
-                    <div class="food">1 Protein Shake<div class="calorie">250</div></div>
-                    <br>
-                    <div class="food"><b>Total Calories</b><div class="calorie"><b>250</b></div></div>
-                    <br>
-                </div>
-
-                <div id="snack" class="meal"><b>Lunch:</b>
-                    <div class="food">2 Whole Wheat Bread<div class="calorie">138</div></div>
-                    <div class="food">1 Cheddar Cheese<div class="calorie">113</div></div>
-                    <div class="food">3 Deli Turkey<div class="calorie">183</div></div>
-                    <div class="food">1 Potato Chips<div class="calorie">152</div></div>
-                    <br>
-                    <div class="food"><b>Total Calories</b><div class="calorie"><b>586</b></div></div>
-                    <br>
-                </div>
+                
 
             </div>
 
@@ -137,5 +142,5 @@
         <div class="navSettings"><button style="width: 100%; height: 100%;" id="settingsButton" onclick="navigateTo(this)"><i id="settingsIcon" class="fa-solid fa-gear fa-3x"></i></button></button></div>
     </div>
 </body>
-<script src="dietFunc.js"></script>
+<script src="dietFunc.js" type="module"></script>
 <script src="navigation.js"></script>

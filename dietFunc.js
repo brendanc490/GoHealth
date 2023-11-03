@@ -1,3 +1,9 @@
+import foods from './food.json' assert {type: "json"}
+
+import user from './user.json' assert {type: "json"}
+
+
+
 // elements
 const leftArrowContainer = document.getElementById('leftPos');
 const rightArrowContainer = document.getElementById('rightPos');
@@ -11,7 +17,30 @@ const friday = document.getElementById('friday');
 const saturday = document.getElementById('saturday');
 const sunday = document.getElementById('sunday');
 const addMealButton = document.getElementById('addMealButton')
+const addFoodButton = document.getElementById('addFoodButton')
 const addMealForm = document.getElementById('addMealForm')
+const calorieList = document.getElementById('calorieList')
+const foodName = document.getElementById('foodName')
+const quantity = document.getElementById('quantity')
+const mealNameInput = document.getElementById('mealNameInput')
+const foodSelect = document.getElementById('foodSelect')
+const quantitySelect = document.getElementById('quantitySelect')
+const addFoodList = document.getElementById('addFoodList')
+const publishMealButton = document.getElementById('publishMealButton')
+
+
+let foodKeys = Object.keys(foods)
+for (let key of Object.keys(foods)){
+    let temp = new Option(key,key)
+    foodSelect.appendChild(temp)
+}
+
+let i = 2;
+while(i <= 4){
+    let temp = new Option(i,i)
+    quantitySelect.appendChild(temp)
+    i++;
+}
 
 // calendar related code
 function changeDate(el){
@@ -176,8 +205,150 @@ rightArrowContainer.addEventListener("click",() => {
 // TODO: add meal on button press, when a meal is pressed provide pop up with calorie and macro distribution and option to edit/delete
 addMealButton.addEventListener('click', () =>{
     // open a form to enter information
-    addMealForm.style.display = 'block'
+    addMealForm.style.display = 'grid'
+    addMealButton.disabled = true
 })
+
+addFoodButton.addEventListener('click', () => {
+    if(foodSelect.value == 'disabled' || addFoodList.querySelector("#"+foodSelect.value)){
+        return
+    }
+   
+    let el = document.createElement("div");
+    el.className = "food"
+    el.id = foodSelect.value
+    let str = ``
+    str = str + quantitySelect.value;
+    
+    while(str.length < 3){
+        str = str + `\u00A0`
+        
+    }
+    if(quantitySelect.value.length != 3){
+        str = str + `\u00A0`
+    }
+
+    el.innerText = str+ `\u00A0\u00A0`+foodSelect.value
+    
+    let deleteEl = document.createElement("div");
+    deleteEl.style.display = 'inline-block'
+    deleteEl.style.position = 'absolute'
+    deleteEl.style.left = '90%'
+    deleteEl.style.color = 'red'
+    deleteEl.innerText = 'X'
+    deleteEl.id = foodSelect.value+"Del"
+    deleteEl.addEventListener('click', (e) => {
+        let par = e.target.parentElement
+        par.parentElement.removeChild(par)
+        
+    })
+
+    el.appendChild(deleteEl)
+    
+    addFoodList.appendChild(el);
+    foodSelect.value = 'disabled'
+    quantitySelect.value = 1
+})
+
+publishMealButton.addEventListener('click', () => {
+    if(mealNameInput.value == "" || (user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]] && user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]][mealNameInput.value])){
+        return
+    }
+
+    let el = document.createElement("div");
+    el.className = "meal"
+    el.id = mealNameInput.value
+
+    let header = document.createElement("b");
+    header.innerText = mealNameInput.value
+    el.appendChild(header);
+    let calSum = 0;
+    let i = 0;
+    let foodMap = {}
+    while(i < addFoodList.childElementCount){
+        let tmp = document.createElement("div");
+        tmp.className = "food"
+        let test = addFoodList.children[i].innerText.substring(0, addFoodList.children[i].innerText.length-2)
+        console.log(test)
+        let quant = test.substring(0, test.indexOf('\u00A0')); 
+        let j = 0;
+        while(test.substring(test.indexOf('\u00A0') + j)[0] == '\u00A0'){
+            j++;
+           
+        }
+        let food = test.substring(test.indexOf('\u00A0') + j); 
+
+        tmp.innerText = test
+
+        // calories for food
+        let calories = document.createElement("div");
+        calories.className = "calorie"
+        calSum += foods[food].calories*eval(quant)
+        calories.innerText = foods[food].calories*eval(quant)
+        tmp.appendChild(calories)
+
+        //update JSON
+        foodMap[food] = quant
+        user['diet']['goal']['calories'] += foods[food].calories
+        user['diet']['goal']['protein'] += foods[food].protein
+        user['diet']['goal']['carbs'] += foods[food].carbs
+        user['diet']['goal']['fats'] += foods[food].fats
+
+        el.appendChild(tmp)
+        i++;
+    }
+
+    // add foodMap to user JSON
+    if(!user['diet']['daysEntered'][selectedDate.innerText.split(" ")[1]]){
+        user['diet']['daysEntered'][selectedDate.innerText.split(" ")[1]] = {}
+    }
+    user['diet']['daysEntered'][selectedDate.innerText.split(" ")[1]][mealNameInput.value] = foodMap
+    
+
+    // add in total calories
+
+    // first line break
+    let br1 = document.createElement("br");
+    el.appendChild(br1)
+
+    // total calorie amount
+    let totalCalories = document.createElement("div")
+    totalCalories.className = "food"
+    let totalCalHeader = document.createElement("b");
+    totalCalHeader.innerText = "Total Calories"
+    totalCalories.appendChild(totalCalHeader)
+    let totalCalAmount = document.createElement("div")
+    totalCalAmount.className = "calorie"
+    let totalCalAmtHeader = document.createElement("b");
+    totalCalAmtHeader.innerText = calSum
+    totalCalAmount.append(totalCalAmtHeader)
+    totalCalories.appendChild(totalCalAmount)
+    el.appendChild(totalCalories)
+
+    // second line break
+    let br2 = document.createElement("br");
+    el.appendChild(br2)
+
+    calorieList.appendChild(el)
+
+    addMealForm.style.display = "none"
+    addMealFormClear()
+    addMealButton.disabled = false
+
+})
+
+cancelEditMeal.addEventListener('click', () => {
+    addMealForm.style.display = 'none'
+    addMealFormClear()
+    addMealButton.disabled = false
+})
+
+function addMealFormClear(){
+    mealNameInput.value = ''
+    foodSelect.value = 'disabled'
+    quantitySelect.value = '1'
+    addFoodList.innerText = ''
+}
 
 
 // General TODO: create JSON structure that contains users and each diet, find or populate JSON containing food information
