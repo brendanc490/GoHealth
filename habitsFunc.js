@@ -14,6 +14,18 @@ const addTodoButton = document.getElementById('addTodoButton')
 const addTodoForm = document.getElementById('addTodoForm')
 const todoSubmitButton = document.getElementById('todoSubmitButton')
 
+let healthyHabits = ["Take a 1 mile walk",
+                    "Read for 10 minutes",
+                "Drink 8 glasses of water",
+                "Eat 1 apple",
+                "Meditate for 5 minutes",
+                "Do 10 situps",
+                "Do 10 pushups"]
+
+let total = 3;
+
+
+
 // calendar related code
 function changeDate(el){
     let i = 0;
@@ -31,10 +43,67 @@ function changeDate(el){
         i++;
     }
     el.style.backgroundColor = '#90EE90'
-    let date = new Date(selectedDate.innerText.split(', ')[1])
-    const newDay = new Date(el.children[0].innerText);
+    let dateText = selectedDate.innerText.split(', ')[1];
+    let date = new Date(dateText);
+    let newDateText = el.children[0].innerText
+    const newDay = new Date(newDateText);
     selectedDate.children[0].innerText = dayOfTheWeek[newDay.getDay()] +", "+newDay.toLocaleDateString()
+    if (date.toString() !== newDay.toString()) {
+        updateHabits(newDay.toLocaleDateString());
+    } 
+}
 
+function updateHabits(date) {
+    total = 0;
+    if (date in user.habits.daysEntered) {
+        document.querySelector("#todoContents").innerHTML = "";
+        for (let i = 0; i < user.habits.goals; i++) {
+            let currHabit = healthyHabits[user.habits.daysEntered[date][0][i]];
+
+            if (user.habits.daysEntered[date][1][i] == false) {
+                document.getElementById("todoContents").insertAdjacentHTML('beforeend', "<input type='checkbox' id="+ i.toString() + "' class='largerCheckbox' onclick=\"updateCheck(this)\"><u>" + currHabit + "</u><br>");
+            } else {
+                document.getElementById("todoContents").insertAdjacentHTML('beforeend', "<input type='checkbox' id=" + i.toString() + "' class='largerCheckbox' checked='true' onclick=\"updateCheck(this)\"><u>" + currHabit + "</u><br>");
+            }
+            total++;
+        }
+    // Generates a new date object for the new day. 
+    } else {
+        let healthyHabits = ["Take a 1 mile walk",
+                    "Read for 10 minutes",
+                "Drink 8 glasses of water",
+                "Eat 1 apple",
+                "Meditate for 5 minutes",
+                "Do 10 situps",
+                "Do 10 pushups"]
+        let totalHabits = 6;
+        document.querySelector("#todoContents").innerHTML = "";
+        habitMap = [[],[]];
+
+        for (let i = 0; i < user.habits.goals; i++) {
+            let randomNum = Math.floor(Math.random() * totalHabits);
+            let randomHabit = healthyHabits[randomNum];
+            document.getElementById("todoContents").insertAdjacentHTML('beforeend', "<input type='checkbox' id="+ i.toString() + "' class='largerCheckbox' onclick=\"updateCheck(this)\"><u>" + randomHabit + "</u><br>");
+            habitMap[0].push(randomNum);
+            habitMap[1].push(false);
+            let used = healthyHabits.indexOf(randomHabit);
+            healthyHabits.splice(used, 1)
+            totalHabits--;
+            total++;
+        }
+        user.habits.daysEntered[date] = habitMap;
+    }
+}
+
+function updateCheck(checkbox) {
+    let index = parseInt(checkbox.id);
+    let currDate = selectedDate.innerText.split(', ')[1];
+    
+    if (user.habits.daysEntered[currDate][1][index] == true) {
+        user.habits.daysEntered[currDate][1][index] = false;
+    } else {
+        user.habits.daysEntered[currDate][1][index] = true;
+    }
 }
 
 // change to previous week
@@ -183,9 +252,14 @@ todoSubmitButton.onclick = addEntry;
 
 function addEntry() {
     let entry = document.getElementById("thingTodo").value;
+    let currDate = selectedDate.innerText.split(', ')[1];
+    let index = (total - 1)
     addTodoForm.style.display = 'none';
     document.getElementById("thingTodo").value = "";
-    document.getElementById("todoList").insertAdjacentHTML('beforeend', "<br><div style='font-size: 36px'><input type='checkbox' class='largerCheckbox'><u>" + entry + "</u></div>");
+    document.getElementById("todoContents").insertAdjacentHTML('beforeend', "<input type='checkbox' id="+ index.toString() + "' class='largerCheckbox' onclick=\"updateCheck(this)\"><u>" + entry + "</u><br>");
+    user.habits.daysEntered[currDate][0].push(index);
+    user.habits.daysEntered[currDate][1].push(false);
+    console.log(user.habits.daysEntered[currDate]);
 }
 
 

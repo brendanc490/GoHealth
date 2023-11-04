@@ -49,6 +49,9 @@ const user = {
             }
         }
     },
-    "habits": {},
+    "habits": {
+        "goals": 3,
+        "daysEntered": {"10/19/2023": [[0,1,2],[false, false, false]]}
+    },
     "settings": {}
 }

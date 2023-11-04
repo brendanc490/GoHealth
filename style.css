@@ -224,6 +224,7 @@ progress {
     position: relative;
     overflow-y: scroll;
     overflow-x: hidden;
+    font-size: 36px
 }
 
 .exerciseList{
