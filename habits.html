@@ -23,15 +23,15 @@
             <div id="week" class="week">
                 <button id="monday" class="monday" onclick="changeDate(this)">
                     <div id="monDate" class="dateBlock">10/16/23</div>
-                    <div class="iconBlock"><i id="monIcon" class="fa-solid fa-check fa-2x"></i></div>
+                    <div class="iconBlock"><i id="monIcon" class="fa-solid fa-check fa-2x" style="visibility: hidden"></i></div>
                 </button>
                 <button id="tuesday" class="tuesday" onclick="changeDate(this)">
                     <div id="tueDate" class="dateBlock">10/17/23</div>
-                    <div class="iconBlock"><i id="tueIcon" class="fa-solid fa-check fa-2x"></i></div>
+                    <div class="iconBlock"><i id="tueIcon" class="fa-solid fa-check fa-2x"  style="visibility: hidden"></i></div>
                 </button>
                 <button id="wednesday" class="wednesday" onclick="changeDate(this)">
                     <div id="wedDate" class="dateBlock">10/18/23</div>
-                    <div class="iconBlock"><i id="wedIcon" class="fa-solid fa-check fa-2x"></i></div>
+                    <div class="iconBlock"><i id="wedIcon" class="fa-solid fa-check fa-2x"  style="visibility: hidden"></i></div>
                 </button>
                 <button id="thursday" class="thursday" style="background-color: #90EE90;" onclick="changeDate(this)">
                     <div id="thuDate" class="dateBlock">10/19/23</div>
@@ -65,12 +65,12 @@
         <div class="dailyTracker">
             <div id="todoList" class="todoList">
                 <button id="addTodoButton" style="position: absolute; right:2%; top: 1%; width: 7%;"><i class="fa-solid fa-plus fa-3x"></i></button>
-                <div id="addMealButton" style="text-align: center;font-size: 35px; background-color: #90EE90;border-bottom: 2px solid grey;height: 9%;"><b style="position: relative; top:25%;">TODO:</b></div>
+                <div id="addMealButton" style="text-align: center;font-size: 35px; background-color: #90EE90;border-bottom: 2px solid grey;height: 9%;"><b style="position: relative; top:25%;">Today's Healthy Habits</b></div>
                 <br>
                 <div id="todoContents" style="font-size: 36px">
-                    <input type='checkbox' class='largerCheckbox'><u>Take a 1 mile walk</u><br>
-                    <input type='checkbox' class='largerCheckbox'><u>Read for 10 minutes</u><br>
-                    <input type='checkbox' class='largerCheckbox'><u>Drink 8 glasses of water</u><br>
+                    <input type='checkbox' id='0' class='largerCheckbox' onclick="updateCheck(this)"><u>Take a 1 mile walk</u><br>
+                    <input type='checkbox' id='1' class='largerCheckbox' onclick="updateCheck(this)"><u>Read for 10 minutes</u><br>
+                    <input type='checkbox' id='2' class='largerCheckbox' onclick="updateCheck(this)"><u>Drink 8 glasses of water</u><br>
                 </div>
             </div>
         </div>
