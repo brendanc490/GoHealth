@@ -43,18 +43,38 @@ function changeDate(el){
     el.style.backgroundColor = '#90EE90'
     let dateText = selectedDate.innerText.split(', ')[1];
     let date = new Date(dateText);
-    const newDay = new Date(el.children[0].innerText);
+    let newDateText = el.children[0].innerText
+    const newDay = new Date(newDateText);
     selectedDate.children[0].innerText = dayOfTheWeek[newDay.getDay()] +", "+newDay.toLocaleDateString()
-    updateHabits(dateText);
+    if (date.toString() !== newDay.toString()) {
+        updateHabits(newDateText);
+    } 
 }
 
 function updateHabits(date) {
     if (date in user.habits.daysEntered) {
-
+        document.querySelector("#todoContents").innerHTML = "";
+        for (let i = 0; i < user.habits.goals; i++) {
+            let currHabit = healthyHabits[user.habits.daysEntered[date][0][i]];
+            if (user.habits.daysEntered[date][1][i] == false) {
+                document.getElementById("todoContents").insertAdjacentHTML('beforeend', "<input type='checkbox' class='largerCheckbox'><u>" + currHabit + "</u><br>");
+            } else {
+                document.getElementById("todoContents").insertAdjacentHTML('beforeend', "<input type='checkbox' class='largerCheckbox' checked='true'><u>" + currHabit + "</u><br>");
+            }    
+        }
+    // Generates a new date object for the new day. 
     } else {
-        /* ADD TO THE DAYSENTERED PORTION IN HABITS DICTIONARY AND RANDOMLY
-            GENERATE HABITS AND USER. THEN ADD TO DIV
-        */
+        document.querySelector("#todoContents").innerHTML = "";
+        habitMap = [[],[]];
+
+        for (let i = 0; i < user.habits.goals; i++) {
+            let randomNum = Math.floor(Math.random() * 6);
+            let randomHabit = healthyHabits[randomNum]
+            document.getElementById("todoContents").insertAdjacentHTML('beforeend', "<input type='checkbox' class='largerCheckbox'><u>" + randomHabit + "</u><br>");
+            habitMap[0].push(randomNum);
+            habitMap[1].push(false);
+        }
+        user.habits.daysEntered[date] = habitMap;
     }
 }
 

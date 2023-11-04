@@ -51,7 +51,7 @@ const user = {
     },
     "habits": {
         "goals": 3,
-        "daysEntered": {"10/19/23": [[0,1,2],[False, False, False]]}
+        "daysEntered": {"10/19/2023": [[0,1,2],[false, false, false]]}
     },
     "settings": {}
 }
