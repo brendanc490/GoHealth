@@ -38,7 +38,7 @@
                 </button>
                 <button id="friday" class="friday" onclick="changeDate(this)">
                     <div id="friDate" class="dateBlock">10/20/23</div>
-                    <div class="iconBlock"><i id="friIcon" class="fa-solid fa-check fa-2x" style="visibility: hidden"></i></div>
+                    <div class="iconBlock"><i id="friIcon" class="fa-solid fa-check fa-2x" style="visibility: visible"></i></div>
                 </button>
                 <button id="saturday" class="saturday" onclick="changeDate(this)">
                     <div id="satDate" class="dateBlock">10/21/23</div>
@@ -81,13 +81,48 @@
             </div>
                 
             
-            <button id="cancelEditMeal" style="position: absolute; right:2%; top: .5%; width: 7%;"><i class="fa-solid fa-xmark fa-3x"></i></button>
+            <button id="cancelAddMeal" style="position: absolute; right:2%; top: .5%; width: 7%;"><i class="fa-solid fa-xmark fa-3x"></i></button>
             <!--<div id="editMeal" style="text-align: center;font-size: 35px; background-color: #90EE90;border-bottom: 2px solid grey;height: 12%;"><b style="position: relative; top:20%;">Edit Meal:</b></div>-->
             
             
             <button id="addFoodButton" style="position: absolute; right:2%; bottom: 50%; width: 7%;"><i class="fa-solid fa-plus fa-3x"></i></button>
 
             <button id="publishMealButton" style="position: absolute; right:2%; bottom: 4%; width: 7%;border: 1px solid black;"><i class="fa-solid fa-check fa-3x"></i></button>
+            
+        </div>
+
+        <div id="editMealForm" style="position: absolute; font-size: 28px; top:22%; left: 7.5%;display: none;background-color: #eeeeee;border: 1px solid black; width: 85%;height: 40%;z-index: 1;grid-template-areas: 'Header Header' 'MealName MealName' 'FoodName FoodName' 'List List';grid-template-columns: 50% 50%;grid-template-rows: 10% 15% 15% 60%;">
+            <div id="editMealHeader" style="grid-area: Header;text-align: center;font-size: 35px; background-color: #90EE90;border-bottom: 2px solid grey;">
+                <div style="position:relative;top: 10%;"><b>Edit a Meal:</b></div>
+            </div>
+            <div id="editMealName" style="grid-area: MealName;padding-top: 1%;padding-left: 1%;">
+                <b>Meal Name:</b>
+                <input type="text" id="editMealNameInput" style="width: 50%; font-size: 25px; position: relative; left: 10%;border: 1px solid black"></input>
+            </div>
+            <div id="editFoodName" style="grid-area: FoodName;padding-left: 1%;">
+                <b>Food Name:</b>
+                <select id="editFoodSelect" style="width: 50%; font-size: 25px; position: relative; left: 10%;border: 1px solid black">
+                    <option disabled selected value="disabled"> -- select an option -- </option>
+                </select>
+                <select id="editQuantitySelect" style="position: relative; left: 15%;font-size: 25px;width: 10%;border: 1px solid black;">
+                    <option value="1/3">1/3</option>
+                    <option value="1/2">1/2</option>
+                    <option selected value="1">1</option>
+                </select>
+            </div>
+            <div id="editFoodListContainer" style="grid-area: List;padding-left: 1%;">
+                <b>Foods</b>
+                <div style="width: 80%; background-color: white;height: 82%;border: 1px solid black;padding-top: 1%;border-radius: 25px;" id="editFoodList"></div>
+            </div>
+                
+            
+            <button id="cancelEditMeal" style="position: absolute; right:2%; top: .5%; width: 7%;"><i class="fa-solid fa-xmark fa-3x"></i></button>
+            <!--<div id="editMeal" style="text-align: center;font-size: 35px; background-color: #90EE90;border-bottom: 2px solid grey;height: 12%;"><b style="position: relative; top:20%;">Edit Meal:</b></div>-->
+            
+            
+            <button id="editFoodButton" style="position: absolute; right:2%; bottom: 50%; width: 7%;"><i class="fa-solid fa-plus fa-3x"></i></button>
+
+            <button id="editMealButton" style="position: absolute; right:2%; bottom: 4%; width: 7%;border: 1px solid black;"><i class="fa-solid fa-check fa-3x"></i></button>
             
         </div>
            <!-- Progress Bar -->
@@ -101,14 +136,14 @@
             <div id="calorieActual" class="calorieActual">
                 <div id="goalActual" class="goalActual" style="text-align: center;">2000</div>
                 <div id="plus" class="plus"><i class="fa-solid fa-plus fa-lg"></i></div>
-                <div id="burnedActual" class="burnedActual" style="text-align: center;">200</div>
+                <div id="burnedActual" class="burnedActual" style="text-align: center;">0</div>
                 <div id="minus" class="minus"><i class="fa-solid fa-minus fa-lg"></i></div>
-                <div id="consumedActual" class="consumedActual" style="text-align: center;">1679</div>
+                <div id="consumedActual" class="consumedActual" style="text-align: center;">0</div>
                 <div id="equals" class="equals"><i class="fa-solid fa-equals fa-lg"></i></div>
-                <div id="togoActual" class="togoActual" style="text-align: center;">521</div>
+                <div id="togoActual" class="togoActual" style="text-align: center;">2000</div>
             </div>
 
-            <progress id="calorieProgress" value="76.3" max="100" style="width:90%;position: relative; left: 5%;"></progress>
+            <progress id="calorieProgress" value="0" max="100" style="width:90%;position: relative; left: 5%;"></progress>
 
         </div>
 
