@@ -44,7 +44,8 @@ const user = {
                     "white rice": "1",
                     "broccoli": "3",
                     "olive oil": "1/2"
-                }
+                },
+                "totalCalories": 2267
             }
         }
     },

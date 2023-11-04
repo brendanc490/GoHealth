@@ -26,13 +26,24 @@ const burnedActual  = document.getElementById('burnedActual')
 const consumedActual  = document.getElementById('consumedActual')
 const togoActual  = document.getElementById('togoActual')
 const calorieProgress = document.getElementById('calorieProgress')
-
+const editMealForm = document.getElementById('editMealForm')
+const cancelAddMeal = document.getElementById('cancelAddMeal')
+const cancelEditMeal = document.getElementById('cancelEditMeal')
+const editFoodName = document.getElementById('editFoodName')
+const editQuantity = document.getElementById('editQuantity')
+const editMealNameInput = document.getElementById('editMealNameInput')
+const editFoodSelect = document.getElementById('editFoodSelect')
+const editQuantitySelect = document.getElementById('editQuantitySelect')
+const editFoodButton = document.getElementById('editFoodButton')
+const editMealButton = document.getElementById('editMealButton')
+const editFoodList = document.getElementById('editFoodList')
 
 
 let foodKeys = Object.keys(foods)
 for (let key of Object.keys(foods)){
     let temp = new Option(key,key)
     foodSelect.appendChild(temp)
+    editFoodSelect.appendChild(temp)
 }
 
 let i = 2;
@@ -91,6 +102,8 @@ leftArrowContainer.addEventListener("click",() => {
         }
         i++;
     }
+
+    let animArr = checkGoalsCompleted(lastWeek)
     
     interval = setInterval(() => {
         // when to stop interval
@@ -257,22 +270,12 @@ publishMealButton.addEventListener('click', () => {
         return
     }
 
-    let el = document.createElement("div");
-    el.className = "meal"
-    el.id = mealNameInput.value
-    let br = document.createElement("br");
-    el.appendChild(br)
-    let header = document.createElement("b");
-    header.innerText = mealNameInput.value
-    el.appendChild(header);
-    let calSum = 0;
+
     let i = 0;
     let foodMap = {}
+    let calSum = 0;
     while(i < addFoodList.childElementCount){
-        let tmp = document.createElement("div");
-        tmp.className = "food"
         let test = addFoodList.children[i].innerText.substring(0, addFoodList.children[i].innerText.length-2)
-        console.log(test)
         let quant = test.substring(0, test.indexOf('\u00A0')); 
         let j = 0;
         while(test.substring(test.indexOf('\u00A0') + j)[0] == '\u00A0'){
@@ -281,62 +284,33 @@ publishMealButton.addEventListener('click', () => {
         }
         let food = test.substring(test.indexOf('\u00A0') + j); 
 
-        tmp.innerText = test
 
         // calories for food
-        let calories = document.createElement("div");
-        calories.className = "calorie"
         calSum += foods[food].calories*eval(quant)
-        calories.innerText = Math.ceil(foods[food].calories*eval(quant))
-        tmp.appendChild(calories)
 
         //update JSON
         foodMap[food] = quant
 
-        el.appendChild(tmp)
         i++;
     }
 
     // add foodMap to user JSON
     if(!user['diet']['daysEntered'][selectedDate.innerText.split(" ")[1]]){
-        user['diet']['daysEntered'][selectedDate.innerText.split(" ")[1]] = {}
+        user['diet']['daysEntered'][selectedDate.innerText.split(" ")[1]] = {'totalCalories': 0}
     }
+    let newTotal = user['diet']['daysEntered'][selectedDate.innerText.split(" ")[1]].totalCalories + calSum
     user['diet']['daysEntered'][selectedDate.innerText.split(" ")[1]][mealNameInput.value] = foodMap
+    user['diet']['daysEntered'][selectedDate.innerText.split(" ")[1]]['totalCalories'] = newTotal
     
-
-    // add in total calories
-
-    // first line break
-    let br1 = document.createElement("br");
-    el.appendChild(br1)
-
-    // total calorie amount
-    let totalCalories = document.createElement("div")
-    totalCalories.className = "food"
-    let totalCalHeader = document.createElement("b");
-    totalCalHeader.innerText = "Total Calories"
-    totalCalories.appendChild(totalCalHeader)
-    let totalCalAmount = document.createElement("div")
-    totalCalAmount.className = "calorie"
-    let totalCalAmtHeader = document.createElement("b");
-    totalCalAmtHeader.innerText = calSum
-    totalCalAmount.append(totalCalAmtHeader)
-    totalCalories.appendChild(totalCalAmount)
-    el.appendChild(totalCalories)
-
-    // second line break
-    let br2 = document.createElement("br");
-    el.appendChild(br2)
-
-    calorieList.appendChild(el)
-
     addMealForm.style.display = "none"
     addMealFormClear()
     addMealButton.disabled = false
 
+    updateUI()
+
 })
 
-cancelEditMeal.addEventListener('click', () => {
+cancelAddMeal.addEventListener('click', () => {
     addMealForm.style.display = 'none'
     addMealFormClear()
     addMealButton.disabled = false
@@ -354,13 +328,16 @@ function updateUI(date){
     // update calorie amount and bar
     let burnedAmt = user['exercise']['daysEntered'][selectedDate.innerText.split(' ')[1]] ? user['exercise']['daysEntered'][selectedDate.innerText.split(' ')[1]].caloriesBurned : 0
     burnedActual.innerText = burnedAmt
-    let sum = 0;
     if(user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]]){
         let keys = Object.keys(user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]])
         let i = 0;
 
         
         while(i < keys.length){
+            if(keys[i] == 'totalCalories'){
+                i++;
+                continue;
+            }
             let mealKeys = Object.keys(user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]][keys[i]])
             let dailySum = 0;
             let el = document.createElement("div");
@@ -373,12 +350,31 @@ function updateUI(date){
             header.innerText = keys[i]
             el.appendChild(header);
 
+            let editEl = document.createElement("div");
+            editEl.style.display = 'block'
+            editEl.style.position = 'absolute'
+            editEl.style.left = '95%'
+            editEl.style.top = '7%'
+
+            let editIcon = document.createElement("i")
+            editIcon.className = "fa-solid fa-pen-to-square"
+
+            editEl.appendChild(editIcon)
+            
+            editEl.id = foodSelect.value+"Edit"
+            editEl.addEventListener('click', (e) => {
+                let par = e.target.parentElement
+                editMeal(par.parentElement.id,user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]][par.parentElement.id])
+                
+            })
+
+            el.appendChild(editEl)
+
             let j = 0;
             
             while(j < mealKeys.length){
                 let food = mealKeys[j]
                 let quant = user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]][keys[i]][mealKeys[j]]
-                sum += Math.ceil(foods[food].calories * eval(quant))
                 dailySum += Math.ceil(foods[food].calories * eval(quant))
 
                 let tmp = document.createElement("div");
@@ -439,16 +435,226 @@ function updateUI(date){
     } else {
         calorieList.innerText = ""
     }
-
+    let sum = 0;
+    if(user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]]){
+        sum = user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]].totalCalories;
+    }
     consumedActual.innerText = sum;
 
     togoActual.innerText = user['diet']['goal'].calories + burnedAmt - sum;
 
     calorieProgress.value = Math.min(sum/(user['diet']['goal'].calories + burnedAmt)*100,100)
 
+    if(Math.min(sum/(user['diet']['goal'].calories + burnedAmt)*100,100) == 100){
+        let k = 0;
+        while(k < 7){
+            if(week.children[k].style.backgroundColor != ''){
+                week.children[k].children[1].children[0].style.visibility = 'visible'
+            }
+            k++;
+        }
+    }
 
 
 }
+
+function checkGoalsCompleted(week){
+    let i = 0;
+    let arr = []
+    while(i < week.length){
+        if(user['diet']['daysEntered'][week[i]]){
+            if(user['diet']['daysEntered'][week[i]].totalCalories >= user['diet']['goal'].calories){
+                arr.push(true)
+            } else {
+                arr.push(false)
+            }
+        }
+
+        i++;
+    }
+    return arr
+}
+
+let oldMealName = ""
+function editMeal(mealName, mealVal){
+    oldMealName = mealName
+    editMealNameInput.value = mealName
+
+    let i = 0;
+    let currFoods = Object.keys(mealVal);
+    while(i < currFoods.length){
+
+        let el = document.createElement("div");
+        el.className = "food"
+        el.id = currFoods[i]
+        let str = ``
+        str = str + mealVal[currFoods[i]];
+        
+        while(str.length < 3){
+            str = str + `\u00A0`
+            
+        }
+        if(mealVal[currFoods[i]].length != 3){
+            str = str + `\u00A0`
+        }
+    
+        el.innerText = str+ `\u00A0\u00A0`+currFoods[i]
+        
+        let deleteEl = document.createElement("div");
+        deleteEl.style.display = 'inline-block'
+        deleteEl.style.position = 'absolute'
+        deleteEl.style.left = '90%'
+        deleteEl.style.color = 'red'
+        deleteEl.innerText = 'X'
+        deleteEl.id = currFoods.value+"Del"
+        deleteEl.addEventListener('click', (e) => {
+            let par = e.target.parentElement
+            par.parentElement.removeChild(par)
+            
+        })
+    
+        el.appendChild(deleteEl)
+
+        editFoodList.appendChild(el)
+
+        i++;
+    }
+
+    editMealForm.style.display = 'grid';
+
+    
+
+}
+
+cancelEditMeal.addEventListener('click',() => {
+    editMealForm.style.display = 'none'
+    resetEditMealForm()
+
+
+})
+
+editMealButton.addEventListener('click', (e) => {
+    if(editMealNameInput.value == "" || (user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]] && user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]][editMealNameInput.value]) && editMealNameInput.value != oldMealName){
+        return
+    }
+
+    let prevCalSum = 0;
+    let k = 0;
+    let oldMealKeys = Object.keys(user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]][oldMealName])
+    while(k < oldMealKeys.length){
+        prevCalSum += foods[oldMealKeys[k]].calories*eval(user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]][oldMealName][oldMealKeys[k]])
+        k++;
+    }
+
+
+    let i = 0;
+    let foodMap = {}
+    let calSum = 0;
+    while(i < editFoodList.childElementCount){
+        let test = editFoodList.children[i].innerText.substring(0, editFoodList.children[i].innerText.length-2)
+        let quant = test.substring(0, test.indexOf('\u00A0')); 
+        let j = 0;
+        while(test.substring(test.indexOf('\u00A0') + j)[0] == '\u00A0'){
+            j++;
+           
+        }
+        let food = test.substring(test.indexOf('\u00A0') + j); 
+
+
+        // calories for food
+        calSum += foods[food].calories*eval(quant)
+
+        //update JSON
+        foodMap[food] = quant
+
+        i++;
+    }
+
+
+
+    // add foodMap to user JSON
+    let newTotal = user['diet']['daysEntered'][selectedDate.innerText.split(" ")[1]].totalCalories + calSum - prevCalSum
+    //user['diet']['daysEntered'][selectedDate.innerText.split(" ")[1]][editMealNameInput.value] = foodMap
+
+    if(oldMealName != editMealNameInput.value){
+        let i = 0;
+        let mealKeys = Object.keys(user['diet']['daysEntered'][selectedDate.innerText.split(" ")[1]]);
+        let newOrder = {}
+        while(i < mealKeys.length){
+            if(mealKeys[i] == oldMealName){
+                newOrder[editMealNameInput.value] = foodMap
+            } else {
+                newOrder[mealKeys[i]] = user['diet']['daysEntered'][selectedDate.innerText.split(" ")[1]][mealKeys[i]]
+            }
+            i++;
+        }
+        
+        user['diet']['daysEntered'][selectedDate.innerText.split(" ")[1]] = newOrder
+
+    } else {
+        user['diet']['daysEntered'][selectedDate.innerText.split(" ")[1]][editMealNameInput.value] = foodMap
+    }
+
+    user['diet']['daysEntered'][selectedDate.innerText.split(" ")[1]]['totalCalories'] = newTotal
+    
+    editMealForm.style.display = "none"
+    resetEditMealForm()
+    editMealButton.disabled = false
+    calorieList.innerHTML = ""
+    updateUI();
+
+
+})
+
+editFoodButton.addEventListener('click', () => {
+    if(editFoodSelect.value == 'disabled' || editFoodList.querySelector("#"+editFoodSelect.value)){
+        return
+    }
+   
+    let el = document.createElement("div");
+    el.className = "food"
+    el.id = editFoodSelect.value
+    let str = ``
+    str = str + editQuantitySelect.value;
+    
+    while(str.length < 3){
+        str = str + `\u00A0`
+        
+    }
+    if(editQuantitySelect.value.length != 3){
+        str = str + `\u00A0`
+    }
+
+    el.innerText = str+ `\u00A0\u00A0`+editFoodSelect.value
+    
+    let deleteEl = document.createElement("div");
+    deleteEl.style.display = 'inline-block'
+    deleteEl.style.position = 'absolute'
+    deleteEl.style.left = '90%'
+    deleteEl.style.color = 'red'
+    deleteEl.innerText = 'X'
+    deleteEl.id = editFoodSelect.value+"Del"
+    deleteEl.addEventListener('click', (e) => {
+        let par = e.target.parentElement
+        par.parentElement.removeChild(par)
+        
+    })
+
+    el.appendChild(deleteEl)
+    
+    editFoodList.appendChild(el);
+    editFoodSelect.value = 'disabled'
+    editQuantitySelect.value = 1
+})
+
+
+function resetEditMealForm(){
+    editMealNameInput.value = ''
+    editFoodSelect.value = 'disabled'
+    editQuantitySelect.value = '1'
+    editFoodList.innerText = ''
+}
+
 
 function updateUIPageLoad(){
 
