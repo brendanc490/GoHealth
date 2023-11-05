@@ -60,7 +60,8 @@ const user = {
             "feet":5,
             "inches":11
         },
-        "weight": 195
+        "weight": 195,
+        "level": "beginner"
     },
     "settings": {}
 }
