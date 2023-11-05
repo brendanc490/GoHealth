@@ -53,5 +53,13 @@ const user = {
         "goals": 3,
         "daysEntered": {"10/19/2023": [[0,1,2],[false, false, false]]}
     },
+    "profile": {
+        "age": 21,
+        "height": {
+            "feet":5,
+            "inches":11
+        },
+        "weight": 195
+    },
     "settings": {}
 }
