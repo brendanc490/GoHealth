@@ -2,6 +2,10 @@
 
 function navigateTo(el){
     // save json file to local storage
+    let userJSON = JSON.stringify(user)
+    console.log(userJSON)
+    localStorage.setItem('user',userJSON);
+    localStorage.setItem('timeStamp',new Date().getTime())
 
     // begin navigation
     if(el.getAttribute('id').includes("home")){

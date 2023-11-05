@@ -39,6 +39,10 @@ const editMealButton = document.getElementById('editMealButton')
 const editFoodList = document.getElementById('editFoodList')
 
 
+// add this is to enable data persistence across screens
+// remove user.js script from html!!!
+const user = JSON.parse(localStorage.getItem('user'))
+
 let foodKeys = Object.keys(foods)
 for (let key of Object.keys(foods)){
     let temp1 = new Option(key,key)
