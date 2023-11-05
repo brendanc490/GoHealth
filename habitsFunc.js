@@ -104,6 +104,45 @@ function updateCheck(checkbox) {
     } else {
         user.habits.daysEntered[currDate][1][index] = true;
     }
+    if (checkbox.checked) {
+        let checks = user['habits']['daysEntered'][currDate][1];
+        let completed = true;
+        for (let index = 0; index < checks.length; index++) {
+            if (user['habits']['daysEntered'][currDate][1][index] == false) {
+                completed = false;
+                break;
+                }
+            }
+                
+        if (completed == true){
+            let k = 0;
+            while (k < 7){
+                if(week.children[k].style.backgroundColor != ''){
+                    week.children[k].children[1].children[0].style.visibility = 'visible';
+                }
+                k++;
+            }
+        }
+    } else {
+        let checks = user['habits']['daysEntered'][currDate][1];
+        let completed = true;
+        for (let index = 0; index < checks.length; index++) {
+            if (user['habits']['daysEntered'][currDate][1][index] == false) {
+                completed = false;
+                break;
+                }
+            }
+                
+        if (completed == false){
+            let k = 0;
+            while (k < 7){
+                if(week.children[k].style.backgroundColor != '') {
+                    week.children[k].children[1].children[0].style.visibility = 'hidden';
+                }
+                k++;
+            }
+        }
+    }
 }
 
 // change to previous week
@@ -120,18 +159,22 @@ leftArrowContainer.addEventListener("click",() => {
     let lastWeek = []
     let i = 0;
     let indCurr = -1;
+    let lastWeekAnim = []
     while(i < week.childElementCount){
         const date = new Date(week.children[i].children[0].innerText)
         const newDay = new Date(date.getTime() - 7 * 24 * 60 * 60 * 1000);
         let split = newDay.toLocaleDateString().split('/')
         lastWeek.push(split[0]+'/'+split[1]+'/'+(split[2].substring(2)))
+        lastWeekAnim.push(split[0]+'/'+split[1]+'/'+(split[2]))
         if(week.children[i].style.backgroundColor != ''){
             indCurr = i
         }
         i++;
     }
+
+    const animArr = checkGoalsCompleted(lastWeekAnim)
     
-    interval = setInterval(() => {
+    interval = setInterval((animArr) => {
         // when to stop interval
         if(pos >= (700 + offset)){
             let i = 0;
@@ -153,6 +196,12 @@ leftArrowContainer.addEventListener("click",() => {
             if(indCurr == counter-1){
                 week.children[indCurr].style.backgroundColor = ''
             }
+            
+            if(animArr[counter-1]){
+                week.children[counter-1].children[1].children[0].style.visibility = 'visible'
+            } else {
+                week.children[counter-1].children[1].children[0].style.visibility = 'hidden'
+            }
             counter++;
         }
         
@@ -172,7 +221,7 @@ leftArrowContainer.addEventListener("click",() => {
         sunPos = pos >= (100 + offset) ? (-700 - offset) + pos : pos
         sunday.style.left = sunPos+"%"
         pos += 15;
-    },16.7)
+    },16.7,animArr)
 });
 
 
@@ -190,17 +239,22 @@ rightArrowContainer.addEventListener("click",() => {
     let nextWeek = []
     let i = 0;
     let indCurr = -1;
+    let nextWeekAnim = []
     while(i < week.childElementCount){
         const date = new Date(week.children[i].children[0].innerText)
         const newDay = new Date(date.getTime() + 7 * 24 * 60 * 60 * 1000);
         let split = newDay.toLocaleDateString().split('/')
         nextWeek.push(split[0]+'/'+split[1]+'/'+(split[2].substring(2)))
+        nextWeekAnim.push(split[0]+'/'+split[1]+'/'+(split[2]))
         if(week.children[i].style.backgroundColor != ''){
             indCurr = i
         }
         i++;
     }
-    interval = setInterval(() => {
+
+    const animArr = checkGoalsCompleted(nextWeekAnim);
+
+    interval = setInterval((animArr) => {
         if(pos >= (700 + offset)){
             let i = 0;
             while(i < week.childElementCount){
@@ -221,6 +275,11 @@ rightArrowContainer.addEventListener("click",() => {
             if(indCurr == counter-1){
                 week.children[indCurr].style.backgroundColor = ''
             }
+            if(animArr[counter-1]){
+                week.children[counter-1].children[1].children[0].style.visibility = 'visible'
+            } else {
+                week.children[counter-1].children[1].children[0].style.visibility = 'hidden'
+            }
             counter++;
         }
 
@@ -239,7 +298,7 @@ rightArrowContainer.addEventListener("click",() => {
         sunPos = pos >= (700 + offset) ? (700 + offset) - pos : -pos
         sunday.style.left = sunPos+"%"
         pos += 15;
-    },16.7)
+    },16.7,animArr)
 });
 
 addTodoButton.onclick = displayPrompt;
@@ -260,6 +319,33 @@ function addEntry() {
     user.habits.daysEntered[currDate][0].push(index);
     user.habits.daysEntered[currDate][1].push(false);
     console.log(user.habits.daysEntered[currDate]);
+}
+
+function checkGoalsCompleted(week){
+    let i = 0;
+    let arr = []
+    while(i < week.length){
+        if(user['habits']['daysEntered'][week[i]]) {
+            let checks = user['habits']['daysEntered'][week[i]][1];
+            let completed = true;
+            for (let index = 0; index < checks.length; index++) {
+                if (user['habits']['daysEntered'][week[i]][1][index] == false) {
+                    completed = false;
+                    break;
+                }
+            }
+            
+            if (completed == true){
+                arr.push(true)
+            } else {
+                arr.push(false)
+            }
+        } else {
+            arr.push(false)
+        }
+        i++;
+    }
+    return arr;
 }
 
 
