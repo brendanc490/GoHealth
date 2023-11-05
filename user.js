@@ -54,6 +54,7 @@ const user = {
         "daysEntered": {"10/19/2023": [[0,1,2],[false, false, false]]}
     },
     "profile": {
+        "user_name": "Default_User",
         "age": 21,
         "height": {
             "feet":5,
