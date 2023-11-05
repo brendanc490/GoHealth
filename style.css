@@ -96,10 +96,65 @@ body.fontChanged3 {
     border-bottom: 1px black;
     width: 100%;
     height: 100%;
-    grid-template-columns: 5% 12.85% 12.85% 12.85% 12.85% 12.85% 12.85% 12.85% 5%;
+    grid-template-columns: 5% 90% 5%;
     grid-template-rows: 100%;
     grid-template-areas: 
-    'left monday tuesday wednesday thursday friday saturday sunday right';
+    'left week right';
+}
+
+.week {
+    grid-area: week;
+    display: grid;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    grid-template-columns: 14.28% 14.28% 14.28% 14.28% 14.28% 14.28% 14.28%;
+    grid-template-rows: 100%;
+    grid-template-areas: 
+    'monday tuesday wednesday thursday friday saturday sunday';
+}
+
+.monday {
+    position: relative;
+    border: 1px solid grey;
+    left: 0%;
+    right: 0%;
+}
+.tuesday {
+    position: relative;
+    border: 1px solid grey;
+    left: 0%;
+    right: 0%;
+}
+.wednesday {
+    position: relative;
+    border: 1px solid grey;
+    left: 0%;
+    right: 0%;
+}
+.thursday {
+    position: relative;
+    border: 1px solid grey;
+    left: 0%;
+    right: 0%;
+}
+.friday {
+    position: relative;
+    border: 1px solid grey;
+    left: 0%;
+    right: 0%;
+}
+.saturday {
+    position: relative;
+    border: 1px solid grey;
+    left: 0%;
+    right: 0%;
+}
+.sunday {
+    position: relative;
+    border: 1px solid grey;
+    left: 0%;
+    right: 0%;
 }
 
 .dailyTracker {grid-area: dailyTracker;width: 100%; height: 100%}
@@ -157,8 +212,8 @@ progress {
     width: 95%;
     left: 2.5%;
     position: relative;
-    overflow-y: scroll;
     overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 .todoList{
@@ -169,20 +224,21 @@ progress {
     position: relative;
     overflow-y: scroll;
     overflow-x: hidden;
+    font-size: 36px
 }
 
 .exerciseList{
     border: solid 3px black;
-    height: 96%;
-    width: 50%;
-    left: 25.6%;
+    height: 70%;
+    width: 95%;
+    left: 2.5%;
     position: relative;
     overflow-y: scroll;
     overflow-x: hidden;
 }
 
 .meal{
-    font-size: 25px;
+    font-size: 35px;
     position: relative;
     left: 0;
     padding-left: 1%;
@@ -202,6 +258,7 @@ progress {
 .food{
     position: relative;
     left: 3%;
+    font-size: 35px;
 }
 
 .todoItem{
@@ -220,3 +277,44 @@ progress {
     position: absolute;
     right: 5%;
 }
+
+#thingTodo {
+    margin-top: 10px;
+    width: 600px;
+    font-size: 40px;
+    border: black;
+}
+
+#todoSubmitButton { 
+    color: black;
+    width: 9rem;
+    height: 50%; 
+    border: double black;
+    margin-top: 10px;
+    margin-left: 5px;  
+    font-size: 26px;
+} 
+
+.circularProgressBar {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: 
+      radial-gradient(closest-side, white 79%, transparent 80% 100%),
+      conic-gradient(green 75%, grey 0);    
+  }
+
+  .homeContent{
+    position: absolute;
+    top: 12%;
+    left:0;
+    height: 83%;
+    width: 100%;
+    display: grid;
+    grid-template-areas:
+    'Exercise'
+    'Diet'
+    'Habits';
+    grid-template-columns: 100%;
+    grid-template-rows: 33% 33% 33%;
+  }
