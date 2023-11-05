@@ -294,3 +294,27 @@ progress {
     margin-left: 5px;  
     font-size: 26px;
 } 
+
+.circularProgressBar {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: 
+      radial-gradient(closest-side, white 79%, transparent 80% 100%),
+      conic-gradient(green 75%, grey 0);    
+  }
+
+  .homeContent{
+    position: absolute;
+    top: 12%;
+    left:0;
+    height: 83%;
+    width: 100%;
+    display: grid;
+    grid-template-areas:
+    'Exercise'
+    'Diet'
+    'Habits';
+    grid-template-columns: 100%;
+    grid-template-rows: 33% 33% 33%;
+  }
