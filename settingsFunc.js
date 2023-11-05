@@ -1,36 +1,21 @@
+function updateUserData(){
+    const new_age = document.getElementById("age").value;
+    const new_feet = document.getElementById("height_ft").value;
+    const new_inches = document.getElementById("height_in").value;
+    const new_weight = document.getElementById("weight").value;
+    const new_level = document.querySelector('input[name="level"]:checked').value;
+    const new_name = document.getElementById("name").value;
 
-const changeFontButton1 = document.getElementById("changeFontButton1");
-    changeFontButton1.addEventListener("click", function() {
-        document.body.classList.toggle("fontChanged1");
-    });
+    user.profile.age = new_age;
+    user.profile.height.feet = new_feet;
+    user.profile.height.inches = new_inches;
+    user.profile.weight = new_weight;
+    user.profile.level = new_level;
+    user.profile.user_name = new_name;
 
-    const changeFontButton2 = document.getElementById("changeFontButton2");
-    changeFontButton2.addEventListener("click", function() {
-        document.body.classList.toggle("fontChanged2");
-    });
+    document.getElementById("post_submit").innerHTML = "Successfully logged data for user: "+new_name;
 
 
-    const changeFontButton3 = document.getElementById("changeFontButton3");
-    changeFontButton3.addEventListener("click", function() {
-        document.body.classList.toggle("fontChanged3");
-    });
 
-    const body = document.body;
-    const increaseFontButton = document.getElementById("increaseFontButton");
-    const decreaseFontButton = document.getElementById("decreaseFontButton");
-
-    increaseFontButton.addEventListener("click", function() {
-        // Get the current font size and convert it to a number
-        const currentSize = parseFloat(getComputedStyle(body).fontSize);
-        // Increase the font size by 2 pixels
-        body.style.fontSize = (currentSize + 2) + "px";
-    });
-
-    decreaseFontButton.addEventListener("click", function() {
-        // Get the current font size and convert it to a number
-        const currentSize = parseFloat(getComputedStyle(body).fontSize);
-        // Decrease the font size by 2 pixels, ensuring it doesn't go below a certain size
-        if (currentSize > 10) {
-            body.style.fontSize = (currentSize - 2) + "px";
-        }
-    });
+    console.log(user.profile);
+}
