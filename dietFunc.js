@@ -41,15 +41,18 @@ const editFoodList = document.getElementById('editFoodList')
 
 let foodKeys = Object.keys(foods)
 for (let key of Object.keys(foods)){
-    let temp = new Option(key,key)
-    foodSelect.appendChild(temp)
-    editFoodSelect.appendChild(temp)
+    let temp1 = new Option(key,key)
+    let temp2 = new Option(key,key)
+    foodSelect.appendChild(temp1)
+    editFoodSelect.appendChild(temp2)
 }
 
 let i = 2;
 while(i <= 4){
-    let temp = new Option(i,i)
-    quantitySelect.appendChild(temp)
+    let temp1 = new Option(i,i)
+    let temp2 = new Option(i,i)
+    quantitySelect.appendChild(temp1)
+    editQuantitySelect.appendChild(temp2)
     i++;
 }
 
@@ -344,6 +347,7 @@ function addMealFormClear(){
 
 function updateUI(date){
     // update calorie amount and bar
+    calorieList.innerText = ""
     let burnedAmt = user['exercise']['daysEntered'][selectedDate.innerText.split(' ')[1]] ? user['exercise']['daysEntered'][selectedDate.innerText.split(' ')[1]].caloriesBurned : 0
     burnedActual.innerText = burnedAmt
     if(user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]]){
@@ -368,11 +372,42 @@ function updateUI(date){
             header.innerText = keys[i]
             el.appendChild(header);
 
+            let deleteEl = document.createElement("div");
+            deleteEl.style.display = 'block'
+            deleteEl.style.position = 'absolute'
+            deleteEl.style.left = '95%'
+            deleteEl.style.top = '7%'
+
+            let deleteIcon = document.createElement("i")
+            deleteIcon.className = "fa-solid fa-trash"
+            deleteEl.appendChild(deleteIcon)
+
+            deleteEl.id = foodSelect.value+"Delete"
+            deleteEl.addEventListener('click', (e) => {
+                let par = e.target.parentElement
+                
+                let i = 0;
+                let sum = 0;
+                let food = Object.keys(user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]][par.parentElement.id])
+                while(i < food.length){
+                    sum += Math.ceil(foods[food[i]].calories*eval(user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]][par.parentElement.id][food[i]]))
+                    i++;
+                }
+                user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]].totalCalories = user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]].totalCalories - sum
+                par.parentElement.parentElement.removeChild(par.parentElement)
+                delete user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]][par.parentElement.id]
+                updateUI()
+            })
+
+            el.appendChild(deleteEl)
+            
             let editEl = document.createElement("div");
             editEl.style.display = 'block'
             editEl.style.position = 'absolute'
-            editEl.style.left = '95%'
+            editEl.style.left = '90%'
             editEl.style.top = '7%'
+
+            
 
             let editIcon = document.createElement("i")
             editIcon.className = "fa-solid fa-pen-to-square"
@@ -468,6 +503,14 @@ function updateUI(date){
         while(k < 7){
             if(week.children[k].style.backgroundColor != ''){
                 week.children[k].children[1].children[0].style.visibility = 'visible'
+            }
+            k++;
+        }
+    } else {
+        let k = 0;
+        while(k < 7){
+            if(week.children[k].style.backgroundColor != ''){
+                week.children[k].children[1].children[0].style.visibility = 'hidden'
             }
             k++;
         }
