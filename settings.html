@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-    <title>Settings</title>
+    <title>User Profile</title>
     <link href="style.css" rel="stylesheet">
     <link rel="stylesheet" href="lib/fontawesome-free-6.4.2-web/css/all.css"></script>
 </head>
@@ -16,34 +16,46 @@
         <div class="navSettings"><button style="width: 100%; height: 100%;background-color: #90EE90;" id="settingsButton"><i id="settingsIcon" class="fa-solid fa-gear fa-3x"></i></button></button></div>
     </div>
 
-    <h1>Settings</h1>
-
-    <p>Select Font Style</p>
-
-    <button id="changeFontButton1">Times New Roman</button>
-    <br>
-    <button id="changeFontButton2">Courier New</button>
-    <br>
-    <button id="changeFontButton3">Brush Script MT</button>
-    <br>
-
-    <p>Change Font Size</p>
-
-    <button id="increaseFontButton">Increase Font</button>
-    <br>
-    <button id="decreaseFontButton">Decrease Font</button>
-
-    <!--
-<p id="arial">Select font style</p>
-    <button id="Arial">Arial</button>
-    <br>
-    <button id="helvetica">Helvetica</button>
-    <br>
-    <button id="SansSerif">sans-serif</button>
-    <br>
-    -->
+    <h1 style="background-color: #90EE90; text-align: center; font-size: 50px;">Profile</h1>
     
+    <div style="font-size: 40px;">
+        <label for="age">Enter user age:</label>
+        <input type="number" id="age" name="age" style="width:auto; height: auto;font-size: 40px;" value = ""><br><br>
+
+        <label for="height_ft">Select user height:</label>
+        <select name="height_ft" id="height_ft" style="width:auto; height: auto;font-size: 40px;">
+            <option value="4ft">4</option>
+            <option value="5ft">5</option>
+            <option value="6ft">6</option>
+        </select>
+        feet
+        <select name="height_in" id="height_in" style="width:auto; height: auto;font-size: 40px;">
+            <option value="1in">1</option>
+            <option value="2in">2</option>
+            <option value="3in">3</option>
+            <option value="4in">4</option>
+            <option value="5in">5</option>
+            <option value="6in">6</option>
+            <option value="7in">7</option>
+            <option value="8in">8</option>
+            <option value="9in">9</option>
+            <option value="10in">10</option>
+            <option value="11in">11</option>
+        </select>
+        inches
+        <br><br>
+
+        <label for="weight">Enter user weight in pounds:</label>
+        <input type="number" id="weight" name="weight" style="width:auto; height: auto;font-size: 40px;"><br><br>
+
+        <label for="level">Select number of user goals:</label>
+        <input type="text" id="level" name="level" style="width:auto; height: auto;font-size: 40px;"><br><br>
+
+        <input type="submit" value="Submit" onclick="updateUserData()" style="width:auto; height: auto;font-size: 40px;">
+    </div>
+
 
 </body>
 <script src="settingsFunc.js"></script>
 <script src="navigation.js"></script>
+<script src="user.js"></script>
