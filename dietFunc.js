@@ -92,20 +92,22 @@ leftArrowContainer.addEventListener("click",() => {
     let lastWeek = []
     let i = 0;
     let indCurr = -1;
+    let lastWeekAnim = []
     while(i < week.childElementCount){
         const date = new Date(week.children[i].children[0].innerText)
         const newDay = new Date(date.getTime() - 7 * 24 * 60 * 60 * 1000);
         let split = newDay.toLocaleDateString().split('/')
         lastWeek.push(split[0]+'/'+split[1]+'/'+(split[2].substring(2)))
+        lastWeekAnim.push(split[0]+'/'+split[1]+'/'+(split[2]))
         if(week.children[i].style.backgroundColor != ''){
             indCurr = i
         }
         i++;
     }
 
-    let animArr = checkGoalsCompleted(lastWeek)
+    const animArr = checkGoalsCompleted(lastWeekAnim)
     
-    interval = setInterval(() => {
+    interval = setInterval((animArr) => {
         // when to stop interval
         if(pos >= (700 + offset)){
             let i = 0;
@@ -127,6 +129,12 @@ leftArrowContainer.addEventListener("click",() => {
             if(indCurr == counter-1){
                 week.children[indCurr].style.backgroundColor = ''
             }
+            
+            if(animArr[counter-1]){
+                week.children[counter-1].children[1].children[0].style.visibility = 'visible'
+            } else {
+                week.children[counter-1].children[1].children[0].style.visibility = 'hidden'
+            }
             counter++;
         }
         
@@ -146,7 +154,7 @@ leftArrowContainer.addEventListener("click",() => {
         sunPos = pos >= (100 + offset) ? (-700 - offset) + pos : pos
         sunday.style.left = sunPos+"%"
         pos += 15;
-    },16.7)
+    },16.7,animArr)
 });
 
 
@@ -164,17 +172,22 @@ rightArrowContainer.addEventListener("click",() => {
     let nextWeek = []
     let i = 0;
     let indCurr = -1;
+    let nextWeekAnim = []
     while(i < week.childElementCount){
         const date = new Date(week.children[i].children[0].innerText)
         const newDay = new Date(date.getTime() + 7 * 24 * 60 * 60 * 1000);
         let split = newDay.toLocaleDateString().split('/')
         nextWeek.push(split[0]+'/'+split[1]+'/'+(split[2].substring(2)))
+        nextWeekAnim.push(split[0]+'/'+split[1]+'/'+(split[2]))
         if(week.children[i].style.backgroundColor != ''){
             indCurr = i
         }
         i++;
     }
-    interval = setInterval(() => {
+
+    const animArr = checkGoalsCompleted(nextWeekAnim);
+
+    interval = setInterval((animArr) => {
         if(pos >= (700 + offset)){
             let i = 0;
             while(i < week.childElementCount){
@@ -195,6 +208,11 @@ rightArrowContainer.addEventListener("click",() => {
             if(indCurr == counter-1){
                 week.children[indCurr].style.backgroundColor = ''
             }
+            if(animArr[counter-1]){
+                week.children[counter-1].children[1].children[0].style.visibility = 'visible'
+            } else {
+                week.children[counter-1].children[1].children[0].style.visibility = 'hidden'
+            }
             counter++;
         }
 
@@ -213,7 +231,7 @@ rightArrowContainer.addEventListener("click",() => {
         sunPos = pos >= (700 + offset) ? (700 + offset) - pos : -pos
         sunday.style.left = sunPos+"%"
         pos += 15;
-    },16.7)
+    },16.7,animArr)
 });
 
 // food list
@@ -463,11 +481,14 @@ function checkGoalsCompleted(week){
     let arr = []
     while(i < week.length){
         if(user['diet']['daysEntered'][week[i]]){
+            
             if(user['diet']['daysEntered'][week[i]].totalCalories >= user['diet']['goal'].calories){
                 arr.push(true)
             } else {
                 arr.push(false)
             }
+        } else {
+            arr.push(false)
         }
 
         i++;
@@ -523,7 +544,6 @@ function editMeal(mealName, mealVal){
     editMealForm.style.display = 'grid';
 
     
-
 }
 
 cancelEditMeal.addEventListener('click',() => {
