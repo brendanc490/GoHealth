@@ -1,4 +1,4 @@
-const user = {
+var user = {
     "exercise": {
         "daysEntered": {
            "10/20/2023":{
