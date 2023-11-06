@@ -1,9 +1,29 @@
 var user = {
     "exercise": {
         "daysEntered": {
-           "10/20/2023":{
-                "caloriesBurned": 0
-            }
+        //    "10/20/2023":{
+        //         "workouts": [  
+        //             {
+        //                 'name': 'jog',
+        //                 'duration': '1 mile',
+        //                 'calBurn': 100,
+        //                 'done': false
+        //             },
+        //             {
+        //                 'name': 'legs and abs',
+        //                 'duration': '10 min',
+        //                 'calBurn': 150,
+        //                 'done': false
+        //             },
+        //             {
+        //                 'name': 'cooldown stretch',
+        //                 'duration': '10 min',
+        //                 'calBurn': 30,
+        //                 'done': false
+        //             }
+        //         ], 
+        //         "caloriesBurned": 0
+        //     }
         }
     },
     "diet": {
