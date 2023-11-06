@@ -14,6 +14,10 @@ const addTodoButton = document.getElementById('addTodoButton')
 const addTodoForm = document.getElementById('addTodoForm')
 const todoSubmitButton = document.getElementById('todoSubmitButton')
 
+// add this is to enable data persistence across screens
+// remove user.js script from html!!!
+const user = JSON.parse(localStorage.getItem('user'));
+
 let healthyHabits = ["Take a 1 mile walk",
                     "Read for 10 minutes",
                 "Drink 8 glasses of water",
