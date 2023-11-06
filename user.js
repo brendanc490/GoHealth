@@ -496,7 +496,9 @@ var user = {
             "inches":11
         },
         "weight": 195,
-        "level": "beginner"
+        "level": "beginner",
+        "calories": 2000,
+        "days": ["monday", "wednesday", "friday"]
     },
     "settings": {}
 }
