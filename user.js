@@ -479,7 +479,14 @@ var user = {
     },
     "habits": {
         "goals": 3,
-        "daysEntered": {"10/19/2023": [[0,1,2],[false, false, false]]}
+        "daysEntered": {"10/19/2023": [[0,1,2],[false, false, false]]},
+        "healthyHabits": ["Take a 1 mile walk",
+                    "Read for 10 minutes",
+                "Drink 8 glasses of water",
+                "Eat 1 apple",
+                "Meditate for 5 minutes",
+                "Do 10 situps",
+                "Do 10 pushups"]
     },
     "profile": {
         "user_name": "Default_User",

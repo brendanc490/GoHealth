@@ -44,6 +44,19 @@ function updateUI(){
     consumedText.innerText = consumed + " cal"
     togoText.innerText = goal+burned-consumed  + " cal"
 
+    // Update healthy habit portion of the UI
+    
+    // STILL WORKING ON THIS. HAVE TO FIGUTR OUT HOW TO ACCESS THIS PORTION OF USER.JS
+
+    /*document.querySelector('#habitsList').innerHTML = '';
+    let currDate = selectedDate.innerText.split(', ')[1];
+    console.log(user.habits.healthyHabits[0]);
+    for (let i = 0; i < user.habits.goals; i++) {
+        let currHabit = user.habits.healthyHabits[user.habits.daysEntered[currDate][0][i]];
+        document.getElementById("habitsList").insertAdjacentHTML('<li>' + currHabit + '</li><br>');
+    }
+    */
+
     //circularProgressBar.style = "background: radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(green "+percent+"%, grey 0);"
 
 
