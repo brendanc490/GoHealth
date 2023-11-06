@@ -79,8 +79,8 @@ function changeDate(el){
 
 function updateUI(date) {
     let currDay = user['exercise']['daysEntered'][selectedDate.innerText.split(' ')[1]] ? user['exercise']['daysEntered'][selectedDate.innerText.split(' ')[1]]['workouts'] : null
-    let workoutPlan = exercises.beginner // will be user preference
-    let weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    let workoutPlan = user.profile.level 
+    let weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] // will be user preference
     let schedDays = ['Wednesday', 'Thursday', 'Friday']
     let i = 0
     let calBurn = 0
@@ -160,19 +160,21 @@ function updateUI(date) {
             'caloriesBurned': 0
         } 
     }
-    // let list = document.getElementsByClassName('weekBar')[0]
-    // let header = document.createTextNode('Calories burned today: ' + user.exercise.daysEntered[selectedDate.innerText.split(', ')[1]].workouts.caloriesBurned)
-    // let pEl = document.createElement('p')
-    // pEl.appendChild(header);
-    // list.appendChild(pEl);
 }
 
 
 function selectExercise(exercise) {
+    var selectors = document.getElementsByTagName('button');
+    for (let i = 1; i < selectors.length; i++) {
+        if (selectors[i].id == 'closeDescription') {
+            continue;
+        }
+        selectors[i].disabled = true
+    }
+    console.log(selectors)
     let div = document.createElement('div')
     let header = document.createElement('h1')
     header.align = 'center'
-    console.log(exercise)
     header.textContent = exercise.name
     let duration = document.createElement('h2')
     let calories = document.createElement('h2')
@@ -396,5 +398,9 @@ function checkGoalsCompleted(week){
 
 closeDescription.addEventListener('click', () => {
     workoutForm.removeChild(workoutForm.children[1])
+    var selectors = document.getElementsByTagName('button');
+    for (let i = 1; i < selectors.length; i++) {
+        selectors[i].disabled = false
+    }
     workoutForm.style.display = 'none'
 })
