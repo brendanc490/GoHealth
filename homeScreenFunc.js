@@ -59,6 +59,20 @@ function updateUI(){
         let currHabit = healthyHabits[user.habits.daysEntered[currDate][0][i]];
         document.getElementById("habitsList").insertAdjacentHTML('beforeend', '<li>' + currHabit + '</li>');
     }
+
+    let completed = true;
+
+    for (let i = 0; i < user.habits.goals; i++) {
+        if (user['habits']['daysEntered'][currDate][1][index] == false) {
+            completed = false;
+            break;
+        }
+    }
+
+    if (completed == true) {
+        document.getElementById("habitsListContainer").insertAdjacentHTML('Congratulations on completing today\'s healthy habits!');
+    }
+
     
 
     //circularProgressBar.style = "background: radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(green "+percent+"%, grey 0);"
