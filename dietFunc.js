@@ -43,6 +43,22 @@ const editFoodList = document.getElementById('editFoodList')
 // remove user.js script from html!!!
 const user = JSON.parse(localStorage.getItem('user'))
 
+window.addEventListener('load', () => {
+    let arr = ["10/16/23","10/17/23","10/18/23","10/19/23","10/20/23","10/21/23","10/22/23"]
+    let i = 0;
+    while(i < arr.length){
+        if(user['diet']['daysEntered'][arr[i]] && user['diet']['daysEntered'][arr[i]].totalCalories){
+            week.children[i].children[1].children[0].style.visibilty = 'visible'
+        } else {
+            week.children[i].children[1].children[0].style.visibilty = 'visible'
+        }
+        i++;
+    }
+
+
+
+})
+
 let foodKeys = Object.keys(foods)
 for (let key of Object.keys(foods)){
     let temp1 = new Option(key,key)
