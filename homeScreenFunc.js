@@ -9,6 +9,13 @@ const consumedText = document.getElementById('consumedText')
 const togoText = document.getElementById('togoText')
 const habitsList = document.getElementById('habitsList');
 
+let healthyHabits = ["Take a 1 mile walk",
+                    "Read for 10 minutes",
+                "Drink 8 glasses of water",
+                "Eat 1 apple",
+                "Meditate for 5 minutes",
+                "Do 10 situps",
+                "Do 10 pushups"];
 
 
 
@@ -45,17 +52,14 @@ function updateUI(){
     togoText.innerText = goal+burned-consumed  + " cal"
 
     // Update healthy habit portion of the UI
-    
-    // STILL WORKING ON THIS. HAVE TO FIGUTR OUT HOW TO ACCESS THIS PORTION OF USER.JS
 
-    /*document.querySelector('#habitsList').innerHTML = '';
+    document.querySelector('#habitsList').innerHTML = '';
     let currDate = selectedDate.innerText.split(', ')[1];
-    console.log(user.habits.healthyHabits[0]);
     for (let i = 0; i < user.habits.goals; i++) {
-        let currHabit = user.habits.healthyHabits[user.habits.daysEntered[currDate][0][i]];
-        document.getElementById("habitsList").insertAdjacentHTML('<li>' + currHabit + '</li><br>');
+        let currHabit = healthyHabits[user.habits.daysEntered[currDate][0][i]];
+        document.getElementById("habitsList").insertAdjacentHTML('beforeend', '<li>' + currHabit + '</li>');
     }
-    */
+    
 
     //circularProgressBar.style = "background: radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(green "+percent+"%, grey 0);"
 

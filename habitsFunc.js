@@ -325,7 +325,7 @@ function addEntry() {
     console.log(user.habits.daysEntered[currDate]);
 }
 
-function checkGoalsCompleted(week){
+function checkGoalsCompleted(week) {
     let i = 0;
     let arr = []
     while(i < week.length){
