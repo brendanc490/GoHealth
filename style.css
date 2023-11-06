@@ -233,7 +233,7 @@ progress {
     width: 95%;
     left: 2.5%;
     position: relative;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
 }
 
