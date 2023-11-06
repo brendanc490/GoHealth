@@ -72,7 +72,7 @@ const exercises = {
             'duration': '10 reps 3 sets',
             'calBurn': 150,
             'done': false,
-            'description': ''
+            'description': 'Beginning in a plank position, keeping your back level and arms shoulder with apart, your pushup will start with your arms extended. Slowly and controlled, descend bending your arms until they reach about 90 degress before pushing back up. * As a beginner exercise, this can be done with your knees on the ground instead of at a planking position.'
 
         },
         {
