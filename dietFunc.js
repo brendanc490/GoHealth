@@ -44,10 +44,10 @@ const editFoodList = document.getElementById('editFoodList')
 const user = JSON.parse(localStorage.getItem('user'))
 
 window.addEventListener('load', () => {
-    let arr = ["10/16/23","10/17/23","10/18/23","10/19/23","10/20/23","10/21/23","10/22/23"]
+    let arr = ["10/16/2023","10/17/2023","10/18/2023","10/19/2023","10/20/2023","10/21/2023","10/22/2023"]
     let i = 0;
     while(i < arr.length){
-        if(user['diet']['daysEntered'][arr[i]] && user['diet']['daysEntered'][arr[i]].totalCalories){
+        if(user['diet']['daysEntered'][arr[i]] && user['diet']['daysEntered'][arr[i]].totalCalories >= user['diet']['goal'].calories){
             week.children[i].children[1].children[0].style.visibilty = 'visible'
         } else {
             week.children[i].children[1].children[0].style.visibilty = 'visible'
