@@ -20,9 +20,33 @@ const user = JSON.parse(localStorage.getItem('user'))
 let load = 0
 
 window.onload = function() {
+    let lastWeek = []
+    let i = 0;
+    let indCurr = -1;
+    let lastWeekAnim = []
+    while(i < week.childElementCount){
+        const date = new Date(week.children[i].children[0].innerText)
+        const newDay = new Date(date.getTime());
+        console.log(newDay)
+        let split = newDay.toLocaleDateString().split('/')
+        lastWeek.push(split[0]+'/'+split[1]+'/'+(split[2].substring(2)))
+        lastWeekAnim.push(split[0]+'/'+split[1]+'/'+(split[2]))
+        if(week.children[i].style.backgroundColor != ''){
+            indCurr = i
+        }
+        i++;
+    }
+    const animArr = checkGoalsCompleted(lastWeekAnim)
+    i = 0 
+    while (i < animArr.length) {
+        if(animArr[i]){
+            week.children[i].children[1].children[0].style.visibility = 'visible'
+        } else {
+            week.children[i].children[1].children[0].style.visibility = 'hidden'
+        }
+        i++
+    }
     changeDate(document.getElementById(selectedDate.innerText.split(', ')[0].toLowerCase()+'Date').parentElement);
-    console.log(week)
-    checkGoalsCompleted(week)
 };
 
 // calendar related code
@@ -351,7 +375,6 @@ function checkDailyGoal(exercises){
 }
 
 function checkGoalsCompleted(week){
-    console.log(week)
     let i = 0;
     let arr = []
     while(i < week.length){
