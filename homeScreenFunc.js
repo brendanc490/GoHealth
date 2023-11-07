@@ -70,7 +70,7 @@ function updateUI(){
     }
 
     if (completed == true) {
-        document.getElementById("habitsListContainer").insertAdjacentHTML('Congratulations on completing today\'s healthy habits!');
+        document.querySelector('#habitsListContainer').insertAdjacentHTML('beforeend', 'Congratulations on completing today\'s healthy habits!');
     }
 
     

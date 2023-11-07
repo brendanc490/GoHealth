@@ -28,7 +28,7 @@ let healthyHabits = ["Take a 1 mile walk",
 
 let total = 3;
 
-window.addEventListener('load', () => {
+window.onload = function() {
     let arr = ["10/16/2023","10/17/2023","10/18/2023","10/19/2023"];
     let i = 0;
     while(i < arr.length) {
@@ -42,10 +42,11 @@ window.addEventListener('load', () => {
         }
         if (completed == true) {
             week.children[i].children[1].children[0].style.visibilty = 'visible';
+            console.log(week.children[i].children[1].children[0].style.visibilty);
         }
         i++;
     }
-})
+}
 
 
 // calendar related code
