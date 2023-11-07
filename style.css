@@ -321,3 +321,21 @@ progress {
   }
 
 
+  .chart {
+    display: flex;
+    width: 400px;
+    margin: 20px;
+}
+.bar {
+    width: 40px;
+    background-color: blue;
+    margin-right: 10px;
+    text-align: center;
+    color: white;
+}
+
+.edit-button {
+    position: absolute;
+    top: 60px;
+    right: 10px;
+}

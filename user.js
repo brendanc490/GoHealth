@@ -25,6 +25,25 @@ var user = {
             }
         },
         "daysEntered": {
+            "10/19/2023": {
+                "Breakfast": {
+                    "eggs": "3",
+                    "bread": "2",
+                    "banana": "1",
+                },
+                "Lunch": {
+                    "salmon": "1",
+                    "white rice": "1",
+                    "carrots": "3"
+                },
+                "Dinner": {
+                    "chicken breast": "1",
+                    "white rice": "1",
+                    "broccoli": "3",
+                    "olive oil": "1/2"
+                },
+                "totalCalories": 1827
+            },
             "10/18/2023":{
                 "Breakfast": {
                     "eggs": "3",
@@ -516,7 +535,7 @@ var user = {
                 "Do 10 pushups"]
     },
     "profile": {
-        "user_name": "Default_User",
+        "user_name": "John Doe",
         "age": 21,
         "height": {
             "feet":5,
