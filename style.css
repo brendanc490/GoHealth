@@ -301,7 +301,7 @@ progress {
     border-radius: 50%;
     background: 
       radial-gradient(closest-side, white 79%, transparent 80% 100%),
-      conic-gradient(green 75%, grey 0);    
+      conic-gradient(green 0%, grey 0);    
   }
 
   .homeContent{

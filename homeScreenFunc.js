@@ -20,30 +20,38 @@ let healthyHabits = ["Take a 1 mile walk",
 
 
 
-// need to check if the localStorage data is valid
-let timeStamp = localStorage.getItem('userTimeStamp');
-let currentTime = new Date().getMilliseconds();
 
-// use the local storage for the home screen if the local storage content is less than an hour old
-if(timeStamp+(1000*60*60) < currentTime){
+
+
+window.addEventListener('load',() => {
     console.log('test')
-    localStorage.clear()
-} else {
-    user = JSON.parse(localStorage.getItem('user'))
-}
+    // need to check if the localStorage data is valid
+    let timeStamp = localStorage.getItem('userTimeStamp');
+    let currentTime = new Date().getMilliseconds();
 
-updateUI()
+    // use the local storage for the home screen if the local storage content is less than an hour old
+    if(timeStamp+(3600000) < currentTime){
+        console.log('test')
+        localStorage.clear()
+    } else if(localStorage.length != 0) {
+        console.log('test')
+        user = JSON.parse(localStorage.getItem('user'))
+
+    }
+
+    updateUI()
+})
 
 function updateUI(){
     header.children[0].innerText = 'Welcome back, '+user['profile']['user_name']+"!"
 
     // update diet info
     let goal = user['diet']['goal'].calories;
-    let burned = user['exercise']['daysEntered'][selectedDate.innerText.split(' ')[1]] ? user['exercise']['daysEntered'][selectedDate.innerText.split(' ')[1]].caloriesBurned : 0;
-    let consumed = user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]] ? user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]].totalCalories : 0;
+    let burned = user['exercise']['daysEntered'][selectedDate.innerText.split(' ')[3]] ? user['exercise']['daysEntered'][selectedDate.innerText.split(' ')[3]].caloriesBurned : 0;
+    let consumed = user['diet']['daysEntered'][selectedDate.innerText.split(' ')[3]] ? user['diet']['daysEntered'][selectedDate.innerText.split(' ')[3]].totalCalories : 0;
     let percent = Math.min(Math.round(consumed/(goal+burned)*100),100)
 
-    
+    console.log(selectedDate.innerText.split(' ')[3])
 
     circularProgressBar.style = "position: relative;left: 35%;top: 5%;width: 300px;height: 300px;border-radius: 50%;background: radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(green "+percent+"%, grey 0);"
 

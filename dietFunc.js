@@ -55,6 +55,8 @@ window.addEventListener('load', () => {
         i++;
     }
 
+    updateUI()
+
 
 
 })
