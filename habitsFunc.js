@@ -28,6 +28,24 @@ let healthyHabits = ["Take a 1 mile walk",
 
 let total = 3;
 
+window.addEventListener('load', () => {
+    let arr = ["10/16/2023","10/17/2023","10/18/2023","10/19/2023"];
+    let i = 0;
+    while(i < arr.length) {
+        let checks = user['habits']['daysEntered'][arr[i]][1];
+        let completed = true;
+        for (let index = 0; index < checks.length; index++) {
+            if (user['habits']['daysEntered'][arr[i]][1][index] == false) {
+                completed = false;
+                break;
+            }
+        }
+        if (completed == true) {
+            week.children[i].children[1].children[0].style.visibilty = 'visible';
+        }
+        i++;
+    }
+})
 
 
 // calendar related code
