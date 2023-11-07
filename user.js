@@ -535,7 +535,7 @@ var user = {
                 "Do 10 pushups"]
     },
     "profile": {
-        "user_name": "Default_User",
+        "user_name": "John Doe",
         "age": 21,
         "height": {
             "feet":5,
