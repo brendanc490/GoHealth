@@ -28,7 +28,7 @@ let currentTime = new Date().getMilliseconds();
 if(timeStamp+(1000*60*60) < currentTime){
     console.log('test')
     localStorage.clear()
-} else {
+} else if(timeStamp != null) {
     user = JSON.parse(localStorage.getItem('user'))
 }
 
