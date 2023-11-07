@@ -78,7 +78,8 @@ function updateUI(){
     }
 
     if (completed == true) {
-        document.querySelector('#habitsListContainer').insertAdjacentHTML('beforeend', 'Congratulations on completing today\'s healthy habits!');
+        document.querySelector('#habitsList').innerHTML = '';
+        document.querySelector('#habitsListContainer').insertAdjacentHTML('beforeend', '</div><div style="margin-left: 10px; margin-top: 60px">Congratulations on completing today\'s healthy habits!</div> <div style="font-size: 100px; display: block; margin-left: auto; margin-right: auto; margin-top: 80px; width: 9%"><i class="fa-solid fa-heart-circle-check"></i>');
     }
 
     
