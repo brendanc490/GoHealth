@@ -63,7 +63,7 @@ function updateUI(){
     let completed = true;
 
     for (let i = 0; i < user.habits.goals; i++) {
-        if (user['habits']['daysEntered'][currDate][1][index] == false) {
+        if (user['habits']['daysEntered'][currDate][1][i] == false) {
             completed = false;
             break;
         }
