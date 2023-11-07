@@ -158,7 +158,7 @@ body.fontChanged3 {
 }
 
 .dailyTracker {grid-area: dailyTracker;width: 100%; height: 100%}
-.progressBar {grid-area: progressBar; width: 100%; height: 100%; font-size: 23px;}
+.progressBar {grid-area: progressBar; width: 100%; height: 100%; font-size: 24px;}
 
 .dateBlock{
     text-align: center;
@@ -185,6 +185,7 @@ body.fontChanged3 {
 
 .calorieActual{
     display: grid;
+    font-size: 30px;
     width: 90%;
     height: 33.33%;
     position: relative;

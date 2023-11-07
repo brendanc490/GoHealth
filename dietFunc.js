@@ -50,7 +50,7 @@ window.addEventListener('load', () => {
         if(user['diet']['daysEntered'][arr[i]] && user['diet']['daysEntered'][arr[i]].totalCalories >= user['diet']['goal'].calories){
             week.children[i].children[1].children[0].style.visibilty = 'visible'
         } else {
-            week.children[i].children[1].children[0].style.visibilty = 'visible'
+            week.children[i].children[1].children[0].style.visibilty = 'hidden'
         }
         i++;
     }
