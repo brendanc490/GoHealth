@@ -333,3 +333,9 @@ progress {
     text-align: center;
     color: white;
 }
+
+.edit-button {
+    position: absolute;
+    top: 60px;
+    right: 10px;
+}

@@ -41,8 +41,7 @@ window.onload = function() {
             }
         }
         if (completed == true) {
-            week.children[i].children[1].children[0].style.visibilty = 'visible';
-            console.log(week.children[i].children[1].children[0]);
+            week.children[i].children[1].children[0].style.visibility = 'visible';
         }
         i++;
     }
@@ -324,6 +323,7 @@ rightArrowContainer.addEventListener("click",() => {
     },16.7,animArr)
 });
 
+/*
 addTodoButton.onclick = displayPrompt;
 
 function displayPrompt() {
@@ -331,6 +331,7 @@ function displayPrompt() {
 }
 
 todoSubmitButton.onclick = addEntry;
+*/
 
 function addEntry() {
     let entry = document.getElementById("thingTodo").value;
