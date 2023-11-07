@@ -42,7 +42,7 @@ window.onload = function() {
         }
         if (completed == true) {
             week.children[i].children[1].children[0].style.visibilty = 'visible';
-            console.log(week.children[i].children[1].children[0].style.visibilty);
+            console.log(week.children[i].children[1].children[0]);
         }
         i++;
     }

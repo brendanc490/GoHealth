@@ -80,6 +80,9 @@ while(i <= 4){
 
 // calendar related code
 function changeDate(el){
+    if(addMealForm.style.display == 'grid' || editMealForm.style.display == 'grid'){
+        return
+    }
     let i = 0;
     let indNew = 0;
     let indCurr = 0;
@@ -265,6 +268,8 @@ addMealButton.addEventListener('click', () =>{
     // open a form to enter information
     addMealForm.style.display = 'grid'
     addMealButton.disabled = true
+    leftArrowContainer.disabled = true
+    rightArrowContainer.disabled = true
 })
 
 addFoodButton.addEventListener('click', () => {
@@ -357,6 +362,8 @@ cancelAddMeal.addEventListener('click', () => {
     addMealForm.style.display = 'none'
     addMealFormClear()
     addMealButton.disabled = false
+    leftArrowContainer.disabled = false
+    rightArrowContainer.disabled = false
 })
 
 function addMealFormClear(){
@@ -364,6 +371,8 @@ function addMealFormClear(){
     foodSelect.value = 'disabled'
     quantitySelect.value = '1'
     addFoodList.innerText = ''
+    leftArrowContainer.disabled = false
+    rightArrowContainer.disabled = false
 }
 
 
@@ -607,6 +616,8 @@ function editMeal(mealName, mealVal){
     }
 
     editMealForm.style.display = 'grid';
+    leftArrowContainer.disabled = true
+    rightArrowContainer.disabled = true
 
     
 }
@@ -614,7 +625,8 @@ function editMeal(mealName, mealVal){
 cancelEditMeal.addEventListener('click',() => {
     editMealForm.style.display = 'none'
     resetEditMealForm()
-
+    leftArrowContainer.disabled = false
+    rightArrowContainer.disabled = false
 
 })
 
@@ -686,6 +698,8 @@ editMealButton.addEventListener('click', (e) => {
     resetEditMealForm()
     editMealButton.disabled = false
     calorieList.innerHTML = ""
+    leftArrowContainer.disabled = false
+    rightArrowContainer.disabled = false
     updateUI();
 
 
