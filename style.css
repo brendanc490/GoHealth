@@ -246,6 +246,17 @@ progress {
     font-size: 36px
 }
 
+.editExerciseList{
+    border: solid 3px black;
+    height: 70%;
+    width: 200px;
+    left: 2.5%;
+    position: absolute;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    font-size: 36px
+}
+
 .meal{
     font-size: 35px;
     position: relative;
@@ -266,6 +277,13 @@ progress {
 
 .food{
     position: relative;
+    left: 3%;
+    font-size: 35px;
+}
+
+.workoutEdit{
+    position: relative;
+    top: 0;
     left: 3%;
     font-size: 35px;
 }

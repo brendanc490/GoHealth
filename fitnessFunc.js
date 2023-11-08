@@ -26,7 +26,7 @@ window.onload = function() {
     let indCurr = -1;
     let lastWeekAnim = []
     while(i < week.childElementCount){
-        const date = new Date(week.children[i].children[0].innerText)
+        const date = new Date(week.children[i].children[0].textContent)
         const newDay = new Date(date.getTime());
         let split = newDay.toLocaleDateString().split('/')
         lastWeek.push(split[0]+'/'+split[1]+'/'+(split[2].substring(2)))
@@ -46,7 +46,18 @@ window.onload = function() {
         }
         i++
     }
-    changeDate(document.getElementById(selectedDate.innerText.split(', ')[0].toLowerCase()+'Date').parentElement);
+    changeDate(document.getElementById(selectedDate.textContent.split(', ')[0].toLowerCase()+'Date').parentElement);
+
+    let op = 0;
+    body.style.visibility = 'visible'
+    let fadeInt = setInterval(function(){
+        if(op >= 1){
+            clearInterval(fadeInt)
+        }
+        body.style.opacity = op
+        body.style.filter = 'alpha(opacity=' + op * 100 + ")";
+        op += .1
+    },30)
 };
 
 // calendar related code
@@ -66,11 +77,11 @@ function changeDate(el){
         i++;
     }
     el.style.backgroundColor = '#90EE90'
-    let dateText = selectedDate.innerText.split(', ')[1];
+    let dateText = selectedDate.textContent.split(', ')[1];
     let date = new Date(dateText);
-    let newDateText = el.children[0].innerText
+    let newDateText = el.children[0].textContent
     const newDay = new Date(newDateText);
-    selectedDate.children[0].innerText = dayOfTheWeek[newDay.getDay()] +", "+newDay.toLocaleDateString()
+    selectedDate.children[0].textContent = dayOfTheWeek[newDay.getDay()] +", "+newDay.toLocaleDateString()
     if (date.toString() !== newDay.toString() || load == 0) {
         load = 1
         updateUI(newDay.toLocaleDateString());
@@ -78,13 +89,13 @@ function changeDate(el){
 }
 
 function updateUI(date) {
-    let currDay = user['exercise']['daysEntered'][selectedDate.innerText.split(' ')[1]] ? user['exercise']['daysEntered'][selectedDate.innerText.split(' ')[1]]['workouts'] : null
+    let currDay = user['exercise']['daysEntered'][selectedDate.textContent.split(' ')[1]] ? user['exercise']['daysEntered'][selectedDate.textContent.split(' ')[1]]['workouts'] : null
     let workoutPlan = exercises[user.profile.level] 
     let weekdays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'] // will be user preference
     let schedDays = user.profile.days 
     let i = 0
     let calBurn = 0
-    let weekIndex = new Date(selectedDate.innerText.split(', ')[1]).getDay()
+    let weekIndex = new Date(selectedDate.textContent.split(', ')[1]).getDay()
     document.querySelector("#todoContents").innerHTML = "";
     if (currDay) {
         i = 0
@@ -155,7 +166,7 @@ function updateUI(date) {
             i++;
         }
         let newarr = JSON.parse(JSON.stringify(workoutPlan));
-        user.exercise.daysEntered[selectedDate.innerText.split(', ')[1]] = {
+        user.exercise.daysEntered[selectedDate.textContent.split(', ')[1]] = {
             'workouts': newarr,
             'caloriesBurned': 0
         } 
@@ -207,7 +218,7 @@ leftArrowContainer.addEventListener("click",() => {
     let indCurr = -1;
     let lastWeekAnim = []
     while(i < week.childElementCount){
-        const date = new Date(week.children[i].children[0].innerText)
+        const date = new Date(week.children[i].children[0].textContent)
         const newDay = new Date(date.getTime() - 7 * 24 * 60 * 60 * 1000);
         let split = newDay.toLocaleDateString().split('/')
         lastWeek.push(split[0]+'/'+split[1]+'/'+(split[2].substring(2)))
@@ -225,8 +236,8 @@ leftArrowContainer.addEventListener("click",() => {
         if(pos >= (700 + offset)){
             let i = 0;
             while(i < week.childElementCount){
-                const date = new Date(week.children[i].children[0].innerText)
-                if(date.toLocaleDateString() == selectedDate.children[0].innerText.split(', ')[1]){
+                const date = new Date(week.children[i].children[0].textContent)
+                if(date.toLocaleDateString() == selectedDate.children[0].textContent.split(', ')[1]){
                     week.children[i].style.backgroundColor = '#90EE90'
                 } else {
                     week.children[i].style.backgroundColor = ''
@@ -238,7 +249,7 @@ leftArrowContainer.addEventListener("click",() => {
         }
         // set text to next week when day goes out of view
         if(counter <= 7 && pos >= (counter*100)){
-            week.children[counter-1].children[0].innerText = lastWeek[counter-1]
+            week.children[counter-1].children[0].textContent = lastWeek[counter-1]
             if(indCurr == counter-1){
                 week.children[indCurr].style.backgroundColor = ''
             }
@@ -284,7 +295,7 @@ rightArrowContainer.addEventListener("click",() => {
     let indCurr = -1;
     let nextWeekAnim = []
     while(i < week.childElementCount){
-        const date = new Date(week.children[i].children[0].innerText)
+        const date = new Date(week.children[i].children[0].textContent)
         const newDay = new Date(date.getTime() + 7 * 24 * 60 * 60 * 1000);
         let split = newDay.toLocaleDateString().split('/')
         nextWeek.push(split[0]+'/'+split[1]+'/'+(split[2].substring(2)))
@@ -301,8 +312,8 @@ rightArrowContainer.addEventListener("click",() => {
         if(pos >= (700 + offset)){
             let i = 0;
             while(i < week.childElementCount){
-                const date = new Date(week.children[i].children[0].innerText)
-                if(date.toLocaleDateString() == selectedDate.children[0].innerText.split(', ')[1]){
+                const date = new Date(week.children[i].children[0].textContent)
+                if(date.toLocaleDateString() == selectedDate.children[0].textContent.split(', ')[1]){
                     week.children[i].style.backgroundColor = '#90EE90'
                 } else {
                     week.children[i].style.backgroundColor = ''
@@ -314,7 +325,7 @@ rightArrowContainer.addEventListener("click",() => {
 
         // set text to next week when day goes out of view
         if(counter <= 7 && pos >= (counter*100)){
-            week.children[counter-1].children[0].innerText = nextWeek[counter-1]
+            week.children[counter-1].children[0].textContent = nextWeek[counter-1]
             if(indCurr == counter-1){
                 week.children[indCurr].style.backgroundColor = ''
             }
@@ -347,7 +358,7 @@ rightArrowContainer.addEventListener("click",() => {
 function updateCheck(checkbox) { 
     let index = parseInt(checkbox.id);
     let arr = [6, 0, 1, 2, 3, 4, 5]
-    let currDate = '' + selectedDate.innerText.split(', ')[1];
+    let currDate = '' + selectedDate.textContent.split(', ')[1];
     if(user.exercise.daysEntered[currDate]) {
         if (user.exercise.daysEntered[currDate].workouts[index].done == true) {
             user.exercise.daysEntered[currDate].workouts[index].done = false;
@@ -416,29 +427,54 @@ closeEditForm.addEventListener('click', () => {
 
 reschedule.onclick = displayPrompt;
 
+{/* <label for="current"></label>
+
+<input type="date" id="start" name="initialDate" value="2018-07-22" min="2018-01-01" max="2018-12-31" /> */}
+
+
 function displayPrompt() {
     editExerciseForm.style.display = 'block';
-    let date = selectedDate.innerText.split(', ')[1]
+    let list = document.getElementById('editFoodList')
+    let date = selectedDate.textContent.split(', ')[1]
+    let m = date.split('/')[0]
+    let d = date.split('/')[1]
+    let y = date.split('/')[2]
     if (user.exercise.daysEntered[date]) {
         let workout = null
         for(let i = 0; i < user.exercise.daysEntered[date].workouts.length; i++) {
             workout = document.createElement('div')
-            workout.className = 'workout'
+            let input = document.createElement('input')
+            let item = document.createElement('div')
+            item.id = i
+            item.style.display = 'inline'
+            input.type = 'date'
+            input.id = 'current'
+            input.name = 'initialDate'
+            input.setAttribute('size', '100px')
+            input.value = y+'-'+m+'-'+d
+            input.style.display = 'inline'
+            workout.className = 'workoutEdit'
             workout.id =  user.exercise.daysEntered[date].workouts[i].name.replace(/\s/g, '') + i 
             workout.textContent = user.exercise.daysEntered[date].workouts[i].name
             let deleteEl = document.createElement("div");
             deleteEl.style.display = 'inline-block'
             deleteEl.style.position = 'absolute'
-            deleteEl.style.left = '90%'
+            deleteEl.style.left = '70%'
             deleteEl.style.color = 'red'
-            deleteEl.innerText = 'X'
-            deleteEl.id = workout.id+"Del"
+            deleteEl.textContent = 'X'
+            deleteEl.id = "del"+workout.id 
             deleteEl.addEventListener('click', (e) => {
                 let par = e.target.parentElement
+                user.exercise.daysEntered[date].workouts.splice(par.id, 1)
                 par.parentElement.removeChild(par)
+                updateUI(date)
             })
+            item.appendChild(input)
+            item.appendChild(workout)
+            item.appendChild(deleteEl)
+            list.appendChild(item)
+            list.appendChild(document.createElement('br'))
         }
-        console.log(workout)
     }
 }
 
@@ -446,10 +482,10 @@ closeEditForm.onclick = newDate;
 
 
 function newDate() {
-    let entry = document.getElementById("newDate").value;
-    if(isValidDateFormat(entry)) {
-        let currDate = selectedDate.innerText.split(', ')[1];
-        let form = document.getElementById('workoutForm')
+    let entry = document.getElementById("current").value;
+    let currDate = selectedDate.textContent.split(', ')[1];
+    if (entry != currDate) {
+        let form = document.getElementById('editExerciseForm')
         let workoutToMove = user.exercise.daysEntered[currDate].workouts[form.children[2].id]
         workoutToMove.done = false
         user.exercise.daysEntered[currDate].workouts.splice(form.children[2].id, 1)
@@ -457,13 +493,16 @@ function newDate() {
             user.exercise.daysEntered[entry].workouts.push(workoutToMove)
         } else { 
             let newarr = [workoutToMove]
+            console.log(entry)
             user.exercise.daysEntered[entry] = {
                 'workouts': newarr,
                 'caloriesBurned': 0
             } 
         } 
-    } else {
-        document.getElementById('newDate').value = 'Invalid Date; Format mm/dd/yy';
+        
+        let list = document.getElementById('editFoodList')
+        list.innerHTML = ''
+        console.log(user)
     }
 }
 
