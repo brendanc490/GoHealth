@@ -1,7 +1,11 @@
 const userInfo = document.getElementById('user-info');
- const editButton = document.getElementById('edit-button');
+const editButton = document.getElementById('edit-button');
 const editForm = document.getElementById('edit-form');
 const saveButton = document.getElementById('save-button');
+
+// add this is to enable data persistence across screens
+// remove user.js script from html!!!
+const user = JSON.parse(localStorage.getItem('user'))
 
 function updateUserData(){
     const new_age = document.getElementById("age").value;
