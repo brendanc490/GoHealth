@@ -37,6 +37,9 @@ const editQuantitySelect = document.getElementById('editQuantitySelect')
 const editFoodButton = document.getElementById('editFoodButton')
 const editMealButton = document.getElementById('editMealButton')
 const editFoodList = document.getElementById('editFoodList')
+const notification = document.getElementById('notification')
+const acknowledgeNotificationButton = document.getElementById('acknowledgeNotif')
+const body = document.getElementById('body');
 
 
 // add this is to enable data persistence across screens
@@ -57,8 +60,16 @@ window.addEventListener('load', () => {
 
     updateUI()
 
-
-
+    op = 0;
+    body.style.visibility = 'visible'
+    let fadeInt = setInterval(function(){
+        if(op == 1){
+            clearInterval(fadeInt)
+        }
+        body.style.opacity = op
+        body.style.filter = 'alpha(opacity=' + op * 100 + ")";
+        op += .1
+    },30)
 })
 
 let foodKeys = Object.keys(foods)
@@ -98,9 +109,9 @@ function changeDate(el){
         i++;
     }
     el.style.backgroundColor = '#90EE90'
-    let date = new Date(selectedDate.innerText.split(', ')[1])
-    const newDay = new Date(el.children[0].innerText);
-    selectedDate.children[0].innerText = dayOfTheWeek[newDay.getDay()] +", "+newDay.toLocaleDateString()
+    let date = new Date(selectedDate.textContent.split(', ')[1])
+    const newDay = new Date(el.children[0].textContent);
+    selectedDate.children[0].textContent = dayOfTheWeek[newDay.getDay()] +", "+newDay.toLocaleDateString()
 
     updateUI()
 
@@ -122,7 +133,7 @@ leftArrowContainer.addEventListener("click",() => {
     let indCurr = -1;
     let lastWeekAnim = []
     while(i < week.childElementCount){
-        const date = new Date(week.children[i].children[0].innerText)
+        const date = new Date(week.children[i].children[0].textContent)
         const newDay = new Date(date.getTime() - 7 * 24 * 60 * 60 * 1000);
         let split = newDay.toLocaleDateString().split('/')
         lastWeek.push(split[0]+'/'+split[1]+'/'+(split[2].substring(2)))
@@ -140,8 +151,8 @@ leftArrowContainer.addEventListener("click",() => {
         if(pos >= (700 + offset)){
             let i = 0;
             while(i < week.childElementCount){
-                const date = new Date(week.children[i].children[0].innerText)
-                if(date.toLocaleDateString() == selectedDate.children[0].innerText.split(', ')[1]){
+                const date = new Date(week.children[i].children[0].textContent)
+                if(date.toLocaleDateString() == selectedDate.children[0].textContent.split(', ')[1]){
                     week.children[i].style.backgroundColor = '#90EE90'
                 } else {
                     week.children[i].style.backgroundColor = ''
@@ -153,7 +164,7 @@ leftArrowContainer.addEventListener("click",() => {
         }
         // set text to next week when day goes out of view
         if(counter <= 7 && pos >= (counter*100)){
-            week.children[counter-1].children[0].innerText = lastWeek[counter-1]
+            week.children[counter-1].children[0].textContent = lastWeek[counter-1]
             if(indCurr == counter-1){
                 week.children[indCurr].style.backgroundColor = ''
             }
@@ -202,7 +213,7 @@ rightArrowContainer.addEventListener("click",() => {
     let indCurr = -1;
     let nextWeekAnim = []
     while(i < week.childElementCount){
-        const date = new Date(week.children[i].children[0].innerText)
+        const date = new Date(week.children[i].children[0].textContent)
         const newDay = new Date(date.getTime() + 7 * 24 * 60 * 60 * 1000);
         let split = newDay.toLocaleDateString().split('/')
         nextWeek.push(split[0]+'/'+split[1]+'/'+(split[2].substring(2)))
@@ -219,8 +230,8 @@ rightArrowContainer.addEventListener("click",() => {
         if(pos >= (700 + offset)){
             let i = 0;
             while(i < week.childElementCount){
-                const date = new Date(week.children[i].children[0].innerText)
-                if(date.toLocaleDateString() == selectedDate.children[0].innerText.split(', ')[1]){
+                const date = new Date(week.children[i].children[0].textContent)
+                if(date.toLocaleDateString() == selectedDate.children[0].textContent.split(', ')[1]){
                     week.children[i].style.backgroundColor = '#90EE90'
                 } else {
                     week.children[i].style.backgroundColor = ''
@@ -232,7 +243,7 @@ rightArrowContainer.addEventListener("click",() => {
 
         // set text to next week when day goes out of view
         if(counter <= 7 && pos >= (counter*100)){
-            week.children[counter-1].children[0].innerText = nextWeek[counter-1]
+            week.children[counter-1].children[0].textContent = nextWeek[counter-1]
             if(indCurr == counter-1){
                 week.children[indCurr].style.backgroundColor = ''
             }
@@ -291,14 +302,14 @@ addFoodButton.addEventListener('click', () => {
         str = str + `\u00A0`
     }
 
-    el.innerText = str+ `\u00A0\u00A0`+foodSelect.value
+    el.textContent = str+ `\u00A0\u00A0`+foodSelect.value
     
     let deleteEl = document.createElement("div");
     deleteEl.style.display = 'inline-block'
     deleteEl.style.position = 'absolute'
     deleteEl.style.left = '90%'
     deleteEl.style.color = 'red'
-    deleteEl.innerText = 'X'
+    deleteEl.textContent = 'X'
     deleteEl.id = foodSelect.value+"Del"
     deleteEl.addEventListener('click', (e) => {
         let par = e.target.parentElement
@@ -313,8 +324,19 @@ addFoodButton.addEventListener('click', () => {
     quantitySelect.value = 1
 })
 
+acknowledgeNotificationButton.addEventListener('click',() => {
+    notification.style.display = 'none'
+    addFoodButton.disabled = false
+    publishMealButton.disabled = false;
+    editFoodButton.disabled = false
+    editMealButton.disabled = false;
+})
+
 publishMealButton.addEventListener('click', () => {
-    if(mealNameInput.value == "" || (user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]] && user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]][mealNameInput.value])){
+    if(mealNameInput.value == "" || (user['diet']['daysEntered'][selectedDate.textContent.split(' ')[1]] && user['diet']['daysEntered'][selectedDate.textContent.split(' ')[1]][mealNameInput.value])){
+        notification.style.display = 'block'
+        addFoodButton.disabled = true
+        publishMealButton.disabled = true;
         return
     }
 
@@ -323,7 +345,7 @@ publishMealButton.addEventListener('click', () => {
     let foodMap = {}
     let calSum = 0;
     while(i < addFoodList.childElementCount){
-        let test = addFoodList.children[i].innerText.substring(0, addFoodList.children[i].innerText.length-2)
+        let test = addFoodList.children[i].textContent.substring(0, addFoodList.children[i].textContent.length-2)
         let quant = test.substring(0, test.indexOf('\u00A0')); 
         let j = 0;
         while(test.substring(test.indexOf('\u00A0') + j)[0] == '\u00A0'){
@@ -343,12 +365,12 @@ publishMealButton.addEventListener('click', () => {
     }
 
     // add foodMap to user JSON
-    if(!user['diet']['daysEntered'][selectedDate.innerText.split(" ")[1]]){
-        user['diet']['daysEntered'][selectedDate.innerText.split(" ")[1]] = {'totalCalories': 0}
+    if(!user['diet']['daysEntered'][selectedDate.textContent.split(" ")[1]]){
+        user['diet']['daysEntered'][selectedDate.textContent.split(" ")[1]] = {'totalCalories': 0}
     }
-    let newTotal = user['diet']['daysEntered'][selectedDate.innerText.split(" ")[1]].totalCalories + calSum
-    user['diet']['daysEntered'][selectedDate.innerText.split(" ")[1]][mealNameInput.value] = foodMap
-    user['diet']['daysEntered'][selectedDate.innerText.split(" ")[1]]['totalCalories'] = newTotal
+    let newTotal = user['diet']['daysEntered'][selectedDate.textContent.split(" ")[1]].totalCalories + calSum
+    user['diet']['daysEntered'][selectedDate.textContent.split(" ")[1]][mealNameInput.value] = foodMap
+    user['diet']['daysEntered'][selectedDate.textContent.split(" ")[1]]['totalCalories'] = newTotal
     
     addMealForm.style.display = "none"
     addMealFormClear()
@@ -370,7 +392,7 @@ function addMealFormClear(){
     mealNameInput.value = ''
     foodSelect.value = 'disabled'
     quantitySelect.value = '1'
-    addFoodList.innerText = ''
+    addFoodList.textContent = ''
     leftArrowContainer.disabled = false
     rightArrowContainer.disabled = false
 }
@@ -378,11 +400,11 @@ function addMealFormClear(){
 
 function updateUI(date){
     // update calorie amount and bar
-    calorieList.innerText = ""
-    let burnedAmt = user['exercise']['daysEntered'][selectedDate.innerText.split(' ')[1]] ? user['exercise']['daysEntered'][selectedDate.innerText.split(' ')[1]].caloriesBurned : 0
-    burnedActual.innerText = burnedAmt
-    if(user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]]){
-        let keys = Object.keys(user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]])
+    calorieList.textContent = ""
+    let burnedAmt = user['exercise']['daysEntered'][selectedDate.textContent.split(' ')[1]] ? user['exercise']['daysEntered'][selectedDate.textContent.split(' ')[1]].caloriesBurned : 0
+    burnedActual.textContent = burnedAmt
+    if(user['diet']['daysEntered'][selectedDate.textContent.split(' ')[1]]){
+        let keys = Object.keys(user['diet']['daysEntered'][selectedDate.textContent.split(' ')[1]])
         let i = 0;
 
         
@@ -391,7 +413,7 @@ function updateUI(date){
                 i++;
                 continue;
             }
-            let mealKeys = Object.keys(user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]][keys[i]])
+            let mealKeys = Object.keys(user['diet']['daysEntered'][selectedDate.textContent.split(' ')[1]][keys[i]])
             let dailySum = 0;
             let el = document.createElement("div");
             el.className = "meal"
@@ -400,7 +422,7 @@ function updateUI(date){
             el.appendChild(br)
 
             let header = document.createElement("b");
-            header.innerText = keys[i]
+            header.textContent = keys[i]
             el.appendChild(header);
 
             let deleteEl = document.createElement("div");
@@ -419,14 +441,14 @@ function updateUI(date){
                 
                 let i = 0;
                 let sum = 0;
-                let food = Object.keys(user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]][par.parentElement.id])
+                let food = Object.keys(user['diet']['daysEntered'][selectedDate.textContent.split(' ')[1]][par.parentElement.id])
                 while(i < food.length){
-                    sum += Math.ceil(foods[food[i]].calories*eval(user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]][par.parentElement.id][food[i]]))
+                    sum += Math.ceil(foods[food[i]].calories*eval(user['diet']['daysEntered'][selectedDate.textContent.split(' ')[1]][par.parentElement.id][food[i]]))
                     i++;
                 }
-                user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]].totalCalories = user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]].totalCalories - sum
+                user['diet']['daysEntered'][selectedDate.textContent.split(' ')[1]].totalCalories = user['diet']['daysEntered'][selectedDate.textContent.split(' ')[1]].totalCalories - sum
                 par.parentElement.parentElement.removeChild(par.parentElement)
-                delete user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]][par.parentElement.id]
+                delete user['diet']['daysEntered'][selectedDate.textContent.split(' ')[1]][par.parentElement.id]
                 updateUI()
             })
 
@@ -448,7 +470,7 @@ function updateUI(date){
             editEl.id = foodSelect.value+"Edit"
             editEl.addEventListener('click', (e) => {
                 let par = e.target.parentElement
-                editMeal(par.parentElement.id,user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]][par.parentElement.id])
+                editMeal(par.parentElement.id,user['diet']['daysEntered'][selectedDate.textContent.split(' ')[1]][par.parentElement.id])
                 
             })
 
@@ -458,7 +480,7 @@ function updateUI(date){
             
             while(j < mealKeys.length){
                 let food = mealKeys[j]
-                let quant = user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]][keys[i]][mealKeys[j]]
+                let quant = user['diet']['daysEntered'][selectedDate.textContent.split(' ')[1]][keys[i]][mealKeys[j]]
                 dailySum += Math.ceil(foods[food].calories * eval(quant))
 
                 let tmp = document.createElement("div");
@@ -473,10 +495,10 @@ function updateUI(date){
                     str = str + `\u00A0`
                 }
             
-                tmp.innerText = str+ `\u00A0\u00A0`+food
+                tmp.textContent = str+ `\u00A0\u00A0`+food
                 let calories = document.createElement("div");
                 calories.className = "calorie"
-                calories.innerText = Math.ceil(foods[food].calories*eval(quant))
+                calories.textContent = Math.ceil(foods[food].calories*eval(quant))
                 tmp.appendChild(calories)
                 el.appendChild(tmp)
 
@@ -494,12 +516,12 @@ function updateUI(date){
             let totalCalories = document.createElement("div")
             totalCalories.className = "food"
             let totalCalHeader = document.createElement("b");
-            totalCalHeader.innerText = "Total Calories"
+            totalCalHeader.textContent = "Total Calories"
             totalCalories.appendChild(totalCalHeader)
             let totalCalAmount = document.createElement("div")
             totalCalAmount.className = "calorie"
             let totalCalAmtHeader = document.createElement("b");
-            totalCalAmtHeader.innerText = dailySum
+            totalCalAmtHeader.textContent = dailySum
             totalCalAmount.append(totalCalAmtHeader)
             totalCalories.appendChild(totalCalAmount)
             el.appendChild(totalCalories)
@@ -517,15 +539,15 @@ function updateUI(date){
         
         
     } else {
-        calorieList.innerText = ""
+        calorieList.textContent = ""
     }
     let sum = 0;
-    if(user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]]){
-        sum = user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]].totalCalories;
+    if(user['diet']['daysEntered'][selectedDate.textContent.split(' ')[1]]){
+        sum = user['diet']['daysEntered'][selectedDate.textContent.split(' ')[1]].totalCalories;
     }
-    consumedActual.innerText = sum;
+    consumedActual.textContent = sum;
 
-    togoActual.innerText = user['diet']['goal'].calories + burnedAmt - sum;
+    togoActual.textContent = user['diet']['goal'].calories + burnedAmt - sum;
 
     calorieProgress.value = Math.min(sum/(user['diet']['goal'].calories + burnedAmt)*100,100)
 
@@ -593,14 +615,14 @@ function editMeal(mealName, mealVal){
             str = str + `\u00A0`
         }
     
-        el.innerText = str+ `\u00A0\u00A0`+currFoods[i]
+        el.textContent = str+ `\u00A0\u00A0`+currFoods[i]
         
         let deleteEl = document.createElement("div");
         deleteEl.style.display = 'inline-block'
         deleteEl.style.position = 'absolute'
         deleteEl.style.left = '90%'
         deleteEl.style.color = 'red'
-        deleteEl.innerText = 'X'
+        deleteEl.textContent = 'X'
         deleteEl.id = currFoods.value+"Del"
         deleteEl.addEventListener('click', (e) => {
             let par = e.target.parentElement
@@ -631,15 +653,18 @@ cancelEditMeal.addEventListener('click',() => {
 })
 
 editMealButton.addEventListener('click', (e) => {
-    if(editMealNameInput.value == "" || (user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]] && user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]][editMealNameInput.value]) && editMealNameInput.value != oldMealName){
+    if(editMealNameInput.value == "" || (user['diet']['daysEntered'][selectedDate.textContent.split(' ')[1]] && user['diet']['daysEntered'][selectedDate.textContent.split(' ')[1]][editMealNameInput.value]) && editMealNameInput.value != oldMealName){
+        notification.style.display = 'block'
+        editFoodButton.disabled = true
+        editMealButton.disabled = true;
         return
     }
 
     let prevCalSum = 0;
     let k = 0;
-    let oldMealKeys = Object.keys(user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]][oldMealName])
+    let oldMealKeys = Object.keys(user['diet']['daysEntered'][selectedDate.textContent.split(' ')[1]][oldMealName])
     while(k < oldMealKeys.length){
-        prevCalSum += foods[oldMealKeys[k]].calories*eval(user['diet']['daysEntered'][selectedDate.innerText.split(' ')[1]][oldMealName][oldMealKeys[k]])
+        prevCalSum += foods[oldMealKeys[k]].calories*eval(user['diet']['daysEntered'][selectedDate.textContent.split(' ')[1]][oldMealName][oldMealKeys[k]])
         k++;
     }
 
@@ -648,7 +673,7 @@ editMealButton.addEventListener('click', (e) => {
     let foodMap = {}
     let calSum = 0;
     while(i < editFoodList.childElementCount){
-        let test = editFoodList.children[i].innerText.substring(0, editFoodList.children[i].innerText.length-2)
+        let test = editFoodList.children[i].textContent.substring(0, editFoodList.children[i].textContent.length-2)
         let quant = test.substring(0, test.indexOf('\u00A0')); 
         let j = 0;
         while(test.substring(test.indexOf('\u00A0') + j)[0] == '\u00A0'){
@@ -670,29 +695,29 @@ editMealButton.addEventListener('click', (e) => {
 
 
     // add foodMap to user JSON
-    let newTotal = user['diet']['daysEntered'][selectedDate.innerText.split(" ")[1]].totalCalories + calSum - prevCalSum
-    //user['diet']['daysEntered'][selectedDate.innerText.split(" ")[1]][editMealNameInput.value] = foodMap
+    let newTotal = user['diet']['daysEntered'][selectedDate.textContent.split(" ")[1]].totalCalories + calSum - prevCalSum
+    //user['diet']['daysEntered'][selectedDate.textContent.split(" ")[1]][editMealNameInput.value] = foodMap
 
     if(oldMealName != editMealNameInput.value){
         let i = 0;
-        let mealKeys = Object.keys(user['diet']['daysEntered'][selectedDate.innerText.split(" ")[1]]);
+        let mealKeys = Object.keys(user['diet']['daysEntered'][selectedDate.textContent.split(" ")[1]]);
         let newOrder = {}
         while(i < mealKeys.length){
             if(mealKeys[i] == oldMealName){
                 newOrder[editMealNameInput.value] = foodMap
             } else {
-                newOrder[mealKeys[i]] = user['diet']['daysEntered'][selectedDate.innerText.split(" ")[1]][mealKeys[i]]
+                newOrder[mealKeys[i]] = user['diet']['daysEntered'][selectedDate.textContent.split(" ")[1]][mealKeys[i]]
             }
             i++;
         }
         
-        user['diet']['daysEntered'][selectedDate.innerText.split(" ")[1]] = newOrder
+        user['diet']['daysEntered'][selectedDate.textContent.split(" ")[1]] = newOrder
 
     } else {
-        user['diet']['daysEntered'][selectedDate.innerText.split(" ")[1]][editMealNameInput.value] = foodMap
+        user['diet']['daysEntered'][selectedDate.textContent.split(" ")[1]][editMealNameInput.value] = foodMap
     }
 
-    user['diet']['daysEntered'][selectedDate.innerText.split(" ")[1]]['totalCalories'] = newTotal
+    user['diet']['daysEntered'][selectedDate.textContent.split(" ")[1]]['totalCalories'] = newTotal
     
     editMealForm.style.display = "none"
     resetEditMealForm()
@@ -724,14 +749,14 @@ editFoodButton.addEventListener('click', () => {
         str = str + `\u00A0`
     }
 
-    el.innerText = str+ `\u00A0\u00A0`+editFoodSelect.value
+    el.textContent = str+ `\u00A0\u00A0`+editFoodSelect.value
     
     let deleteEl = document.createElement("div");
     deleteEl.style.display = 'inline-block'
     deleteEl.style.position = 'absolute'
     deleteEl.style.left = '90%'
     deleteEl.style.color = 'red'
-    deleteEl.innerText = 'X'
+    deleteEl.textContent = 'X'
     deleteEl.id = editFoodSelect.value+"Del"
     deleteEl.addEventListener('click', (e) => {
         let par = e.target.parentElement
@@ -751,7 +776,7 @@ function resetEditMealForm(){
     editMealNameInput.value = ''
     editFoodSelect.value = 'disabled'
     editQuantitySelect.value = '1'
-    editFoodList.innerText = ''
+    editFoodList.textContent = ''
 }
 
 

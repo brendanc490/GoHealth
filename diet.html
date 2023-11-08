@@ -4,7 +4,7 @@
     <link href="style.css" rel="stylesheet">
     <link rel="stylesheet" href="lib/fontawesome-free-6.4.2-web/css/all.css"></script>
 </head>
-<body>
+<body id="body" style="visibility: hidden;opacity: 0;">
     <!-- Top Bar -->
     <div id="topBar" class="topBar">
         <div id="dietHeader" style="text-align: center; height: 60%; font-size: 45px; background-color: #90EE90;"><b>Diet Information</b></div>
@@ -123,6 +123,14 @@
 
             <button id="editMealButton" style="position: absolute; right:2%; bottom: 4%; width: 7%;border: 1px solid black;"><i class="fa-solid fa-check fa-3x"></i></button>
             
+        </div>
+
+        <div id="notification" style="position: absolute; font-size: 28px; top:35%; left: 25%;display: none;background-color: #eeeeee;border: 1px solid black; width: 50%;height: 20%;z-index: 2;">
+            <div id="editMealHeader" style="position: relative;height: 20%;text-align: center;font-size: 35px; background-color: #90EE90;border-bottom: 2px solid grey;">
+                <div style="position:relative;top: 10%;"><b>Notification</b></div>
+            </div>
+            <div style="position: relative;text-align: center;width:90%;left: 5%;top: 10%;">Please enter a non-empty, unique meal name!</div>
+            <button id="acknowledgeNotif" style="position: absolute; left:45%; top: 70%; width: 14%;border: 1px solid black;"><i class="fa-solid fa-check fa-3x"></i></button>
         </div>
            <!-- Progress Bar -->
         <div class="progressBar">

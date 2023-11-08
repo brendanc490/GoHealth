@@ -8,6 +8,7 @@ const percentageText = document.getElementById('percentageText')
 const consumedText = document.getElementById('consumedText')
 const togoText = document.getElementById('togoText')
 const habitsList = document.getElementById('habitsList');
+const body = document.getElementById('body')
 
 let healthyHabits = ["Take a 1 mile walk",
                     "Read for 10 minutes",
@@ -37,29 +38,41 @@ window.addEventListener('load',() => {
     }
 
     updateUI()
+
+    op = 0;
+    body.style.visibility = 'visible'
+    let fadeInt = setInterval(function(){
+        if(op == 1){
+            clearInterval(fadeInt)
+        }
+        body.style.opacity = op
+        body.style.filter = 'alpha(opacity=' + op * 100 + ")";
+        op += .1
+    },30)
 })
 
 function updateUI(){
-    header.children[0].innerText = 'Welcome back, '+user['profile']['user_name']+"!"
+    header.children[0].textContent = 'Welcome back, '+user['profile']['user_name']+"!"
 
     // update diet info
     let goal = user['diet']['goal'].calories;
-    let burned = user['exercise']['daysEntered'][selectedDate.innerText.split(' ')[3]] ? user['exercise']['daysEntered'][selectedDate.innerText.split(' ')[3]].caloriesBurned : 0;
-    let consumed = user['diet']['daysEntered'][selectedDate.innerText.split(' ')[3]] ? user['diet']['daysEntered'][selectedDate.innerText.split(' ')[3]].totalCalories : 0;
+    let burned = user['exercise']['daysEntered'][selectedDate.textContent.split(' ')[3]] ? user['exercise']['daysEntered'][selectedDate.textContent.split(' ')[3]].caloriesBurned : 0;
+    let consumed = user['diet']['daysEntered'][selectedDate.textContent.split(' ')[3]] ? user['diet']['daysEntered'][selectedDate.textContent.split(' ')[3]].totalCalories : 0;
     let percent = Math.min(Math.round(consumed/(goal+burned)*100),100)
 
-    console.log(selectedDate.innerText.split(' ')[3])
+    console.log(selectedDate.textContent.split(' ')[3])
 
     circularProgressBar.style = "position: relative;left: 35%;top: 5%;width: 300px;height: 300px;border-radius: 50%;background: radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(green "+percent+"%, grey 0);"
 
-    percentageText.innerText = percent+"%"
-    consumedText.innerText = consumed + " cal"
-    togoText.innerText = goal+burned-consumed  + " cal"
+    percentageText.textContent = percent+"%"
+    consumedText.textContent = consumed + " cal"
+    togoText.textContent = goal+burned-consumed  + " cal"
 
     // Update healthy habit portion of the UI
 
     document.querySelector('#habitsList').innerHTML = '';
-    let currDate = selectedDate.innerText.split(', ')[1];
+    let currDate = selectedDate.textContent.split(', ')[1];
+    console.log(currDate)
     for (let i = 0; i < user.habits.goals; i++) {
         let currHabit = healthyHabits[user.habits.daysEntered[currDate][0][i]];
         document.getElementById("habitsList").insertAdjacentHTML('beforeend', '<li>' + currHabit + '</li>');
