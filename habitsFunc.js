@@ -113,9 +113,9 @@ function updateHabits(date) {
             let index = user.habits.daysEntered[date][0][i];
 
             if (user.habits.daysEntered[date][1][i] == false) {
-                document.getElementById("todoContents").insertAdjacentHTML('beforeend', "<div class='entry'><input type='checkbox' id="+ i.toString() + "' class='largerCheckbox' onclick=\"updateCheck(this)\"><strong>" + currHabit + "</strong><button id='whyImportant' class='fa-solid fa-arrow-right fa-2x' style='margin-left: 20px; position: absolute; right: 5%; display: inline-block; font-size: 40px' onclick=displayForm(" + index + ")></button></div><br>" ); 
+                document.getElementById("todoContents").insertAdjacentHTML('beforeend', "<div class='entry'><input type='checkbox' id="+ i.toString() + "' class='largerCheckbox' onclick=\"updateCheck(this)\"><strong>" + currHabit + "</strong><button id='whyImportant' class='fa-solid fa-arrow-right fa-2x' style='background-color: transparent; background-repeat: no-repeat; border: none; overflow: hidden; outline: none; margin-left: 20px; position: absolute; right: 5%; display: inline-block; font-size: 40px' onclick=displayForm(" + index + ")></button></div><br>" ); 
             } else {
-                document.getElementById("todoContents").insertAdjacentHTML('beforeend', "<div class='entry'><input type='checkbox' id=" + i.toString() + "' class='largerCheckbox' checked='true' onclick=\"updateCheck(this)\"><strong>" + currHabit + "</strong><button id='whyImportant' class='fa-solid fa-arrow-right fa-2x' style='margin-left: 20px; position: absolute; right: 5%; display: inline-block; font-size: 40px' onclick=displayForm(" + index + ")></button></div><br>");
+                document.getElementById("todoContents").insertAdjacentHTML('beforeend', "<div class='entry'><input type='checkbox' id=" + i.toString() + "' class='largerCheckbox' checked='true' onclick=\"updateCheck(this)\"><strong>" + currHabit + "</strong><button id='whyImportant' class='fa-solid fa-arrow-right fa-2x' style='background-color: transparent; background-repeat: no-repeat; border: none; overflow: hidden; outline: none; margin-left: 20px; position: absolute; right: 5%; display: inline-block; font-size: 40px' onclick=displayForm(" + index + ")></button></div><br>");
             }
             total++;
         }
