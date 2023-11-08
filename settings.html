@@ -4,7 +4,7 @@
     <link href="style.css" rel="stylesheet">
     <link rel="stylesheet" href="lib/fontawesome-free-6.4.2-web/css/all.css"></script>
 </head>
-<body>
+<body id="body" style="visibility: hidden;opacity: 0;">
     <!-- Setting up app -->
     <!-- Navigation bar -->
     <div id="navLayout" class="navContainer">
@@ -12,19 +12,19 @@
         <div class="navFitness"><button style="width: 100%; height: 100%;" id="fitnessButton" onclick="navigateTo(this)"><i id="fitnessIcon" class="fa-solid fa-dumbbell fa-3x"></i></button></button></div>
         <div class="navDiet"><button style="width: 100%; height: 100%;" id="dietButton" onclick="navigateTo(this)"><i id="dietIcon" class="fa-solid fa-apple-whole fa-3x"></i></button></button></div>
         <div class="navHabits"><button style="width: 100%; height: 100%;" id="habitsButton" onclick="navigateTo(this)"><i id="habitsIcon" class="fa-solid fa-brain fa-3x"></i></button></button></div>
-        <div class="navSettings"><button style="width: 100%; height: 100%;background-color: #90EE90;" id="settingsButton"><i id="settingsIcon" class="fa-solid fa-gear fa-3x"></i></button></button></div>
+        <div class="navSettings"><button style="width: 100%; height: 100%;background-color: #90EE90;" id="settingsButton"><i id="settingsIcon" class="fa-solid fa-user fa-3x"></i></button></button></div>
     </div>
 
     
 
-    <div style="text-align: center; height: 60%; font-size: 45px; background-color: #90EE90;">Profile</div>
+    <div id="header" style="text-align: center; height: 80%; font-size: 55px; background-color: #90EE90;"><b style="position: relative; top:20%">User Profile</b></div>
     <button class="edit-button" id="edit-button" style="text-align: right;"><i id="settingsIcon" class="fa-solid fa-gear fa-3x"></i></button>
     <br>
     <!-- <div style="text-align: center; font-size: 20px;">Your BMI over Time</div> -->
 
     <img src="lib\bootlegweight.png" alt="Italian Trulli" style="text-align: center; scale: 100%;">
 
-    <div id="user-info" style="text-align: center; font-size: 40px;">
+    <div id="user-info" style="text-align: center; font-size: 60px;">
         <p><strong>Name:</strong> <span id="user-name"></span></p>
         <p><strong>Height:</strong> <span id="user-height"></span></p>
         <p><strong>Weight:</strong> <span id="user-weight"></span></p>
