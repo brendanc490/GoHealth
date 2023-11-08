@@ -63,3 +63,17 @@ saveButton.addEventListener('click', (event) => {
     toggleDisplay(userInfo);
     toggleDisplay(editForm);
 });
+
+window.addEventListener('load', () => {
+
+    op = 0;
+    body.style.visibility = 'visible'
+    let fadeInt = setInterval(function(){
+        if(op >= 1){
+            clearInterval(fadeInt)
+        }
+        body.style.opacity = op
+        body.style.filter = 'alpha(opacity=' + op * 100 + ")";
+        op += .1
+    },30)
+})
