@@ -196,6 +196,13 @@ body.fontChanged3 {
     'goalActual plus burnedActual minus consumedActual equals togoActual';
 
 }
+
+.entry {
+    border-bottom: solid;
+    font-size: 35px;
+    height: 100px;
+}
+
 progress {
     border: 2px solid black;
  }
@@ -269,8 +276,8 @@ progress {
 }
 
 .largerCheckbox {
-    width: 25px;
-    height: 25px;
+    width: 40px;
+    height: 40px;
     margin-right: 10px;
 }
 

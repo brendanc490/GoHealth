@@ -25,6 +25,14 @@ let healthyHabits = ["Take a 1 mile walk",
                 "Meditate for 5 minutes",
                 "Do 10 situps",
                 "Do 10 pushups"]
+let importance = ["According to WellandGood, walking for a mile a day has many benefits like strengthening your muscles, strengthening your bones, and improving your cardiovascular health.",
+                    "According to Oberlo, reading has been proven to increase your focus, memory, empathy, and communication skills.",
+                    "According to the CDC, water helps your body keep a normal temperature, lubricate and cushion your joints, protect sensitive tissues, and rid yourself of wastes.",
+                    "According to Healthline, apples are rich in fiber and antioxidants. Eating one apple a day can lower your chance of getting chronic conditions such as diabetes, heart disease, and cancer.",
+                    "According to Mayo Clinic, meditation is a useful way to address both positive and negative forms of stress. It is is also possible for meditation to reduce occurences of depression, chronic pain, anxiety, hypertension, and heart disease.",
+                    "According to Healthline, situps are an effective way to strength and tone your abdominal muscles which are used to stabilize your core.",
+                    "According to GoodRx, push-ups are a versatile exercises that are useful at helping you strengthen you upper body muscles. In particular, they target your chest, triceps, and shoulders."
+                ]
 
 let total = 3;
 
@@ -46,6 +54,17 @@ window.onload = function() {
         i++;
     }
     updateHabits(selectedDate.innerText.split(', ')[1]);
+
+    op = 0;
+    body.style.visibility = 'visible'
+    let fadeInt = setInterval(function(){
+        if(op >= 1){
+            clearInterval(fadeInt)
+        }
+        body.style.opacity = op
+        body.style.filter = 'alpha(opacity=' + op * 100 + ")";
+        op += .1
+    },30)
 }
 
 
@@ -78,45 +97,71 @@ function changeDate(el){
 
 function updateHabits(date) {
     total = 0;
+    let goals = 0;
+
+    if (user.profile.level == "beginner") {
+        goals = 3;
+    } else if (user.profile.level == "intermediate") {
+        goals = 4;
+    } else {
+        goals = 6;
+    }
     if (date in user.habits.daysEntered) {
         document.querySelector("#todoContents").innerHTML = "";
-        for (let i = 0; i < user.habits.goals; i++) {
+        for (let i = 0; i < user.habits.daysEntered[date][0].length; i++) {
             let currHabit = healthyHabits[user.habits.daysEntered[date][0][i]];
+            let index = user.habits.daysEntered[date][0][i];
 
             if (user.habits.daysEntered[date][1][i] == false) {
-                document.getElementById("todoContents").insertAdjacentHTML('beforeend', "<input type='checkbox' id="+ i.toString() + "' class='largerCheckbox' onclick=\"updateCheck(this)\"><u>" + currHabit + "</u><br>");
+                document.getElementById("todoContents").insertAdjacentHTML('beforeend', "<div class='entry'><input type='checkbox' id="+ i.toString() + "' class='largerCheckbox' onclick=\"updateCheck(this)\"><strong>" + currHabit + "</strong><button id='whyImportant' class='fa-solid fa-arrow-right fa-2x' style='margin-left: 20px; position: absolute; right: 5%; display: inline-block; font-size: 40px' onclick=displayForm(" + index + ")></button></div><br>" ); 
             } else {
-                document.getElementById("todoContents").insertAdjacentHTML('beforeend', "<input type='checkbox' id=" + i.toString() + "' class='largerCheckbox' checked='true' onclick=\"updateCheck(this)\"><u>" + currHabit + "</u><br>");
+                document.getElementById("todoContents").insertAdjacentHTML('beforeend', "<div class='entry'><input type='checkbox' id=" + i.toString() + "' class='largerCheckbox' checked='true' onclick=\"updateCheck(this)\"><strong>" + currHabit + "</strong><button id='whyImportant' class='fa-solid fa-arrow-right fa-2x' style='margin-left: 20px; position: absolute; right: 5%; display: inline-block; font-size: 40px' onclick=displayForm(" + index + ")></button></div><br>");
             }
             total++;
         }
     // Generates a new date object for the new day. 
     } else {
-        let healthyHabits = ["Take a 1 mile walk",
-                    "Read for 10 minutes",
-                "Drink 8 glasses of water",
-                "Eat 1 apple",
-                "Meditate for 5 minutes",
-                "Do 10 situps",
-                "Do 10 pushups"]
         let totalHabits = 6;
         document.querySelector("#todoContents").innerHTML = "";
         habitMap = [[],[]];
+        let called = new Set();
 
-        for (let i = 0; i < user.habits.goals; i++) {
+        for (let i = 0; i < goals; i++) {
             let randomNum = Math.floor(Math.random() * totalHabits);
+            while (called.has(randomNum)) {
+                randomNum = Math.floor(Math.random() * totalHabits);
+            }
+            called.add(randomNum);
             let randomHabit = healthyHabits[randomNum];
-            document.getElementById("todoContents").insertAdjacentHTML('beforeend', "<input type='checkbox' id="+ i.toString() + "' class='largerCheckbox' onclick=\"updateCheck(this)\"><u>" + randomHabit + "</u><br>");
+            document.getElementById("todoContents").insertAdjacentHTML('beforeend', "<div class='entry'><input type='checkbox' id="+ i.toString() + "' class='largerCheckbox' onclick=\"updateCheck(this)\"><strong>" + randomHabit + "</strong><button id='whyImportant' class='fa-solid fa-arrow-right fa-2x' style='margin-left: 20px; position: absolute; right: 5%; display: inline-block; font-size: 40px' onclick=displayForm(" + randomNum + ")></button></div><br>");
             habitMap[0].push(randomNum);
             habitMap[1].push(false);
-            let used = healthyHabits.indexOf(randomHabit);
-            healthyHabits.splice(used, 1)
-            totalHabits--;
             total++;
         }
         user.habits.daysEntered[date] = habitMap;
     }
 }
+
+function displayForm(index) {
+    addMealForm.style.display = 'grid';
+    addMealButton.disabled = true;
+    leftArrowContainer.disabled = true;
+    rightArrowContainer.disabled = true;
+    document.querySelector('#addFoodList').insertAdjacentHTML('beforeend', importance[parseInt(index)]);
+}
+
+function addMealFormClear(){
+    document.querySelector('#addFoodList').innerHTML = "";
+    leftArrowContainer.disabled = false
+    rightArrowContainer.disabled = false
+}
+
+cancelAddMeal.addEventListener('click', () => {
+    addMealForm.style.display = 'none'
+    addMealFormClear()
+    leftArrowContainer.disabled = false
+    rightArrowContainer.disabled = false
+})
 
 function updateCheck(checkbox) {
     let index = parseInt(checkbox.id);
@@ -372,6 +417,3 @@ function checkGoalsCompleted(week) {
     }
     return arr;
 }
-
-
-
