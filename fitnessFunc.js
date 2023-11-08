@@ -13,9 +13,10 @@ const addTodoButton = document.getElementById('addTodoButton')
 const addTodoForm = document.getElementById('addTodoForm')
 const todoSubmitButton = document.getElementById('todoSubmitButton')
 const workoutForm = document.getElementById('workoutForm')
+const editExerciseForm = document.getElementById('editExerciseForm')
+
 
 const user = JSON.parse(localStorage.getItem('user'))
-
 
 let load = 0
 
@@ -27,7 +28,6 @@ window.onload = function() {
     while(i < week.childElementCount){
         const date = new Date(week.children[i].children[0].innerText)
         const newDay = new Date(date.getTime());
-        console.log(newDay)
         let split = newDay.toLocaleDateString().split('/')
         lastWeek.push(split[0]+'/'+split[1]+'/'+(split[2].substring(2)))
         lastWeekAnim.push(split[0]+'/'+split[1]+'/'+(split[2]))
@@ -79,9 +79,9 @@ function changeDate(el){
 
 function updateUI(date) {
     let currDay = user['exercise']['daysEntered'][selectedDate.innerText.split(' ')[1]] ? user['exercise']['daysEntered'][selectedDate.innerText.split(' ')[1]]['workouts'] : null
-    let workoutPlan = user.profile.level 
-    let weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] // will be user preference
-    let schedDays = ['Wednesday', 'Thursday', 'Friday']
+    let workoutPlan = exercises[user.profile.level] 
+    let weekdays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'] // will be user preference
+    let schedDays = user.profile.days 
     let i = 0
     let calBurn = 0
     let weekIndex = new Date(selectedDate.innerText.split(', ')[1]).getDay()
@@ -115,7 +115,7 @@ function updateUI(date) {
             el.appendChild(selectEl)
             selectEl.addEventListener('click', (e) => {
                 let par = e.target.parentElement
-                selectExercise(currDay[par.id.split('workout')[1]])
+                selectExercise(currDay[par.id.split('workout')[1]], par.id.split('workout')[1])
             })
             todoContents.appendChild(el)
             i++;
@@ -149,7 +149,7 @@ function updateUI(date) {
             el.appendChild(selectEl)
             selectEl.addEventListener('click', (e) => {
                 let par = e.target.parentElement
-                selectExercise(workoutPlan[par.id.split('workout')[1]])
+                selectExercise(workoutPlan[par.id.split('workout')[1]], par.id.split('workout')[1])
             })
             todoContents.appendChild(el)
             i++;
@@ -163,7 +163,7 @@ function updateUI(date) {
 }
 
 
-function selectExercise(exercise) {
+function selectExercise(exercise, index) {
     var selectors = document.getElementsByTagName('button');
     for (let i = 1; i < selectors.length; i++) {
         if (selectors[i].id == 'closeDescription') {
@@ -171,8 +171,8 @@ function selectExercise(exercise) {
         }
         selectors[i].disabled = true
     }
-    console.log(selectors)
     let div = document.createElement('div')
+    div.id = index.toString()
     let header = document.createElement('h1')
     header.align = 'center'
     header.textContent = exercise.name
@@ -404,3 +404,81 @@ closeDescription.addEventListener('click', () => {
     }
     workoutForm.style.display = 'none'
 })
+
+closeEditForm.addEventListener('click', () => {
+    var selectors = document.getElementsByTagName('button');
+    for (let i = 1; i < selectors.length; i++) {
+        selectors[i].disabled = false
+    }
+    editExerciseForm.style.display = 'none'
+})
+
+
+reschedule.onclick = displayPrompt;
+
+function displayPrompt() {
+    editExerciseForm.style.display = 'block';
+    let date = selectedDate.innerText.split(', ')[1]
+    if (user.exercise.daysEntered[date]) {
+        let workout = null
+        for(let i = 0; i < user.exercise.daysEntered[date].workouts.length; i++) {
+            workout = document.createElement('div')
+            workout.className = 'workout'
+            workout.id =  user.exercise.daysEntered[date].workouts[i].name.replace(/\s/g, '') + i 
+            workout.textContent = user.exercise.daysEntered[date].workouts[i].name
+            let deleteEl = document.createElement("div");
+            deleteEl.style.display = 'inline-block'
+            deleteEl.style.position = 'absolute'
+            deleteEl.style.left = '90%'
+            deleteEl.style.color = 'red'
+            deleteEl.innerText = 'X'
+            deleteEl.id = workout.id+"Del"
+            deleteEl.addEventListener('click', (e) => {
+                let par = e.target.parentElement
+                par.parentElement.removeChild(par)
+            })
+        }
+        console.log(workout)
+    }
+}
+
+closeEditForm.onclick = newDate;
+
+
+function newDate() {
+    let entry = document.getElementById("newDate").value;
+    if(isValidDateFormat(entry)) {
+        let currDate = selectedDate.innerText.split(', ')[1];
+        let form = document.getElementById('workoutForm')
+        let workoutToMove = user.exercise.daysEntered[currDate].workouts[form.children[2].id]
+        workoutToMove.done = false
+        user.exercise.daysEntered[currDate].workouts.splice(form.children[2].id, 1)
+        if(user.exercise.daysEntered[entry]) {
+            user.exercise.daysEntered[entry].workouts.push(workoutToMove)
+        } else { 
+            let newarr = [workoutToMove]
+            user.exercise.daysEntered[entry] = {
+                'workouts': newarr,
+                'caloriesBurned': 0
+            } 
+        } 
+    } else {
+        document.getElementById('newDate').value = 'Invalid Date; Format mm/dd/yy';
+    }
+}
+
+function isValidDateFormat(dateString) {
+    var dateFormat = /^\d{2}\/\d{2}\/\d{2}$/;
+    
+    if (dateFormat.test(dateString)) {
+        var parts = dateString.split('/');
+        var month = parseInt(parts[0], 10);
+        var day = parseInt(parts[1], 10);
+        var year = parseInt(parts[2], 10);
+        if (month >= 1 && month <= 12 && day >= 1 && day <= 31 && year >= 0 && year <= 99) {
+        return true;
+        }
+    }
+    
+    return false;
+}
