@@ -48,9 +48,7 @@ function updateUI(){
     let consumed = user['diet']['daysEntered'][selectedDate.innerText.split(' ')[3]] ? user['diet']['daysEntered'][selectedDate.innerText.split(' ')[3]].totalCalories : 0;
     let percent = Math.min(Math.round(consumed/(goal+burned)*100),100)
 
-<<<<<<< Updated upstream
     console.log(selectedDate.innerText.split(' ')[3])
-=======
     document.querySelector('#exerciseList').innerHTML = '';
     let currDate = selectedDate.innerText.split(', ')[1];
     if (user.exercise.daysEntered[currDate]) {
@@ -77,7 +75,6 @@ function updateUI(){
        cont.appendChild(br)
        cont.appendChild(div)
     }
->>>>>>> Stashed changes
 
     circularProgressBar.style = "position: relative;left: 35%;top: 5%;width: 300px;height: 300px;border-radius: 50%;background: radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(green "+percent+"%, grey 0);"
 
