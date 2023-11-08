@@ -339,3 +339,7 @@ progress {
     top: 60px;
     right: 10px;
 }
+
+input[type=checkbox] {
+    accent-color: green;
+}

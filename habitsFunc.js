@@ -45,6 +45,7 @@ window.onload = function() {
         }
         i++;
     }
+    updateHabits(selectedDate.innerText.split(', ')[1]);
 }
 
 
