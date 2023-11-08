@@ -15,7 +15,7 @@
         <div class="navSettings"><button style="width: 100%; height: 100%;background-color: #90EE90;" id="settingsButton"><i id="settingsIcon" class="fa-solid fa-user fa-3x"></i></button></button></div>
     </div>
 
-    
+    <!-- 640x960-->
 
     <div id="header" style="text-align: center; height: 80%; font-size: 55px; background-color: #90EE90;"><b style="position: relative; top:20%">User Profile</b></div>
     <button class="edit-button" id="edit-button" style="text-align: right;"><i id="settingsIcon" class="fa-solid fa-gear fa-3x"></i></button>
@@ -24,7 +24,7 @@
 
     <img src="lib\bootlegweight.png" alt="Italian Trulli" style="text-align: center; scale: 100%;">
 
-    <div id="user-info" style="text-align: center; font-size: 60px;">
+    <div id="user-info" style="text-align: center; font-size: 50px;">
         <p><strong>Name:</strong> <span id="user-name"></span></p>
         <p><strong>Height:</strong> <span id="user-height"></span></p>
         <p><strong>Weight:</strong> <span id="user-weight"></span></p>
@@ -35,13 +35,14 @@
     <br>
     <div style="font-size: 15px; display: none;" id="edit-form" >
         <label for="name">Enter user name:</label>
-        <input type="text" id="name" name="name" style="width:auto; height: auto;font-size: 15px;" value = ""><br><br>
+        <input type="text" id="name" name="name" style="width:auto; height: auto;font-size: 15px;" value = ""><br>
 
         <label for="age">Enter user age:</label>
-        <input type="number" id="age" name="age" style="width:auto; height: auto;font-size: 15px;" value = ""><br><br>
+        <input type="number" id="age" name="age" style="width:auto; height: auto;font-size: 15px;" value = ""><br>
 
         <label for="height_ft">Select user height:</label>
         <select name="height_ft" id="height_ft" style="width:auto; height: auto;font-size: 15px;">
+            <option value=""> </option>
             <option value="4">4</option>
             <option value="5">5</option>
             <option value="6">6</option>
@@ -49,6 +50,8 @@
         </select>
         feet
         <select name="height_in" id="height_in" style="width:auto; height: auto;font-size: 15px;">
+            <option value=""> </option>
+            <option value="0">0</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -62,23 +65,23 @@
             <option value="11">11</option>
         </select>
         inches
-        <br><br>
+        <br>
 
         <label for="weight">Enter user weight in pounds:</label>
-        <input type="number" id="weight" name="weight" style="width:auto; height: auto;font-size: 15px;"><br><br>
+        <input type="number" id="weight" name="weight" style="width:auto; height: auto;font-size: 15px;"><br>
 
         Choose experience level:
         <br>
-        <input type="radio" id="beginner" name="level" value="beginner">
+        <input type="radio" id="beginner" name="level" value="1">
         <label for="beginner">Beginner</label><br>
-        <input type="radio" id="intermediate" name="level" value="intermediate">
+        <input type="radio" id="intermediate" name="level" value="2">
         <label for="intermediate">Intermediate</label><br>
-        <input type="radio" id="advanced" name="level" value="advanced">
+        <input type="radio" id="advanced" name="level" value="3">
         <label for="advanced">Advanced</label>
-        <br><br>
+        <br>
 
         <label for="calories">Enter user target calories:</label>
-        <input type="number" id="calories" name="calories" style="width:auto; height: auto;font-size: 15px;"><br><br>
+        <input type="number" id="calories" name="calories" style="width:auto; height: auto;font-size: 15px;"><br>
 
         Select which days you want to workout:
         <br>
@@ -97,7 +100,7 @@
         <label for="sat">Saturday</label>
         <input type="checkbox" id="sat" name="sat" style="width:auto; height: auto;font-size: 15px;" class="daysSelected"><br>
 
-        <button onclick="updateUserData()" style="width:auto; height: auto;font-size: 15px;" id="save-button">Save</button>
+        <button onclick="updateUserData()" style="width:auto; height: auto;font-size: 30px;" id="save-button">Save</button>
         <br>
 
     </div>
