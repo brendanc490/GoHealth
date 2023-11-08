@@ -1,6 +1,305 @@
 var user = {
     "exercise": {
         "daysEntered": {
+
+            "10/18/2023":{
+                'workouts': [
+                    {
+                        'name': 'jog',
+                        'duration': '1 mile',
+                        'calBurn': 100,
+                        'done': true,
+                        'description': 'A simple yet effective exercise, your jog will consist of a steady pace until half a mile where you\'ll reast and back to the steady pace to finish your exercise. This is a good form of cardio as well as a great warm up in case you decide to do all your exercises at one time (recommended)'
+                    },
+                    {
+                        'name': 'regular pushup',
+                        'duration': '10 reps 3 sets',
+                        'calBurn': 150,
+                        'done': true,
+                        'description': 'Beginning in a plank position, keeping your back level and arms shoulder with apart, your pushup will start with your arms extended. Slowly and controlled, descend bending your arms until they reach about 90 degress before pushing back up. * As a beginner exercise, this can be done with your knees on the ground instead of at a planking position.'
+            
+                    },
+                    {
+                        'name': 'cooldown stretch',
+                        'duration': '10 min',
+                        'calBurn': 30,
+                        'done': true,
+                        'description': 'For your remedial process you\'ll have basic stretches. You worked your arms and legs today and so these stretches will target those groups. Stretch 1 you\'ll over behind your back and stretch by pushing your elbow down with the other hand. Stretch 2 you will stretch your quads (the thigh muscles) by holding one leg back, standing straight and pulling your heel to your glutes. Finally, you will stretch your hamstrings. Standing straght with little to no space between your feet. Reach down slowly and pulse. Repeat these streatches 3 times for 30 seconds each'
+            
+                    }
+                ]
+            },
+            "10/16/2023":{
+                'workouts': [
+                    {
+                        'name': 'jog',
+                        'duration': '1 mile',
+                        'calBurn': 100,
+                        'done': false,
+                        'description': 'A simple yet effective exercise, your jog will consist of a steady pace until half a mile where you\'ll reast and back to the steady pace to finish your exercise. This is a good form of cardio as well as a great warm up in case you decide to do all your exercises at one time (recommended)'
+                    },
+                    {
+                        'name': 'regular pushup',
+                        'duration': '10 reps 3 sets',
+                        'calBurn': 150,
+                        'done': true,
+                        'description': 'Beginning in a plank position, keeping your back level and arms shoulder with apart, your pushup will start with your arms extended. Slowly and controlled, descend bending your arms until they reach about 90 degress before pushing back up. * As a beginner exercise, this can be done with your knees on the ground instead of at a planking position.'
+            
+                    },
+                    {
+                        'name': 'cooldown stretch',
+                        'duration': '10 min',
+                        'calBurn': 30,
+                        'done': true,
+                        'description': 'For your remedial process you\'ll have basic stretches. You worked your arms and legs today and so these stretches will target those groups. Stretch 1 you\'ll over behind your back and stretch by pushing your elbow down with the other hand. Stretch 2 you will stretch your quads (the thigh muscles) by holding one leg back, standing straight and pulling your heel to your glutes. Finally, you will stretch your hamstrings. Standing straght with little to no space between your feet. Reach down slowly and pulse. Repeat these streatches 3 times for 30 seconds each'
+            
+                    }
+                ],
+                'caloriesBurned': 0
+            },
+            "10/13/2023":{
+                'workouts': [
+                    {
+                        'name': 'jog',
+                        'duration': '1 mile',
+                        'calBurn': 100,
+                        'done': true,
+                        'description': 'A simple yet effective exercise, your jog will consist of a steady pace until half a mile where you\'ll reast and back to the steady pace to finish your exercise. This is a good form of cardio as well as a great warm up in case you decide to do all your exercises at one time (recommended)'
+                    },
+                    {
+                        'name': 'regular pushup',
+                        'duration': '10 reps 3 sets',
+                        'calBurn': 150,
+                        'done': false,
+                        'description': 'Beginning in a plank position, keeping your back level and arms shoulder with apart, your pushup will start with your arms extended. Slowly and controlled, descend bending your arms until they reach about 90 degress before pushing back up. * As a beginner exercise, this can be done with your knees on the ground instead of at a planking position.'
+            
+                    },
+                    {
+                        'name': 'cooldown stretch',
+                        'duration': '10 min',
+                        'calBurn': 30,
+                        'done': false,
+                        'description': 'For your remedial process you\'ll have basic stretches. You worked your arms and legs today and so these stretches will target those groups. Stretch 1 you\'ll over behind your back and stretch by pushing your elbow down with the other hand. Stretch 2 you will stretch your quads (the thigh muscles) by holding one leg back, standing straight and pulling your heel to your glutes. Finally, you will stretch your hamstrings. Standing straght with little to no space between your feet. Reach down slowly and pulse. Repeat these streatches 3 times for 30 seconds each'
+            
+                    }
+                ]
+            },
+            "10/11/2023":{
+                'workouts': [
+                    {
+                        'name': 'jog',
+                        'duration': '1 mile',
+                        'calBurn': 100,
+                        'done': true,
+                        'description': 'A simple yet effective exercise, your jog will consist of a steady pace until half a mile where you\'ll reast and back to the steady pace to finish your exercise. This is a good form of cardio as well as a great warm up in case you decide to do all your exercises at one time (recommended)'
+                    },
+                    {
+                        'name': 'regular pushup',
+                        'duration': '10 reps 3 sets',
+                        'calBurn': 150,
+                        'done': false,
+                        'description': 'Beginning in a plank position, keeping your back level and arms shoulder with apart, your pushup will start with your arms extended. Slowly and controlled, descend bending your arms until they reach about 90 degress before pushing back up. * As a beginner exercise, this can be done with your knees on the ground instead of at a planking position.'
+            
+                    },
+                    {
+                        'name': 'cooldown stretch',
+                        'duration': '10 min',
+                        'calBurn': 30,
+                        'done': true,
+                        'description': 'For your remedial process you\'ll have basic stretches. You worked your arms and legs today and so these stretches will target those groups. Stretch 1 you\'ll over behind your back and stretch by pushing your elbow down with the other hand. Stretch 2 you will stretch your quads (the thigh muscles) by holding one leg back, standing straight and pulling your heel to your glutes. Finally, you will stretch your hamstrings. Standing straght with little to no space between your feet. Reach down slowly and pulse. Repeat these streatches 3 times for 30 seconds each'
+            
+                    }
+                ]
+            },
+            "10/9/2023":{
+                'workouts': [
+                    {
+                        'name': 'jog',
+                        'duration': '1 mile',
+                        'calBurn': 100,
+                        'done': true,
+                        'description': 'A simple yet effective exercise, your jog will consist of a steady pace until half a mile where you\'ll reast and back to the steady pace to finish your exercise. This is a good form of cardio as well as a great warm up in case you decide to do all your exercises at one time (recommended)'
+                    },
+                    {
+                        'name': 'regular pushup',
+                        'duration': '10 reps 3 sets',
+                        'calBurn': 150,
+                        'done': true,
+                        'description': 'Beginning in a plank position, keeping your back level and arms shoulder with apart, your pushup will start with your arms extended. Slowly and controlled, descend bending your arms until they reach about 90 degress before pushing back up. * As a beginner exercise, this can be done with your knees on the ground instead of at a planking position.'
+            
+                    },
+                    {
+                        'name': 'cooldown stretch',
+                        'duration': '10 min',
+                        'calBurn': 30,
+                        'done': true,
+                        'description': 'For your remedial process you\'ll have basic stretches. You worked your arms and legs today and so these stretches will target those groups. Stretch 1 you\'ll over behind your back and stretch by pushing your elbow down with the other hand. Stretch 2 you will stretch your quads (the thigh muscles) by holding one leg back, standing straight and pulling your heel to your glutes. Finally, you will stretch your hamstrings. Standing straght with little to no space between your feet. Reach down slowly and pulse. Repeat these streatches 3 times for 30 seconds each'
+            
+                    }
+                ]
+            },
+            "10/6/2023":{
+                'workouts': [
+                    {
+                        'name': 'jog',
+                        'duration': '1 mile',
+                        'calBurn': 100,
+                        'done': false,
+                        'description': 'A simple yet effective exercise, your jog will consist of a steady pace until half a mile where you\'ll reast and back to the steady pace to finish your exercise. This is a good form of cardio as well as a great warm up in case you decide to do all your exercises at one time (recommended)'
+                    },
+                    {
+                        'name': 'regular pushup',
+                        'duration': '10 reps 3 sets',
+                        'calBurn': 150,
+                        'done': true,
+                        'description': 'Beginning in a plank position, keeping your back level and arms shoulder with apart, your pushup will start with your arms extended. Slowly and controlled, descend bending your arms until they reach about 90 degress before pushing back up. * As a beginner exercise, this can be done with your knees on the ground instead of at a planking position.'
+            
+                    },
+                    {
+                        'name': 'cooldown stretch',
+                        'duration': '10 min',
+                        'calBurn': 30,
+                        'done': false,
+                        'description': 'For your remedial process you\'ll have basic stretches. You worked your arms and legs today and so these stretches will target those groups. Stretch 1 you\'ll over behind your back and stretch by pushing your elbow down with the other hand. Stretch 2 you will stretch your quads (the thigh muscles) by holding one leg back, standing straight and pulling your heel to your glutes. Finally, you will stretch your hamstrings. Standing straght with little to no space between your feet. Reach down slowly and pulse. Repeat these streatches 3 times for 30 seconds each'
+            
+                    }
+                ]
+            },
+            "10/4/2023":{
+                'workouts': [
+                    {
+                        'name': 'jog',
+                        'duration': '1 mile',
+                        'calBurn': 100,
+                        'done': true,
+                        'description': 'A simple yet effective exercise, your jog will consist of a steady pace until half a mile where you\'ll reast and back to the steady pace to finish your exercise. This is a good form of cardio as well as a great warm up in case you decide to do all your exercises at one time (recommended)'
+                    },
+                    {
+                        'name': 'regular pushup',
+                        'duration': '10 reps 3 sets',
+                        'calBurn': 150,
+                        'done': true,
+                        'description': 'Beginning in a plank position, keeping your back level and arms shoulder with apart, your pushup will start with your arms extended. Slowly and controlled, descend bending your arms until they reach about 90 degress before pushing back up. * As a beginner exercise, this can be done with your knees on the ground instead of at a planking position.'
+            
+                    },
+                    {
+                        'name': 'cooldown stretch',
+                        'duration': '10 min',
+                        'calBurn': 30,
+                        'done': true,
+                        'description': 'For your remedial process you\'ll have basic stretches. You worked your arms and legs today and so these stretches will target those groups. Stretch 1 you\'ll over behind your back and stretch by pushing your elbow down with the other hand. Stretch 2 you will stretch your quads (the thigh muscles) by holding one leg back, standing straight and pulling your heel to your glutes. Finally, you will stretch your hamstrings. Standing straght with little to no space between your feet. Reach down slowly and pulse. Repeat these streatches 3 times for 30 seconds each'
+            
+                    }
+                ]
+            },
+            "10/2/2023":{
+                'workouts': [
+                    {
+                        'name': 'jog',
+                        'duration': '1 mile',
+                        'calBurn': 100,
+                        'done': true,
+                        'description': 'A simple yet effective exercise, your jog will consist of a steady pace until half a mile where you\'ll reast and back to the steady pace to finish your exercise. This is a good form of cardio as well as a great warm up in case you decide to do all your exercises at one time (recommended)'
+                    },
+                    {
+                        'name': 'regular pushup',
+                        'duration': '10 reps 3 sets',
+                        'calBurn': 150,
+                        'done': true,
+                        'description': 'Beginning in a plank position, keeping your back level and arms shoulder with apart, your pushup will start with your arms extended. Slowly and controlled, descend bending your arms until they reach about 90 degress before pushing back up. * As a beginner exercise, this can be done with your knees on the ground instead of at a planking position.'
+            
+                    },
+                    {
+                        'name': 'cooldown stretch',
+                        'duration': '10 min',
+                        'calBurn': 30,
+                        'done': true,
+                        'description': 'For your remedial process you\'ll have basic stretches. You worked your arms and legs today and so these stretches will target those groups. Stretch 1 you\'ll over behind your back and stretch by pushing your elbow down with the other hand. Stretch 2 you will stretch your quads (the thigh muscles) by holding one leg back, standing straight and pulling your heel to your glutes. Finally, you will stretch your hamstrings. Standing straght with little to no space between your feet. Reach down slowly and pulse. Repeat these streatches 3 times for 30 seconds each'
+            
+                    }
+                ]
+            },
+            "9/29/2023":{
+                'workouts': [
+                    {
+                        'name': 'jog',
+                        'duration': '1 mile',
+                        'calBurn': 100,
+                        'done': false,
+                        'description': 'A simple yet effective exercise, your jog will consist of a steady pace until half a mile where you\'ll reast and back to the steady pace to finish your exercise. This is a good form of cardio as well as a great warm up in case you decide to do all your exercises at one time (recommended)'
+                    },
+                    {
+                        'name': 'regular pushup',
+                        'duration': '10 reps 3 sets',
+                        'calBurn': 150,
+                        'done': true,
+                        'description': 'Beginning in a plank position, keeping your back level and arms shoulder with apart, your pushup will start with your arms extended. Slowly and controlled, descend bending your arms until they reach about 90 degress before pushing back up. * As a beginner exercise, this can be done with your knees on the ground instead of at a planking position.'
+            
+                    },
+                    {
+                        'name': 'cooldown stretch',
+                        'duration': '10 min',
+                        'calBurn': 30,
+                        'done': true,
+                        'description': 'For your remedial process you\'ll have basic stretches. You worked your arms and legs today and so these stretches will target those groups. Stretch 1 you\'ll over behind your back and stretch by pushing your elbow down with the other hand. Stretch 2 you will stretch your quads (the thigh muscles) by holding one leg back, standing straight and pulling your heel to your glutes. Finally, you will stretch your hamstrings. Standing straght with little to no space between your feet. Reach down slowly and pulse. Repeat these streatches 3 times for 30 seconds each'
+            
+                    }
+                ]
+            },
+            "9/27/2023":{
+                'workouts': [
+                    {
+                        'name': 'jog',
+                        'duration': '1 mile',
+                        'calBurn': 100,
+                        'done': false,
+                        'description': 'A simple yet effective exercise, your jog will consist of a steady pace until half a mile where you\'ll reast and back to the steady pace to finish your exercise. This is a good form of cardio as well as a great warm up in case you decide to do all your exercises at one time (recommended)'
+                    },
+                    {
+                        'name': 'regular pushup',
+                        'duration': '10 reps 3 sets',
+                        'calBurn': 150,
+                        'done': true,
+                        'description': 'Beginning in a plank position, keeping your back level and arms shoulder with apart, your pushup will start with your arms extended. Slowly and controlled, descend bending your arms until they reach about 90 degress before pushing back up. * As a beginner exercise, this can be done with your knees on the ground instead of at a planking position.'
+            
+                    },
+                    {
+                        'name': 'cooldown stretch',
+                        'duration': '10 min',
+                        'calBurn': 30,
+                        'done': false,
+                        'description': 'For your remedial process you\'ll have basic stretches. You worked your arms and legs today and so these stretches will target those groups. Stretch 1 you\'ll over behind your back and stretch by pushing your elbow down with the other hand. Stretch 2 you will stretch your quads (the thigh muscles) by holding one leg back, standing straight and pulling your heel to your glutes. Finally, you will stretch your hamstrings. Standing straght with little to no space between your feet. Reach down slowly and pulse. Repeat these streatches 3 times for 30 seconds each'
+            
+                    }
+                ]
+            },
+            "9/25/2023":{
+                'workouts': [
+                    {
+                        'name': 'jog',
+                        'duration': '1 mile',
+                        'calBurn': 100,
+                        'done': true,
+                        'description': 'A simple yet effective exercise, your jog will consist of a steady pace until half a mile where you\'ll reast and back to the steady pace to finish your exercise. This is a good form of cardio as well as a great warm up in case you decide to do all your exercises at one time (recommended)'
+                    },
+                    {
+                        'name': 'regular pushup',
+                        'duration': '10 reps 3 sets',
+                        'calBurn': 150,
+                        'done': true,
+                        'description': 'Beginning in a plank position, keeping your back level and arms shoulder with apart, your pushup will start with your arms extended. Slowly and controlled, descend bending your arms until they reach about 90 degress before pushing back up. * As a beginner exercise, this can be done with your knees on the ground instead of at a planking position.'
+            
+                    },
+                    {
+                        'name': 'cooldown stretch',
+                        'duration': '10 min',
+                        'calBurn': 30,
+                        'done': false,
+                        'description': 'For your remedial process you\'ll have basic stretches. You worked your arms and legs today and so these stretches will target those groups. Stretch 1 you\'ll over behind your back and stretch by pushing your elbow down with the other hand. Stretch 2 you will stretch your quads (the thigh muscles) by holding one leg back, standing straight and pulling your heel to your glutes. Finally, you will stretch your hamstrings. Standing straght with little to no space between your feet. Reach down slowly and pulse. Repeat these streatches 3 times for 30 seconds each'
+            
+                    }
+                ]
+            },
         }
     },
     "diet": {

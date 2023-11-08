@@ -60,7 +60,33 @@ function updateUI(){
     let consumed = user['diet']['daysEntered'][selectedDate.textContent.split(' ')[3]] ? user['diet']['daysEntered'][selectedDate.textContent.split(' ')[3]].totalCalories : 0;
     let percent = Math.min(Math.round(consumed/(goal+burned)*100),100)
 
-    console.log(selectedDate.textContent.split(' ')[3])
+    let currDate = selectedDate.textContent.split(' ')[3]
+    document.querySelector('#exerciseList').innerHTML = '';
+    
+    if (user.exercise.daysEntered[currDate]) {
+        for (let i = 0; i < user.daysEntered[currDate].workouts.length; i++) {
+            let workout = user.daysEntered[currDate].workouts[i];
+            document.getElementById("exerciseList").insertAdjacentHTML('beforeend', '<li>' + workout + '</li>');
+        }
+    } else {
+       let cont = document.getElementById("exerciseListContainer")
+       let i = document.createElement('i')
+       let div = document.createElement('div')
+       let div2 = document.createElement('div')
+       let div3 = document.createElement('div')
+       let br = document.createElement('br')
+       div3.textContent = 'No Exercises for today!'
+       i.className = 'fa-solid fa-award fa-3x'
+       i.size = '50px'       
+       div.align = 'center'
+       div.style.paddingTop = '10px'
+       div.append(div3)
+       div.append(i)
+       div.append(div2)
+       div2.textContent = 'Congratulations! You\'ve earned your Daily Medal!'
+       cont.appendChild(br)
+       cont.appendChild(div)
+    }
 
     circularProgressBar.style = "position: relative;left: 35%;top: 5%;width: 300px;height: 300px;border-radius: 50%;background: radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(green "+percent+"%, grey 0);"
 
@@ -71,8 +97,6 @@ function updateUI(){
     // Update healthy habit portion of the UI
 
     document.querySelector('#habitsList').innerHTML = '';
-    let currDate = selectedDate.textContent.split(', ')[1];
-    console.log(currDate)
     for (let i = 0; i < user.habits.goals; i++) {
         let currHabit = healthyHabits[user.habits.daysEntered[currDate][0][i]];
         document.getElementById("habitsList").insertAdjacentHTML('beforeend', '<li>' + currHabit + '</li>');
