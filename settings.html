@@ -25,17 +25,20 @@
     <!-- <img src="lib\bootlegweight.png" alt="Italian Trulli" style="text-align: center; scale: 100%;">
 -->
 
-    <div style="text-align: center; font-size: 50px; height: 100%; width: 100%;">
-    <div id="user-info" style="text-align: center; font-size: 50px; height: 100%; width: 100%;">
-        <p><strong>Name:</strong> <span id="user-name"></span></p>
-        <p><strong>Height:</strong> <span id="user-height"></span></p>
-        <p><strong>Weight:</strong> <span id="user-weight"></span></p>
-        <p><strong>BMI:</strong> <span id="user-bmi"></span></p>
-    </div>
+    <div style="text-align: center; font-size: 50px; height: 100%; width: 100%; position: absolute;">
+        <div id="data-display">
+            <div id="user-info" style="text-align: center; font-size: 50px; height: 100%; width: 100%;">
+            <p><strong>Name:</strong> <span id="user-name"></span></p>
+            <p><strong>Height:</strong> <span id="user-height"></span></p>
+            <p><strong>Weight:</strong> <span id="user-weight"></span></p>
+            <p><strong>BMI:</strong> <span id="user-bmi"></span></p>
+            </div>
  
-    <img id="pic" src="Bmi-chart.jpg" alt="BMI chart" style="text-align: center; max-width: 75%; max-height: 75%;">
+            <img id="pic" src="Bmi-chart.jpg" alt="BMI chart" style="text-align: center; max-width: 75%; max-height: 75%;">
+        </div>
 
     <br>
+    <div id="data-entry">
     <div style="font-size: 50px; display: none; height: 100%; width: 100%;" id="edit-form" >
         <div style="border-style:inset; border-width: 5px;">
         <label for="name">Enter user name:</label>
@@ -126,6 +129,8 @@
         <hr>
         <button onclick="updateUserData()" style="width:auto; height: auto;font-size: 50px;" id="save-button">Save</button>
         <br>
+
+    </div>
 
 
     </div>
