@@ -1,14 +1,14 @@
 const exercises = {
     'beginner': [
         {
-            'name': 'jog',
+            'name': 'Jog',
             'duration': '1 mile',
             'calBurn': 100,
             'done': false,
             'description': 'A simple yet effective exercise, your jog will consist of a steady pace until half a mile where you\'ll reast and back to the steady pace to finish your exercise. This is a good form of cardio as well as a great warm up in case you decide to do all your exercises at one time (recommended)'
         },
         {
-            'name': 'regular pushup',
+            'name': 'Regular pushup',
             'duration': '10 reps 3 sets',
             'calBurn': 150,
             'done': false,
@@ -16,7 +16,7 @@ const exercises = {
 
         },
         {
-            'name': 'cooldown stretch',
+            'name': 'Cooldown stretch',
             'duration': '10 min',
             'calBurn': 30,
             'done': false,
@@ -26,7 +26,7 @@ const exercises = {
     ],
     'intermediate': [
         {
-            'name': 'jog',
+            'name': 'Jog',
             'duration': '1.5 mile',
             'calBurn': 120,
             'done': false,
@@ -34,7 +34,7 @@ const exercises = {
 
         },
         {
-            'name': 'regular pushup',
+            'name': 'Regular pushup',
             'duration': '10 reps 3 sets',
             'calBurn': 150,
             'done': false,
@@ -42,7 +42,7 @@ const exercises = {
 
         },
         {
-            'name': 'body weight squat',
+            'name': 'Body weight squat',
             'duration': '10 reps 3 sets',
             'calBurn': 150,
             'done': false,
@@ -50,7 +50,7 @@ const exercises = {
 
         },
         {
-            'name': 'cooldown stretch',
+            'name': 'Cooldown stretch',
             'duration': '10 min',
             'calBurn': 30,
             'done': false,
@@ -60,7 +60,7 @@ const exercises = {
     ],
     'advanced': [
         {
-            'name': 'jog',
+            'name': 'Jog',
             'duration': '2 mile',
             'calBurn': 180,
             'done': false,
@@ -68,7 +68,7 @@ const exercises = {
 
         },
         {
-            'name': 'regular pushup',
+            'name': 'Regular pushup',
             'duration': '10 reps 3 sets',
             'calBurn': 150,
             'done': false,
@@ -76,7 +76,7 @@ const exercises = {
 
         },
         {
-            'name': 'body weight squat',
+            'name': 'Body weight squat',
             'duration': '10 reps 3 sets',
             'calBurn': 150,
             'done': false,
@@ -84,7 +84,7 @@ const exercises = {
 
         },
         {
-            'name': 'cooldown stretch',
+            'name': 'Cooldown stretch',
             'duration': '10 min',
             'calBurn': 30,
             'done': false,
