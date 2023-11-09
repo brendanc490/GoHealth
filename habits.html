@@ -16,9 +16,9 @@
         <!-- Weekly Bar -->
         <div class="weekBar">
             <div id="left" class="left">
-                <div id="leftPos" style="position: relative; top: 38%; left: 25%">
+                <button id="leftPos" style="position: relative; top: 38%; left: 25%; background-color: white;border: 0px;">
                     <i id="leftArrow" class="fa-solid fa-arrow-left fa-2x"></i>
-                </div>
+                </button>
             </div>
             <div id="week" class="week">
                 <button id="monday" class="monday" onclick="changeDate(this)">
@@ -52,10 +52,17 @@
 
             </div>
             <div id="right" class="right">
-                <div id="rightPos" style="position: relative; top: 38%; left: 17%">
+                <button id="rightPos" style="position: relative; top: 38%; left: 17%; background-color: white;border: 0px;">
                     <i id="rightArrow" class="fa-solid fa-arrow-right fa-2x"></i>
-                </div>
+                </button>
             </div>
+        </div>
+        <div id="notification" style="position: absolute; font-size: 28px; top:35%; left: 25%;display: none;background-color: #eeeeee;border: 1px solid black; width: 50%;height: 20%;z-index: 2;">
+            <div id="editMealHeader" style="position: relative;height: 20%;text-align: center;font-size: 35px; background-color: #90EE90;border-bottom: 2px solid grey;">
+                <div style="position:relative;top: 10%;"><b>Notification</b></div>
+            </div>
+            <div style="position: relative;text-align: center;width:90%;left: 5%;top: 10%;">Congratulations on finishing your healthy habits!</div>
+            <button id="acknowledgeNotif" style="position: absolute; left:45%; top: 70%; width: 14%;border: 1px solid black;"><i class="fa-solid fa-check fa-3x"></i></button>
         </div>
         <div id="addMealForm" style="position: absolute; font-size: 28px; top: 17%; left: 2%; display: none; background-color: #eeeeee;border: 1px solid black; width: 95%; height: 40%; z-index: 1;grid-template-areas: 'Header Header' 'MealName MealName' 'FoodName FoodName' 'List List';grid-template-columns: 50% 50%;grid-template-rows: 10% 15% 15% 60%;">
             <div id="mealHeader" style="grid-area: Header;text-align: center;font-size: 35px; background-color: #90EE90;border-bottom: 2px solid grey;">

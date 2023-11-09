@@ -13,6 +13,8 @@ const sunday = document.getElementById('sunday');
 const addTodoButton = document.getElementById('addTodoButton')
 const addTodoForm = document.getElementById('addTodoForm')
 const todoSubmitButton = document.getElementById('todoSubmitButton')
+const notification = document.getElementById('notification')
+const acknowledgeNotificationButton = document.getElementById('acknowledgeNotif')
 
 // add this is to enable data persistence across screens
 // remove user.js script from html!!!
@@ -70,6 +72,9 @@ window.onload = function() {
 
 // calendar related code
 function changeDate(el){
+    if (notification.style.display == 'block') {
+        return;
+    }
     let i = 0;
     let indNew = 0;
     let indCurr = 0;
@@ -182,13 +187,24 @@ function updateCheck(checkbox) {
                 }
             }
                 
-        if (completed == true){
+        if (completed == true) {
             let k = 0;
             while (k < 7){
                 if(week.children[k].style.backgroundColor != ''){
                     week.children[k].children[1].children[0].style.visibility = 'visible';
                 }
                 k++;
+            }
+            notification.style.display = 'block';
+            leftArrowContainer.disabled = true;
+            rightArrowContainer.disabled = true;
+
+            let contents = document.getElementById("todoContents");
+            for (let i = 0; i < contents.childElementCount; i++) {
+                if (contents.children[i].childElementCount > 0) {
+                    contents.children[i].children[0].disabled = true;
+                    contents.children[i].children[2].disabled = true;
+                }
             }
         }
     } else {
@@ -212,6 +228,20 @@ function updateCheck(checkbox) {
         }
     }
 }
+
+acknowledgeNotificationButton.addEventListener('click',() => {
+    notification.style.display = 'none';
+    leftArrowContainer.disabled = false;
+    rightArrowContainer.disabled = false;
+
+    let contents = document.getElementById("todoContents");
+        for (let i = 0; i < contents.childElementCount; i++) {
+            if (contents.children[i].childElementCount > 0) {
+                contents.children[i].children[0].disabled = false;
+                contents.children[i].children[2].disabled = false;
+            }
+        }
+})
 
 // change to previous week
 // TODO: remove/add checkmarks on scroll
@@ -388,7 +418,6 @@ function addEntry() {
     document.getElementById("todoContents").insertAdjacentHTML('beforeend', "<input type='checkbox' id="+ index.toString() + "' class='largerCheckbox' onclick=\"updateCheck(this)\"><u>" + entry + "</u><br>");
     user.habits.daysEntered[currDate][0].push(index);
     user.habits.daysEntered[currDate][1].push(false);
-    console.log(user.habits.daysEntered[currDate]);
 }
 
 function checkGoalsCompleted(week) {
