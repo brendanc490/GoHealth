@@ -8,11 +8,12 @@ function navigateTo(el){
     localStorage.setItem('user',userJSON);
     localStorage.setItem('timeStamp',new Date().getTime())
     
-    
+    console.log(el.getAttribute('id'))
     let locationStr = "";
     // begin navigation
     if(el.getAttribute('id').includes("home")){
         // navigate to home page
+        
         locationStr = "./index.html"
     } else if(el.getAttribute('id').includes("fitness")){
         // navigate to fitness page
