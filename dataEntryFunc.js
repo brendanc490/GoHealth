@@ -30,6 +30,8 @@ const notification = document.getElementById('notification')
 
 const acknowledgeNotif = document.getElementById('acknowledgeNotif')
 
+const selectedDate = document.getElementById('selectedDate')
+
 
 window.addEventListener('load',() => {
 
@@ -150,8 +152,20 @@ function isValidForm() {
     if(sundaySelect.checked == true) {
         arr.push('sunday')
     }
+    let sum = 0;
+    for (let d of arr){
+        if(user['profile']['days'].indexOf(d) >= 0){
+            sum++;
+        }
+    }
+    if(user['profile']['days'].length == arr.length && sum == arr.length){
+        // do nothing
+    } else {
+        user['exercise']['oldSchedules'][selectedDate.textContent.split(' ')[1]] = user['profile']['days']
+        user['profile']['days'] = arr
+        
+    }
     
-    user['profile']['days'] = arr
     
     let userJSON = JSON.stringify(user)
     
