@@ -17,7 +17,6 @@ function updateUserData(){
     const new_cals = document.getElementById("targetCalories").value;
     const new_days = document.querySelector(".largerCheckbox").value;    
     const new_gender = document.querySelector('input[name="gender"]:checked');
-    const other_gender = document.getElementById("other").value;
 
     if(new_age){
         user.profile.age = new_age;
@@ -43,9 +42,7 @@ function updateUserData(){
     if(new_days){
         user.profile.days = new_days;
     }
-    if(other_gender){
-        user.profile.gender = other_gender;
-    } else if(new_gender){
+    if(new_gender){
         user.profile.gender = new_gender;
     }
     console.log(user.profile);
@@ -57,20 +54,20 @@ function toggleDisplay(element) {
 
 window.onload = function () {
     const bmi = user.profile.weight/(Number(user.profile.height.feet)+Number(user.profile.height.inches/12))
-    console.log(bmi);
-    const roundedBMI = bmi.toFixed(0);
     
+    const roundedBMI = bmi.toFixed(0);
+    console.log(document.getElementById("name"));
     document.getElementById("user-name").innerHTML = user.profile.user_name;
     document.getElementById("user-height").innerHTML = user.profile.height.feet+" feet "+user.profile.height.inches+" inches";
     console.log(user.profile.height.feet);
     document.getElementById("user-weight").innerHTML = user.profile.weight;
     document.getElementById("user-bmi").innerHTML = roundedBMI;
 
-    document.getElementById("name").innerHTML = user.profile.user_name;
+    document.getElementById("username").innerHTML = user.profile.user_name;
     document.getElementById("age").innerHTML = user.profile.age;
     document.getElementById("weight").innerHTML = user.profile.weight;
     document.getElementById("age").innerHTML = user.profile.age;
-    document.getElementById("calories").innerHTML = user.profile.calories;
+    document.getElementById("targetCalories").innerHTML = user.profile.calories;
 
     const image = document.createElement('img');
     if(roundedBMI <= 18){
