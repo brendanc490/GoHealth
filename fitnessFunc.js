@@ -109,6 +109,7 @@ function updateUI(date) {
             checkEl.type = 'checkbox'
             checkEl.className = 'largerCheckbox'
             checkEl.style.padding.bottom = '10px'
+            
             if (currDay[i]['done']){
                 calBurn += currDay[i]['calBurn']
                checkEl.setAttribute('checked', true)
@@ -117,10 +118,10 @@ function updateUI(date) {
             checkEl.setAttribute('onclick', 'updateCheck(this)')
             let selectEl = document.createElement('button')
             selectEl.id = 'select' + currDay[i]['name']
+            selectEl.style = 'background-color: transparent; background-repeat: no-repeat; border: none; overflow: hidden; outline: none;'
             selectEl.style.position = 'absolute'
             selectEl.style.right = '2%'
             selectEl.className = 'fa-solid fa-arrow-right fa-2x'
-            selectEl.style.top = '2%'
             el.appendChild(checkEl)
             el.appendChild(text)
             el.appendChild(selectEl)
@@ -435,75 +436,78 @@ reschedule.onclick = displayPrompt;
 function displayPrompt() {
     editExerciseForm.style.display = 'block';
     let list = document.getElementById('editFoodList')
-    let date = selectedDate.textContent.split(', ')[1]
-    let m = date.split('/')[0]
-    let d = date.split('/')[1]
-    let y = date.split('/')[2]
-    if (user.exercise.daysEntered[date]) {
-        let workout = null
-        for(let i = 0; i < user.exercise.daysEntered[date].workouts.length; i++) {
-            workout = document.createElement('div')
-            let input = document.createElement('input')
-            let item = document.createElement('div')
-            item.id = i
-            item.style.display = 'inline'
-            input.type = 'date'
-            input.id = 'current'
-            input.name = 'initialDate'
-            input.setAttribute('size', '100px')
-            input.value = y+'-'+m+'-'+d
-            input.style.display = 'inline'
-            workout.className = 'workoutEdit'
-            workout.id =  user.exercise.daysEntered[date].workouts[i].name.replace(/\s/g, '') + i 
-            workout.textContent = user.exercise.daysEntered[date].workouts[i].name
-            let deleteEl = document.createElement("div");
-            deleteEl.style.display = 'inline-block'
-            deleteEl.style.position = 'absolute'
-            deleteEl.style.left = '70%'
-            deleteEl.style.color = 'red'
-            deleteEl.textContent = 'X'
-            deleteEl.id = "del"+workout.id 
-            deleteEl.addEventListener('click', (e) => {
-                let par = e.target.parentElement
-                user.exercise.daysEntered[date].workouts.splice(par.id, 1)
-                par.parentElement.removeChild(par)
-                updateUI(date)
-            })
-            item.appendChild(input)
-            item.appendChild(workout)
-            item.appendChild(deleteEl)
-            list.appendChild(item)
-            list.appendChild(document.createElement('br'))
-        }
-    }
+    // let date = selectedDate.textContent.split(', ')[1]
+    // let m = date.split('/')[0]
+    // let d = date.split('/')[1]
+    // let y = date.split('/')[2]
+    // if (user.exercise.daysEntered[date]) {
+    //     let workout = null
+    //     for(let i = 0; i < user.exercise.daysEntered[date].workouts.length; i++) {
+    //         workout = document.createElement('div')
+    //         let input = document.createElement('input')
+    //         let item = document.createElement('div')
+    //         item.id = i
+    //         item.style.display = 'inline'
+    //         input.type = 'date'
+    //         input.id = 'current'
+    //         input.name = 'initialDate'
+    //         input.setAttribute('size', '100px')
+    //         input.value = y+'-'+m+'-'+d
+    //         input.style.display = 'inline'
+    //         workout.className = 'workoutEdit'
+    //         workout.id =  user.exercise.daysEntered[date].workouts[i].name.replace(/\s/g, '') + i 
+    //         workout.textContent = user.exercise.daysEntered[date].workouts[i].name
+    //         let deleteEl = document.createElement("div");
+    //         deleteEl.style.display = 'inline-block'
+    //         deleteEl.style.position = 'absolute'
+    //         deleteEl.style.left = '70%'
+    //         deleteEl.style.color = 'red'
+    //         deleteEl.textContent = 'X'
+    //         deleteEl.id = "del"+workout.id 
+    //         deleteEl.addEventListener('click', (e) => {
+    //             let par = e.target.parentElement
+    //             user.exercise.daysEntered[date].workouts.splice(par.id, 1)
+    //             par.parentElement.removeChild(par)
+    //             updateUI(date)
+    //         })
+    //         item.appendChild(input)
+    //         item.appendChild(workout)
+    //         item.appendChild(deleteEl)
+    //         list.appendChild(item)
+    //         list.appendChild(document.createElement('br'))
+    //     }
+    // }
+    list.textContent = 'Reschedule and Edit functionality under development'
 }
 
 closeEditForm.onclick = newDate;
 
 
 function newDate() {
-    let entry = document.getElementById("current").value;
-    let currDate = selectedDate.textContent.split(', ')[1];
-    if (entry != currDate) {
-        let form = document.getElementById('editExerciseForm')
-        let workoutToMove = user.exercise.daysEntered[currDate].workouts[form.children[2].id]
-        workoutToMove.done = false
-        user.exercise.daysEntered[currDate].workouts.splice(form.children[2].id, 1)
-        if(user.exercise.daysEntered[entry]) {
-            user.exercise.daysEntered[entry].workouts.push(workoutToMove)
-        } else { 
-            let newarr = [workoutToMove]
-            console.log(entry)
-            user.exercise.daysEntered[entry] = {
-                'workouts': newarr,
-                'caloriesBurned': 0
-            } 
-        } 
+    // let entry = document.getElementById("current").value;
+    // let currDate = selectedDate.textContent.split(', ')[1];
+    // if (entry != currDate) {
+    //     let form = document.getElementById('editExerciseForm')
+    //     let workoutToMove = user.exercise.daysEntered[currDate].workouts[form.children[2].id]
+    //     workoutToMove.done = false
+    //     user.exercise.daysEntered[currDate].workouts.splice(form.children[2].id, 1)
+    //     if(user.exercise.daysEntered[entry]) {
+    //         user.exercise.daysEntered[entry].workouts.push(workoutToMove)
+    //     } else { 
+    //         let newarr = [workoutToMove]
+    //         console.log(entry)
+    //         user.exercise.daysEntered[entry] = {
+    //             'workouts': newarr,
+    //             'caloriesBurned': 0
+    //         } 
+    //     } 
         
-        let list = document.getElementById('editFoodList')
-        list.innerHTML = ''
-        console.log(user)
-    }
+    //     let list = document.getElementById('editFoodList')
+    //     list.innerHTML = ''
+    //     console.log(user)
+    // }
+    let form = document.getElementById('editExerciseForm')
+    form.style.display = 'none'
 }
 
 function isValidDateFormat(dateString) {
