@@ -14,6 +14,9 @@ const numberOfHabits = document.getElementById('numberOfHabits');
 const completedHabitsCircleGraph = document.getElementById('completedHabitsCircleGraph');
 const habitsPercentage = document.getElementById('habitsPercentage');
 
+const editProfileButton = document.getElementById('editProfileButton');
+
+
 const user = JSON.parse(localStorage.getItem('user'))
 
 
@@ -37,6 +40,24 @@ window.addEventListener('load',() => {
 
 
 
+
+})
+
+editProfileButton.addEventListener('click', () => {
+    let userJSON = JSON.stringify(user)
+    localStorage.setItem('user',userJSON);
+    localStorage.setItem('timeStamp',new Date().getTime())
+
+    op = 1;
+    let fadeInt = setInterval(function(){
+        if(op <= 0){
+            location.replace('./dataEntry.html');
+            clearInterval(fadeInt)
+        }
+        body.style.opacity = op
+        body.style.filter = 'alpha(opacity=' + op * 100 + ")";
+        op -= .1
+    },30)
 
 })
 

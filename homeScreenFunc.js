@@ -26,11 +26,11 @@ let healthyHabits = ["Take a 1 mile walk",
 
 window.addEventListener('load',() => {
     // need to check if the localStorage data is valid
-    let timeStamp = localStorage.getItem('userTimeStamp');
-    let currentTime = new Date().getMilliseconds();
+    let timeStamp = localStorage.getItem('timeStamp');
+    let currentTime = new Date().getTime();
 
     // use the local storage for the home screen if the local storage content is less than an hour old
-    if(timeStamp+(3600000) < currentTime){
+    if(parseInt(timeStamp)+3600000 < currentTime){
         localStorage.clear()
     } else if(localStorage.length != 0) {
         user = JSON.parse(localStorage.getItem('user'))

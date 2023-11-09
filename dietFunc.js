@@ -39,6 +39,7 @@ const editMealButton = document.getElementById('editMealButton')
 const editFoodList = document.getElementById('editFoodList')
 const notification = document.getElementById('notification')
 const acknowledgeNotificationButton = document.getElementById('acknowledgeNotif')
+
 const body = document.getElementById('body');
 
 
@@ -352,7 +353,7 @@ publishMealButton.addEventListener('click', () => {
     let foodMap = {}
     let calSum = 0;
     while(i < addFoodList.childElementCount){
-        let test = addFoodList.children[i].textContent.substring(0, addFoodList.children[i].textContent.length-2)
+        let test = addFoodList.children[i].textContent.substring(0, addFoodList.children[i].textContent.length-1)
         let quant = test.substring(0, test.indexOf('\u00A0')); 
         let j = 0;
         while(test.substring(test.indexOf('\u00A0') + j)[0] == '\u00A0'){
@@ -552,6 +553,9 @@ function updateUI(date){
     if(user['diet']['daysEntered'][selectedDate.textContent.split(' ')[1]]){
         sum = user['diet']['daysEntered'][selectedDate.textContent.split(' ')[1]].totalCalories;
     }
+
+    goalActual.textContent = user['diet']['goal'].calories
+
     consumedActual.textContent = sum;
 
     togoActual.textContent = user['diet']['goal'].calories + burnedAmt - sum;
@@ -682,7 +686,7 @@ editMealButton.addEventListener('click', (e) => {
     let foodMap = {}
     let calSum = 0;
     while(i < editFoodList.childElementCount){
-        let test = editFoodList.children[i].textContent.substring(0, editFoodList.children[i].textContent.length-2)
+        let test = editFoodList.children[i].textContent.substring(0, editFoodList.children[i].textContent.length-1)
         let quant = test.substring(0, test.indexOf('\u00A0')); 
         let j = 0;
         while(test.substring(test.indexOf('\u00A0') + j)[0] == '\u00A0'){
@@ -691,8 +695,8 @@ editMealButton.addEventListener('click', (e) => {
         }
         let food = test.substring(test.indexOf('\u00A0') + j); 
 
-
         // calories for food
+        console.log(food)
         calSum += foods[food].calories*eval(quant)
 
         //update JSON

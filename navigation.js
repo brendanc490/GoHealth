@@ -27,7 +27,7 @@ function navigateTo(el){
         locationStr = "./habits.html"
     } else {
         // navigate to settings
-        locationStr = "./settings.html"
+        locationStr = "./profile.html"
     }
 
     op = 1;
