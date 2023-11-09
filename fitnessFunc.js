@@ -141,7 +141,7 @@ function updateUI(date) {
             i++;
         }
     } else if ((document.getElementById(weekdays[weekIndex]).children[1].children[0].className == 'fa-solid fa-dumbbell fa-2x' 
-    || document.getElementById(weekdays[weekIndex]).children[1].children[0].className == 'fa-solid fa-check fa-2x')) {
+    || document.getElementById(weekdays[weekIndex]).children[1].children[0].className == 'fa-solid fa-check fa-2x') && document.getElementById(weekdays[weekIndex]).children[1].children[0].style.visibility == 'visible') {
         i = 0
         while (i < workoutPlan.length) {
             let exercise = workoutPlan[i]['duration'] + ' ' + workoutPlan[i]['name']

@@ -64,8 +64,9 @@ function updateUI(){
     document.querySelector('#exerciseList').innerHTML = '';
     if (user.exercise.daysEntered[currDate]) {
         for (let i = 0; i < user.exercise.daysEntered[currDate].workouts.length; i++) {
-            let workout = user.daysEntered[currDate].workouts[i];
-            document.getElementById("exerciseList").insertAdjacentHTML('beforeend', '<li>' + workout + '</li>');
+            let workout = user.exercise.daysEntered[currDate].workouts[i];
+            console.log(workout)
+            document.getElementById("exerciseList").insertAdjacentHTML('beforeend', '<li>' + workout.name + ' ' + workout.duration + '</li>');
         }
     } else {
        let cont = document.getElementById("exerciseListContainer")
