@@ -1,7 +1,6 @@
 var user = {
     "exercise": {
         "daysEntered": {
-
             "10/18/2023":{
                 'workouts': [
                     {
@@ -310,6 +309,9 @@ var user = {
                 ],
                 'caloriesBurned': 250
             },
+        },
+        'oldSchedules': {
+            '11/01/2023': ['tuesday', 'thursday']
         }
     },
     "diet": {
@@ -853,7 +855,7 @@ var user = {
         "weight": 195,
         "level": "beginner",
         "calories": 2000,
-        "days": ["monday", "wednesday", "friday"],
+        "days": ["saturday", "sunday"],
         "gender": "male",
         "weight_track": []
     },

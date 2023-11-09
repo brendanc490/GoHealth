@@ -62,9 +62,8 @@ function updateUI(){
 
     let currDate = selectedDate.textContent.split(' ')[3]
     document.querySelector('#exerciseList').innerHTML = '';
-    
     if (user.exercise.daysEntered[currDate]) {
-        for (let i = 0; i < user.daysEntered[currDate].workouts.length; i++) {
+        for (let i = 0; i < user.exercise.daysEntered[currDate].workouts.length; i++) {
             let workout = user.daysEntered[currDate].workouts[i];
             document.getElementById("exerciseList").insertAdjacentHTML('beforeend', '<li>' + workout + '</li>');
         }
@@ -72,18 +71,14 @@ function updateUI(){
        let cont = document.getElementById("exerciseListContainer")
        let i = document.createElement('i')
        let div = document.createElement('div')
-       let div2 = document.createElement('div')
        let div3 = document.createElement('div')
        let br = document.createElement('br')
        div3.textContent = 'No Exercises for today!'
        i.className = 'fa-solid fa-award fa-3x'
        i.size = '50px'       
        div.align = 'center'
-       div.style.paddingTop = '10px'
        div.append(div3)
        div.append(i)
-       div.append(div2)
-       div2.textContent = 'Congratulations! You\'ve earned your Daily Medal!'
        cont.appendChild(br)
        cont.appendChild(div)
     }

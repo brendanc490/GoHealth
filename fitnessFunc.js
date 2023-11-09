@@ -38,14 +38,21 @@ window.onload = function() {
     }
     const animArr = checkGoalsCompleted(lastWeekAnim)
     i = 0 
-    while (i < animArr.length) {
-        if(animArr[i]){
+    while (i < 7) {
+        if(animArr[i] == 0){
+            week.children[i].children[1].children[0].className = 'fa-solid fa-check fa-2x'
+            week.children[i].children[1].children[0].style.color ='green'
             week.children[i].children[1].children[0].style.visibility = 'visible'
-        } else {
+        } else if (animArr[i] == 2) {
+            week.children[i].children[1].children[0].className = 'fa-solid fa-dumbbell fa-2x'
+            week.children[i].children[1].children[0].style.color ='grey'
+            week.children[i].children[1].children[0].style.visibility = 'visible'
+        } else { 
             week.children[i].children[1].children[0].style.visibility = 'hidden'
         }
         i++
     }
+
     changeDate(document.getElementById(selectedDate.textContent.split(', ')[0].toLowerCase()+'Date').parentElement);
 
     let op = 0;
@@ -91,13 +98,14 @@ function changeDate(el){
 function updateUI(date) {
     let currDay = user['exercise']['daysEntered'][selectedDate.textContent.split(' ')[1]] ? user['exercise']['daysEntered'][selectedDate.textContent.split(' ')[1]]['workouts'] : null
     let workoutPlan = exercises[user.profile.level] 
-    let weekdays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'] // will be user preference
+    let weekdays = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'] // will be user preference
     let schedDays = user.profile.days 
     let i = 0
     let calBurn = 0
     let weekIndex = new Date(selectedDate.textContent.split(', ')[1]).getDay()
     document.querySelector("#todoContents").innerHTML = "";
-    if (currDay) {
+    if (currDay && (document.getElementById(weekdays[weekIndex]).children[1].children[0].className == 'fa-solid fa-dumbbell fa-2x' 
+    || document.getElementById(weekdays[weekIndex]).children[1].children[0].className == 'fa-solid fa-check fa-2x')) {
         i = 0
         while (i < currDay.length) {
             let exercise = currDay[i]['duration'] + ' ' + currDay[i]['name']
@@ -132,7 +140,8 @@ function updateUI(date) {
             todoContents.appendChild(el)
             i++;
         }
-    } else if (schedDays.includes(weekdays[weekIndex-1])) {
+    } else if ((document.getElementById(weekdays[weekIndex]).children[1].children[0].className == 'fa-solid fa-dumbbell fa-2x' 
+    || document.getElementById(weekdays[weekIndex]).children[1].children[0].className == 'fa-solid fa-check fa-2x')) {
         i = 0
         while (i < workoutPlan.length) {
             let exercise = workoutPlan[i]['duration'] + ' ' + workoutPlan[i]['name']
@@ -152,10 +161,10 @@ function updateUI(date) {
             checkEl.setAttribute('onclick', 'updateCheck(this)')
             let selectEl = document.createElement('button')
             selectEl.id = 'select' + workoutPlan[i]['name']
+            selectEl.style = 'background-color: transparent; background-repeat: no-repeat; border: none; overflow: hidden; outline: none;'
             selectEl.style.position = 'absolute'
             selectEl.style.right = '2%'
             selectEl.className = 'fa-solid fa-arrow-right fa-2x'
-            selectEl.style.top = '2%'
             el.appendChild(checkEl)
             el.appendChild(text)
             el.appendChild(selectEl)
@@ -173,6 +182,94 @@ function updateUI(date) {
         } 
     }
 }
+
+// function updateUI(date) {
+//     let currDay = user['exercise']['daysEntered'][selectedDate.textContent.split(' ')[1]] ? user['exercise']['daysEntered'][selectedDate.textContent.split(' ')[1]]['workouts'] : null
+//     let workoutPlan = exercises[user.profile.level] 
+//     let weekdays = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'] // will be user preference
+//     let schedDays = user.profile.days 
+//     let i = 0
+//     let calBurn = 0
+//     let weekIndex = new Date(selectedDate.textContent.split(', ')[1]).getDay()
+//     document.querySelector("#todoContents").innerHTML = "";
+//     if (currDay) {
+//         i = 0
+//         while (i < currDay.length) {
+//             let exercise = currDay[i]['duration'] + ' ' + currDay[i]['name']
+//             let el = document.createElement("div"); 
+//             el.className = "workout"
+//             el.id = 'workout' + i.toString()
+//             let checkEl = document.createElement("input")
+//             checkEl.id = i.toString()
+//             checkEl.type = 'checkbox'
+//             checkEl.className = 'largerCheckbox'
+//             checkEl.style.padding.bottom = '10px'
+            
+//             if (currDay[i]['done']){
+//                 calBurn += currDay[i]['calBurn']
+//                checkEl.setAttribute('checked', true)
+//             }
+//             let text = document.createTextNode(exercise)
+//             checkEl.setAttribute('onclick', 'updateCheck(this)')
+//             let selectEl = document.createElement('button')
+//             selectEl.id = 'select' + currDay[i]['name']
+//             selectEl.style = 'background-color: transparent; background-repeat: no-repeat; border: none; overflow: hidden; outline: none;'
+//             selectEl.style.position = 'absolute'
+//             selectEl.style.right = '2%'
+//             selectEl.className = 'fa-solid fa-arrow-right fa-2x'
+//             el.appendChild(checkEl)
+//             el.appendChild(text)
+//             el.appendChild(selectEl)
+//             selectEl.addEventListener('click', (e) => {
+//                 let par = e.target.parentElement
+//                 selectExercise(currDay[par.id.split('workout')[1]], par.id.split('workout')[1])
+//             })
+//             todoContents.appendChild(el)
+//             i++;
+//         }
+//     } else if (schedDays.includes(weekdays[weekIndex])) {
+//         i = 0
+//         while (i < workoutPlan.length) {
+//             let exercise = workoutPlan[i]['duration'] + ' ' + workoutPlan[i]['name']
+//             let el = document.createElement("div"); 
+//             el.className = "workout"
+//             el.id = 'workout' + i.toString()
+//             let checkEl = document.createElement("input")
+//             checkEl.id = i.toString()
+//             checkEl.type = 'checkbox'
+//             checkEl.className = 'largerCheckbox'
+//             checkEl.style.padding.bottom = '10px'
+//             if (workoutPlan[i]['done']){
+//                 calBurn += workoutPlan[i]['calBurn']
+//                checkEl.setAttribute('checked', true)
+//             }
+//             let text = document.createTextNode(exercise)
+//             checkEl.setAttribute('onclick', 'updateCheck(this)')
+//             let selectEl = document.createElement('button')
+//             selectEl.id = 'select' + workoutPlan[i]['name']
+//             selectEl.style = 'background-color: transparent; background-repeat: no-repeat; border: none; overflow: hidden; outline: none;'
+//             selectEl.style.position = 'absolute'
+//             selectEl.style.right = '2%'
+//             selectEl.className = 'fa-solid fa-arrow-right fa-2x'
+//             el.appendChild(checkEl)
+//             el.appendChild(text)
+//             el.appendChild(selectEl)
+//             selectEl.addEventListener('click', (e) => {
+//                 let par = e.target.parentElement
+//                 selectExercise(workoutPlan[par.id.split('workout')[1]], par.id.split('workout')[1])
+//             })
+//             todoContents.appendChild(el)
+//             i++;
+//         }
+//         let newarr = JSON.parse(JSON.stringify(workoutPlan));
+//         user.exercise.daysEntered[selectedDate.textContent.split(', ')[1]] = {
+//             'workouts': newarr,
+//             'caloriesBurned': 0
+//         } 
+//     }
+// }
+
+
 
 
 function selectExercise(exercise, index) {
@@ -254,8 +351,14 @@ leftArrowContainer.addEventListener("click",() => {
             if(indCurr == counter-1){
                 week.children[indCurr].style.backgroundColor = ''
             }
-            
-            if(animArr[counter-1]){
+
+            if(animArr[counter-1] == 0){
+                week.children[counter-1].children[1].children[0].className = 'fa-solid fa-check fa-2x'
+                week.children[counter-1].children[1].children[0].style.color ='green'
+                week.children[counter-1].children[1].children[0].style.visibility = 'visible'
+            } else if (animArr[counter-1] == 2){
+                week.children[counter-1].children[1].children[0].className = 'fa-solid fa-dumbbell fa-2x'
+                week.children[counter-1].children[1].children[0].style.color ='grey'
                 week.children[counter-1].children[1].children[0].style.visibility = 'visible'
             } else {
                 week.children[counter-1].children[1].children[0].style.visibility = 'hidden'
@@ -330,7 +433,13 @@ rightArrowContainer.addEventListener("click",() => {
             if(indCurr == counter-1){
                 week.children[indCurr].style.backgroundColor = ''
             }
-            if(animArr[counter-1]){
+            if(animArr[counter-1] == 0){
+                week.children[counter-1].children[1].children[0].className = 'fa-solid fa-check fa-2x'
+                week.children[counter-1].children[1].children[0].style.color ='green'
+                week.children[counter-1].children[1].children[0].style.visibility = 'visible'
+            } else if (animArr[counter-1] == 2){
+                week.children[counter-1].children[1].children[0].className = 'fa-solid fa-dumbbell fa-2x'
+                week.children[counter-1].children[1].children[0].style.color ='grey'
                 week.children[counter-1].children[1].children[0].style.visibility = 'visible'
             } else {
                 week.children[counter-1].children[1].children[0].style.visibility = 'hidden'
@@ -371,6 +480,12 @@ function updateCheck(checkbox) {
         } 
         weekday = new Date(currDate).getDay()
         if (checkDailyGoal(user.exercise.daysEntered[currDate].workouts) == 0) {
+            week.children[arr[weekday]].children[1].children[0].style.color ='green'
+            week.children[arr[weekday]].children[1].children[0].className = 'fa-solid fa-check fa-2x'
+            week.children[arr[weekday]].children[1].children[0].style.visibility = 'visible'
+        } else if (checkDailyGoal(user.exercise.daysEntered[currDate].workouts) == 2) {
+            week.children[arr[weekday]].children[1].children[0].className = 'fa-solid fa-dumbbell fa-2x'
+            week.children[arr[weekday]].children[1].children[0].style.color ='grey'
             week.children[arr[weekday]].children[1].children[0].style.visibility = 'visible'
         } else {
             week.children[arr[weekday]].children[1].children[0].style.visibility = 'hidden'
@@ -379,32 +494,103 @@ function updateCheck(checkbox) {
 }
 
 function checkDailyGoal(exercises){
+    let count = exercises.length 
     for (let i = 0; i < exercises.length; i++) {
         if (!exercises[i].done) {
-            return 1
+            count--;
         }
     } 
-    return 0
-
-}
+    if (count==exercises.length && exercises.length > 0) {
+        return 0
+    } else if (exercises.length > 0) {
+        return 2
+    } else {
+        return 1 
+    }
+} 
 
 function checkGoalsCompleted(week){
     let i = 0;
     let arr = []
-    while(i < week.length){
-        if(user['exercise']['daysEntered'][week[i]]){
-            let check = checkDailyGoal(user.exercise.daysEntered[week[i]].workouts)
-            if (check == 1) {
-                arr.push(false)
-            } else {
-                arr.push(true)
+    let weekdays = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
+    while(i < week.length) {
+        let day = new Date(week[i]).getDay()
+        let time = new Date(week[i]).getTime()
+        if (user.exercise.oldSchedules && Object.keys(user.exercise.oldSchedules).length > 0) {
+            for(let x = 0; x < Object.keys(user.exercise.oldSchedules).length; x++) {
+                // let reschedTime = new Date(Object.keys(user.exercise.oldSchedules)[x])
+                // if (time < reschedTime && user.exercise.daysEntered[week[i]]) {
+                //     let check = checkDailyGoal(user.exercise.daysEntered[week[i]].workouts)
+                //     arr.push(check)
+                // } else if (time < reschedTime && Object.keys(user.exercise.oldSchedules).includes(week[i])) {
+                //     arr.push(2)
+                // } else if (time >= reschedTime && user.exercise.daysEntered[week[i]]) {
+                //     arr.push(1)
+                // } else if (time >= reschedTime && user.profile.days.includes(weekdays[day-1])) {
+                //     arr.push(2)
+                // } else {
+                //     arr.push(1)
+                // }
+                let reschedTime = new Date(Object.keys(user.exercise.oldSchedules)[x]).getTime()
+                if (time <= reschedTime) {
+                    if (user.profile.days.includes(weekdays[day])){
+                        arr.push(1)
+                        break
+                    }
+                    else if(user.exercise.daysEntered[week[i]]) {
+
+                        let check = checkDailyGoal(user.exercise.daysEntered[week[i]].workouts)
+                        arr.push(check)
+                        break
+                    } else if (user.exercise.oldSchedules[Object.keys(user.exercise.oldSchedules)[x]].includes(weekdays[day])) {
+                        arr.push(2)
+                        break
+                    } else {
+                        arr.push(1)
+                        break
+                    }
+                } else if (time > reschedTime && x < Object.keys(user.exercise.oldSchedules).length -1 && time <= new Date(Object.keys(user.exercise.oldSchedules)[x+1]).getTime()) {
+                    console.log(weekdays[day])
+
+                    if(user.exercise.daysEntered[week[i]]) {
+                        let check = checkDailyGoal(user.exercise.daysEntered[week[i]].workouts)
+                        arr.push(check)
+                        break
+                    } else if (user.exercise.oldSchedules[Object.keys(user.exercise.oldSchedules)[x+1]].includes(weekdays[day])) {
+                        arr.push(2)
+                        break
+                    } else {
+                        arr.push(1)
+                        break
+                    }
+                    
+                } else if (time > reschedTime && x == Object.keys(user.exercise.oldSchedules).length - 1) { 
+                    if (user.profile.days.includes(weekdays[day])) {
+                        arr.push(2)
+                    } else if (user.exercise.daysEntered[week[i]]) {
+                        let check = checkDailyGoal(user.exercise.daysEntered[week[i]].workouts)
+                        arr.push(check)
+
+                    } else {
+                        arr.push(1)
+                    }
+                } 
             }
         } else {
-            arr.push(false)
+            if(user.exercise.daysEntered[week[i]]) {
+                let check = checkDailyGoal(user.exercise.daysEntered[week[i]].workouts)
+                arr.push(check)
+            } else {
+                if (user.profile.days.includes(weekdays[day])) {
+                    arr.push(2)
+                } else {
+                    arr.push(1)
+                }
+            }
         }
-
         i++;
     }
+    console.log(arr)
     return arr
 }
 
