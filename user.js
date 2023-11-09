@@ -27,7 +27,8 @@ var user = {
                         'description': 'For your remedial process you\'ll have basic stretches. You worked your arms and legs today and so these stretches will target those groups. Stretch 1 you\'ll over behind your back and stretch by pushing your elbow down with the other hand. Stretch 2 you will stretch your quads (the thigh muscles) by holding one leg back, standing straight and pulling your heel to your glutes. Finally, you will stretch your hamstrings. Standing straght with little to no space between your feet. Reach down slowly and pulse. Repeat these streatches 3 times for 30 seconds each'
             
                     }
-                ]
+                ],
+                'totalCaloriesBurned': 280
             },
             "10/16/2023":{
                 'workouts': [
@@ -55,7 +56,7 @@ var user = {
             
                     }
                 ],
-                'caloriesBurned': 0
+                'caloriesBurned': 180
             },
             "10/13/2023":{
                 'workouts': [
@@ -82,7 +83,8 @@ var user = {
                         'description': 'For your remedial process you\'ll have basic stretches. You worked your arms and legs today and so these stretches will target those groups. Stretch 1 you\'ll over behind your back and stretch by pushing your elbow down with the other hand. Stretch 2 you will stretch your quads (the thigh muscles) by holding one leg back, standing straight and pulling your heel to your glutes. Finally, you will stretch your hamstrings. Standing straght with little to no space between your feet. Reach down slowly and pulse. Repeat these streatches 3 times for 30 seconds each'
             
                     }
-                ]
+                ],
+                'totalCaloriesBurned': 100
             },
             "10/11/2023":{
                 'workouts': [
@@ -109,7 +111,8 @@ var user = {
                         'description': 'For your remedial process you\'ll have basic stretches. You worked your arms and legs today and so these stretches will target those groups. Stretch 1 you\'ll over behind your back and stretch by pushing your elbow down with the other hand. Stretch 2 you will stretch your quads (the thigh muscles) by holding one leg back, standing straight and pulling your heel to your glutes. Finally, you will stretch your hamstrings. Standing straght with little to no space between your feet. Reach down slowly and pulse. Repeat these streatches 3 times for 30 seconds each'
             
                     }
-                ]
+                ],
+                'totalCaloriesBurned': 130
             },
             "10/9/2023":{
                 'workouts': [
@@ -136,7 +139,8 @@ var user = {
                         'description': 'For your remedial process you\'ll have basic stretches. You worked your arms and legs today and so these stretches will target those groups. Stretch 1 you\'ll over behind your back and stretch by pushing your elbow down with the other hand. Stretch 2 you will stretch your quads (the thigh muscles) by holding one leg back, standing straight and pulling your heel to your glutes. Finally, you will stretch your hamstrings. Standing straght with little to no space between your feet. Reach down slowly and pulse. Repeat these streatches 3 times for 30 seconds each'
             
                     }
-                ]
+                ],
+                'totalCaloriesBurned': 280
             },
             "10/6/2023":{
                 'workouts': [
@@ -163,7 +167,8 @@ var user = {
                         'description': 'For your remedial process you\'ll have basic stretches. You worked your arms and legs today and so these stretches will target those groups. Stretch 1 you\'ll over behind your back and stretch by pushing your elbow down with the other hand. Stretch 2 you will stretch your quads (the thigh muscles) by holding one leg back, standing straight and pulling your heel to your glutes. Finally, you will stretch your hamstrings. Standing straght with little to no space between your feet. Reach down slowly and pulse. Repeat these streatches 3 times for 30 seconds each'
             
                     }
-                ]
+                ],
+                'totalCaloriesBurned': 150
             },
             "10/4/2023":{
                 'workouts': [
@@ -190,7 +195,8 @@ var user = {
                         'description': 'For your remedial process you\'ll have basic stretches. You worked your arms and legs today and so these stretches will target those groups. Stretch 1 you\'ll over behind your back and stretch by pushing your elbow down with the other hand. Stretch 2 you will stretch your quads (the thigh muscles) by holding one leg back, standing straight and pulling your heel to your glutes. Finally, you will stretch your hamstrings. Standing straght with little to no space between your feet. Reach down slowly and pulse. Repeat these streatches 3 times for 30 seconds each'
             
                     }
-                ]
+                ],
+                'totalCaloriesBurned': 280
             },
             "10/2/2023":{
                 'workouts': [
@@ -217,7 +223,8 @@ var user = {
                         'description': 'For your remedial process you\'ll have basic stretches. You worked your arms and legs today and so these stretches will target those groups. Stretch 1 you\'ll over behind your back and stretch by pushing your elbow down with the other hand. Stretch 2 you will stretch your quads (the thigh muscles) by holding one leg back, standing straight and pulling your heel to your glutes. Finally, you will stretch your hamstrings. Standing straght with little to no space between your feet. Reach down slowly and pulse. Repeat these streatches 3 times for 30 seconds each'
             
                     }
-                ]
+                ],
+                'totalCaloriesBurned': 280
             },
             "9/29/2023":{
                 'workouts': [
@@ -244,7 +251,8 @@ var user = {
                         'description': 'For your remedial process you\'ll have basic stretches. You worked your arms and legs today and so these stretches will target those groups. Stretch 1 you\'ll over behind your back and stretch by pushing your elbow down with the other hand. Stretch 2 you will stretch your quads (the thigh muscles) by holding one leg back, standing straight and pulling your heel to your glutes. Finally, you will stretch your hamstrings. Standing straght with little to no space between your feet. Reach down slowly and pulse. Repeat these streatches 3 times for 30 seconds each'
             
                     }
-                ]
+                ],
+                'totalCaloriesBurned': 180
             },
             "9/27/2023":{
                 'workouts': [
@@ -271,7 +279,8 @@ var user = {
                         'description': 'For your remedial process you\'ll have basic stretches. You worked your arms and legs today and so these stretches will target those groups. Stretch 1 you\'ll over behind your back and stretch by pushing your elbow down with the other hand. Stretch 2 you will stretch your quads (the thigh muscles) by holding one leg back, standing straight and pulling your heel to your glutes. Finally, you will stretch your hamstrings. Standing straght with little to no space between your feet. Reach down slowly and pulse. Repeat these streatches 3 times for 30 seconds each'
             
                     }
-                ]
+                ],
+                'totalCaloriesBurned': 150
             },
             "9/25/2023":{
                 'workouts': [
@@ -298,7 +307,8 @@ var user = {
                         'description': 'For your remedial process you\'ll have basic stretches. You worked your arms and legs today and so these stretches will target those groups. Stretch 1 you\'ll over behind your back and stretch by pushing your elbow down with the other hand. Stretch 2 you will stretch your quads (the thigh muscles) by holding one leg back, standing straight and pulling your heel to your glutes. Finally, you will stretch your hamstrings. Standing straght with little to no space between your feet. Reach down slowly and pulse. Repeat these streatches 3 times for 30 seconds each'
             
                     }
-                ]
+                ],
+                'totalCaloriesBurned': 250
             },
         }
     },
