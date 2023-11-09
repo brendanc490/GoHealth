@@ -67,6 +67,14 @@ window.onload = function () {
     document.getElementById("user-height").innerHTML = user.profile.height.feet+" feet "+user.profile.height.inches+" inches";
     document.getElementById("user-weight").innerHTML = user.profile.weight;
     document.getElementById("user-bmi").innerHTML = roundedBMI;
+
+    document.getElementById("name").innerHTML = user.profile.user_name;
+    document.getElementById("age").innerHTML = user.profile.age;
+    console.log(user.profile.height.feet);
+    console.log(user.profile.height.inches);
+    document.getElementById("weight").innerHTML = user.profile.weight;
+    document.getElementById("age").innerHTML = user.profile.age;
+    document.getElementById("calories").innerHTML = user.profile.calories;
 };
 
 editButton.addEventListener('click', () => {
@@ -83,6 +91,7 @@ saveButton.addEventListener('click', (event) => {
     document.getElementById("user-height").innerHTML = user.profile.height.feet+" feet "+user.profile.height.inches+" inches";
     document.getElementById("user-weight").innerHTML = user.profile.weight;
     // Toggle back to the display mode
+    toggleDisplay(pic);
     toggleDisplay(userInfo);
     toggleDisplay(editForm);
 });
