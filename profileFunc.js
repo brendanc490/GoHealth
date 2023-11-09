@@ -16,7 +16,6 @@ const habitsPercentage = document.getElementById('habitsPercentage');
 
 const user = JSON.parse(localStorage.getItem('user'))
 
-currentExerciseLevel.style.textContent = 'test'
 
 window.addEventListener('load',() => {
 
@@ -42,7 +41,7 @@ window.addEventListener('load',() => {
 })
 
 function updateUI(){
-    currentExerciseLevel.textContent = 'Exercise Level: ' + user.profile.level
+    currentExerciseLevel.textContent = 'Exercise Level: ' + user.profile.level.charAt(0).toUpperCase() + user.profile.level.slice(1);
 
     let workoutInfo = fetchNumberWorkouts()
 
@@ -53,21 +52,21 @@ function updateUI(){
 
 
 
-    /*calorieGoal.textContent = 'Calorie Goal: ' + user.diet.goal.calories
+    calorieGoal.textContent = 'Calorie Goal: ' + user.diet.goal.calories
 
     let dietInfo = fetchDiets()
 
-    numberOfWorkouts.textContent = 'Exercises Completed: '+ dietInfo[0]
-    completedDietsCircleGraph.textContent = Math.round(dietInfo[0]/dietInfo[1])
-    dietPercentage.textContent = Math.round(dietInfo[0]/dietInfo[1])
+    numberOfDiets.textContent = 'Days Completed: '+ dietInfo[0]
+    completedDietsCircleGraph.style = "display: block; position: relative;left: 50%;top: -55%;width: 150px;height: 150px;border-radius: 50%;background: radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(green "+Math.round(dietInfo[0]/dietInfo[1]*100)+"%, grey 0);"
+    dietPercentage.textContent = Math.round(dietInfo[0]/dietInfo[1]*100)+'%'
 
-    currentHabitsLevel.textContent = 'Habits Level: ' + user.profile.level
+    currentHabitsLevel.textContent = 'Habits Level: ' + user.profile.level.charAt(0).toUpperCase() + user.profile.level.slice(1);
 
     let habitInfo = fetchNumberHabits()
 
     numberOfHabits.textContent = 'Exercises Completed: '+ workoutInfo[0]
-    completedHabitsCircleGraph.textContent = Math.round(workoutInfo[0]/workoutInfo[1])
-    habitsPercentage.textContent = Math.round(workoutInfo[0]/workoutInfo[1])*/
+    completedHabitsCircleGraph.style = "display: block; position: relative;left: 50%;top: -55%;width: 150px;height: 150px;border-radius: 50%;background: radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(green "+Math.round(habitInfo[0]/habitInfo[1]*100)+"%, grey 0);"
+    habitsPercentage.textContent = Math.round(habitInfo[0]/habitInfo[1]*100)+"%"
 }
 
 function fetchNumberWorkouts(){
@@ -80,6 +79,46 @@ function fetchNumberWorkouts(){
         console.log(k)
         while(i < user['exercise']['daysEntered'][k]['workouts'].length){
             check = check && user['exercise']['daysEntered'][k]['workouts'][i]['done']
+            i++;
+        }
+        if(check){
+            completed++;
+        }
+        total++;
+
+    }
+
+    return[completed,total]
+
+}
+
+function fetchDiets(){
+    let keys = Object.keys(user['diet']['daysEntered']);
+    let total = 0;
+    let completed = 0;
+    for (let k of keys){
+
+        if(user['diet']['daysEntered'][k].totalCalories >= user['diet']['goal'].calories){
+            completed++;
+        }
+        total++;
+
+    }
+
+    return[completed,total]
+
+}
+
+function fetchNumberHabits(){
+    let keys = Object.keys(user['habits']['daysEntered']);
+    let total = 0;
+    let completed = 0;
+    for (let k of keys){
+        let i = 0;
+        let check = true;
+        console.log(k)
+        while(i < user['habits']['daysEntered'][k][1].length){
+            check = check && user['habits']['daysEntered'][k][1][i]
             i++;
         }
         if(check){
