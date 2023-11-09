@@ -6,150 +6,101 @@
 </head>
 <body id="body">
     <!-- Top Bar -->
-    <div id="topBar" class="customtopBar">
-        <div id="dietHeader" style="text-align: center; height: 60%; font-size: 110px; background-color: #90EE90;"><b>User Profile</b></div>
-        <div id="selectedDate" style="text-align: center; height: 35%; font-size: 70px;"><b>Thu, 10/19/2023</b></div>
+    <div id="topBar" class="topBar">
+        <div id="dietHeader" style="text-align: center; height: 60%; font-size: 45px; background-color: #90EE90;"><b>User Profile</b></div>
+        <div id="selectedDate" style="text-align: center; height: 35%; font-size: 35px;"><b>Thu, 10/19/2023</b></div>
     </div>
-    <br>
-    <!-- Navigation bar -->
-    <div id="navLayout" class="navContainer">
-        <div class="navHome"><button style="width: 100%; height: 100%;" id="homeButton" onclick="navigateTo(this)"><i id="homeIcon" class="fa-solid fa-home fa-6x"></i></button></div>
-        <div class="navFitness"><button style="width: 100%; height: 100%;" id="fitnessButton" onclick="navigateTo(this)"><i id="fitnessIcon" class="fa-solid fa-dumbbell fa-6x"></i></button></button></div>
-        <div class="navDiet"><button style="width: 100%; height: 100%;" id="dietButton" onclick="navigateTo(this)"><i id="dietIcon" class="fa-solid fa-apple-whole fa-6x"></i></button></button></div>
-        <div class="navHabits"><button style="width: 100%; height: 100%;" id="habitsButton" onclick="navigateTo(this)"><i id="habitsIcon" class="fa-solid fa-brain fa-6x"></i></button></button></div>
-        <div class="navSettings"><button style="width: 100%; height: 100%;background-color: #90EE90;" id="settingsButton"><i id="settingsIcon" class="fa-solid fa-user fa-6x"></i></button></button></div>
-    </div>
-    <br><br><br><br><br>
-    <!-- 640x960-->
+    <button class="edit-button" id="edit-button" style="float:right; position: relative;"><i id="settingsIcon" class="fa-solid fa-gear fa-3x"></i></button>
+    <br><br>
 
-    <div id="profile-info">
-        <div id="data-display" class="dataDisplay">
-            <div id="user-info" style="text-align: center; font-size: 75px; height: 100%; width: 100%;">
-            <p><strong>Name:</strong> <span id="user-name"></span></p>
-            <p><strong>Height:</strong> <span id="user-height"></span></p>
-            <p><strong>Weight:</strong> <span id="user-weight"></span></p>
-            <p><strong>BMI:</strong> <span id="user-bmi"></span></p>
+    <!--Body Content -->
+
+    <div id="profileContent" class="profileContent">
+        <div id="exerciseProgress" style="grid-area: Exercise;border-bottom: 2px solid black;">
+            <b style="text-align: center; width: 100%;display: block;font-size: 40px;">Exercise Progress</b>
+            <br>
+            <div id="currentExerciseLevel">Exercise Level: </div>
+            <br>
+            <div id="numberOfWorkouts">Completed days: </div>
+            <div id="completedWorkoutsCircleGraph" class="circularProgressBarSmall" style="position: absolute; right: 25%; top: 5%;">
+                <progress id="workoutsProgress" value="75" min="0" max="100" style="visibility:hidden;height:0;width:0;">0%</progress>
+                <div style="font-size: 40px;top: -30%;left:110%;position: relative;text-align: center;width: 200%">Completion Rate</div>
+                <div id="workoutsPercentage" style="font-size: 50px; top: -20%; left:165%;position: relative;text-align: center;">0%</div>
             </div>
- 
-            <img id="pic" src="Bmi-chart.jpg" alt="BMI chart" style="text-align: center; width: 100%; height: 150%;">
+            
+        </div>
+        <div id="dietProgress" style="grid-area: Diet;border-bottom: 2px solid black;">
+            <b style="text-align: center; width: 100%;display: block;font-size: 40px;">Diet Progress</b>
+            <br>
+            <div id="calorieGoal">Calorie Goal: </div>
+            <br>
+            <div id="numberOfDiets">Completed days: </div>
+            <div id="completedDietsCircleGraph" class="circularProgressBarSmall" style="position: absolute; right: 25%; top: 25%;">
+                <div id="dietPercentage" style="font-size: 50px; left:100%;position: relative;text-align: center;">0%</div>
+            </div>
+        </div>
+        <div id="habitsProgress" style="grid-area: Habits;border-bottom: 2px solid black;">
+            <b style="text-align: center; width: 100%;display: block;font-size: 40px;">Habits Progress</b>
+            <br>
+            <div id="currentHabitsLevel">Habits Level: </div>
+            <br>
+            <div id="numberOfHabits">Completed days: </div>
+            <div id="completedHabitsCircleGraph" class="circularProgressBarSmall"  style="position: absolute; right: 25%; top: 45%;">
+                <div id="habitsPercentage" style="font-size: 50px; left:100%;position: relative;text-align: center;">0%</div>
+            </div>
+        </div>
+        <div id="graph" style="grid-area: Graph;">Graph</div>
+
+    <div id="data-display" class="active">
+        <div id="user-info" style="text-align: center; font-size: 50px; height: 100%; width: 100%;">
+        <p><strong>Name:</strong> <span id="user-name"></span></p>
+        <p><strong>Height:</strong> <span id="user-height"></span></p>
+        <p><strong>Current Weight:</strong> <span id="user-weight"></span></p>
+        <p><strong>BMI:</strong> <span id="user-bmi"></span></p>
+    
+        <div>
+            Would you like to track your weight for this week?
+            <input type="number" id="weight-up" name="weight-up" style="width:auto; height: auto; font-size: 45px;" value="">
+            <button class="weigyt-button" id="weight-button" ><i id="scaleIcon" class="fa-solid fa-weight-scale fa-3x"></i></button>
         </div>
 
-        <button class="edit-button" id="edit-button" style="text-align: right; position: fixed;"><i id="settingsIcon" class="fa-solid fa-gear fa-3x"></i></button>
-        <br>
-        <div id="stuff-to-hide" style="font-size: 75px; height: 100%; width: 100%; display: none">
-            <br>
-            <div style="border-style: inset; border-width: 5px;">
-                <label for="name">Enter user name:</label>
-                <input type="text" id="name" name="name" style="width:auto; height: auto; font-size: 75px;" value=""><br>
-            </div>
+        <img id="pic" src="Bmi-chart.jpg" alt="BMI chart" style="text-align: center; width: 100%; height: 150%;">
 
-            <div style="border-style: inset; border-width: 5px;">
-                <label for="age">Enter user age:</label>
-                <input type="number" id="age" name="age" style="width:auto; height: auto; font-size: 75px;" value=""><br>
-            </div>
+        <div id="BMI-Notice" style="text-align: center; font-size: 50px; height: 100%; width: 100%;"></div>
 
-            <div style="border-style: inset; border-width: 5px;">
-                Select user gender:
-                <input type="radio" name="gender" value="male">Male<br>
-                <input type="radio" name="gender" value="female">Female<br>
-                <input type="radio" name="gender" value="">Other <input type="text" id="other" name="other_reason" style="height: 100%; width:100%; font-size: 75px;"/>
-            </div>
+        <div id="BMI-Image" style="text-align: center; font-size: 50px; height: 100%; width: 100%;"> </div>
+        <br><br><br>
+    </div>
 
-            <div style="border-style: inset; border-width: 5px;">
-                <label for="height_ft">Select user height:</label>
-                <select name="height_ft" id="height_ft" style="font-size: 100px;">
-                  <option value="4">4 feet</option>
-                  <option value="5">5 feet</option>
-                  <option value="6">6 feet</option>
-                  <option value="7">7 feet</option>
-                </select>
-              
-                <select name="height_in" id="height_in" style="font-size: 100px; ">
-                  <option value="0">0 inches</option>
-                  <option value="1">1 inch</option>
-                  <option value="2">2 inches</option>
-                  <option value="3">3 inches</option>
-                  <option value="4">4 inches</option>
-                  <option value="5">5 inches</option>
-                  <option value="6">6 inches</option>
-                  <option value="7">7 inches</option>
-                  <option value="8">8 inches</option>
-                  <option value="9">9 inches</option>
-                  <option value="10">10 inches</option>
-                  <option value="11">11 inches</option>
-                </select>
-              </div>
-
-              <div style="border-style: inset; border-width: 5px;">
-                <label for="weight">Enter user weight in pounds:</label>
-                <input type="number" id="weight" name="weight" style="width:auto; height: auto; font-size: 75px;"><br>
-              </div>
-
-              <div style="border-style: inset; border-width: 5px;">
-                <label for="calories">Enter user target calories:</label>
-                <input type="number" id="calories" name="calories" style="width:auto; height: auto; font-size: 150px;"><br>
-              </div>
-
-              <div style="border-style: inset; border-width: 5px;">
-                Choose experience level:
-                <br>
-                <input type="radio" id="beginner" name="level" value="1">
-                <label for="beginner">Beginner</label><br>
-                <input type="radio" id="intermediate" name="level" value="1">
-                <label for="intermediate">intermediate</label><br>
-                <input type="radio" id="advanced" name="level" value="3">
-                <label for="advanced">Advanced</label>
-                <br>
-              </div>
-
-              <div style="border-style: inset; border-width: 5px;">
-                Select which days you want to workout:
-                <br>
-                <label for="sun">Sunday</label>
-                <input type="checkbox" id="sun" name="sun" style="width:auto; height: auto; font-size: 50px;" class="daysSelected"><br>
-                <label for="mon">Monday</label>
-                <input type="checkbox" id="mon" name="mon" style="width:auto; height: auto; font-size: 50px;" class="daysSelected"><br>
-                <label for="tues">Tuesday</label>
-                <input type="checkbox" id="tues" name="tues" style="width:auto; height: auto; font-size: 50px;" class="daysSelected"><br>
-                <label for="wed">Wednesday</label>
-                <input type="checkbox" id="wed" name="wed" style="width:auto; height: auto; font-size: 50px;" class="daysSelected"><br>
-                <label for="thur">Thursday</label>
-                <input type="checkbox" id="thur" name="thur" style="width:auto; height: auto; font-size: 50px;" class="daysSelected"><br>
-                <label for="fri">Friday</label>
-                <input type="checkbox" id="fri" name="fri" style="width:auto; height: auto; font-size: 50px;" class="daysSelected"><br>
-                <label for="sat">Saturday</label>
-                <input type="checkbox" id="sat" name="sat" style="width:auto; height: auto; font-size: 50px;" class="daysSelected">
-              </div>
-
-              <button onclick="updateUserData()" style="width:auto; height: auto; font-size: 75px;" id="save-button">Save</button>
-              <br><br><br>
-            </div>
-    <!--
-    <div id="data-entry" class="dataEntry">
+    <div id="edit-form" style="display: none; font-size: 50px;" class="inactive">
         <br><br>
-        <div style="font-size: 100px; display: none; height: 100%; width: 100%;" id="edit-form">
-          
-            <div style="border-style: inset; border-width: 5px;">
-                <label for="name">Enter user name:</label>
-                <input type="text" id="name" name="name" style="width:auto; height: auto; font-size: 75px;" value=""><br>
-              </div>
+        <div style="border-style: inset; border-width: 5px;">
+            <label for="name">Enter new user name: <i id="sig" class="fa-solid fa-signature fa-1x"></i></label>
+            <input type="text" id="name" name="name" style="width:auto; height: auto; font-size: 50px;" value=""><br>
+        </div>
 
+        <div style="border-style: inset; border-width: 5px;">
+            <label for="age">Enter user age: <i id="birth" class="fa-solid fa-cake-candles fa-1x"></i></label>
+            <input type="number" id="age" name="age" style="width:auto; height: auto; font-size: 50px;" value=""><br>
+        </div>
 
-          <div style="border-style: inset; border-width: 5px;">
-            <label for="age">Enter user age:</label>
-            <input type="number" id="age" name="age" style="width:auto; height: auto; font-size: 75px;" value=""><br>
-          </div>
+        <div style="border-style: inset; border-width: 5px;">
+            Select user gender:<br>
+            <input type="radio" name="gender" value="male" class="improvedRadio">Male <i id="man" class="fa-solid fa-mars fa-1x"></i><br>
+            <input type="radio" name="gender" value="female" class="improvedRadio">Female <i id="woman" class="fa-solid fa-venus fa-1x"></i><br>
+            <input type="radio" name="gender" value="" class="improvedRadio">Other <i id="other" class="fa-solid fa-genderless fa-1x"></i><input type="text" id="other" name="other_reason" style="height: 100%; width:100%; font-size: 50px;"/>
+        </div>
 
-          <div>
+        <div style="border-style: inset; border-width: 5px;">
             <label for="height_ft">Select user height:</label>
-            <select name="height_ft" id="height_ft" style="font-size: 100px;">
+            <select name="height_ft" id="height_ft" style="font-size: 50px;">
               <option value="4">4 feet</option>
               <option value="5">5 feet</option>
               <option value="6">6 feet</option>
               <option value="7">7 feet</option>
             </select>
           
-            <select name="height_in" id="height_in" style="font-size: 100px; ">
+            <select name="height_in" id="height_in" style="font-size: 50px; ">
               <option value="0">0 inches</option>
               <option value="1">1 inch</option>
               <option value="2">2 inches</option>
@@ -166,53 +117,62 @@
           </div>
 
           <div style="border-style: inset; border-width: 5px;">
-            <label for="weight">Enter user weight in pounds:</label>
-            <input type="number" id="weight" name="weight" style="width:auto; height: auto; font-size: 75px;"><br>
+            <label for="weight">Enter user weight in pounds: <i id="fat" class="fa-solid fa-weight-scale fa-1x"></i></label>
+            <input type="number" id="weight" name="weight" style="width:auto; height: auto; font-size: 50px;"><br>
+          </div>
+
+          <div style="border-style: inset; border-width: 5px;">
+            <label for="calories">Enter user target calories:</label>
+            <input type="number" id="calories" name="calories" style="width:auto; height: auto; font-size: 50px;"><br>
           </div>
 
           <div style="border-style: inset; border-width: 5px;">
             Choose experience level:
             <br>
-            <input type="radio" id="beginner" name="level" value="1">
-            <label for="beginner">Beginner</label><br>
-            <input type="radio" id="intermediate" name="level" value="1">
-            <label for="intermediate">intermediate</label><br>
-            <input type="radio" id="advanced" name="level" value="3">
-            <label for="advanced">Advanced</label>
+            <input type="radio" id="beginner" name="level" value="1" class="improvedRadio">
+            <label for="beginner">Beginner <i id="walk" class="fa-solid fa-person-walking fa-1x"></i></label><br>
+            <input type="radio" id="intermediate" name="level" value="1" class="improvedRadio">
+            <label for="intermediate">Intermediate <i id="cycle" class="fa-solid fa-bicycle fa-1x"></i></label><br>
+            <input type="radio" id="advanced" name="level" value="3" class="improvedRadio">
+            <label for="advanced">Advanced <i id="heavy" class="fa-solid fa-weight-hanging fa-1x"></i></label>
             <br>
           </div>
 
-          <div style="border-style: inset; border-width: 5px;">
-            <label for="calories">Enter user target calories:</label>
-            <input type="number" id="calories" name="calories" style="width:auto; height: auto; font-size: 150px;"><br>
-          </div>
-      
-          <div style="border-style: inset; border-width: 5px;">
+          <div style="border-style: inset; border-width: 5px;" class="pick-days">
             Select which days you want to workout:
             <br>
-            <label for="sun">Sunday</label>
-            <input type="checkbox" id="sun" name="sun" style="width:auto; height: auto; font-size: 50px;" class="daysSelected"><br>
-            <label for="mon">Monday</label>
+            <label for="sun"><i id="s" class="fa-solid fa-s fa-1x"></i><i id="u" class="fa-solid fa-u fa-1x"></i><i id="n" class="fa-solid fa-n fa-1x"></i></label>
+            <input type="checkbox" id="sun" name="sun" style="width:auto; height: auto; font-size: 50px;" class="improvedRadio"><br>
+            <label for="mon"><i id="Monday" class="fa-solid fa-m fa-1x"></i><i id="o" class="fa-solid fa-o fa-1x"></i><i id="n" class="fa-solid fa-n fa-1x"></i></label>
             <input type="checkbox" id="mon" name="mon" style="width:auto; height: auto; font-size: 50px;" class="daysSelected"><br>
-            <label for="tues">Tuesday</label>
+            <label for="tues"><i id="Tuesday" class="fa-solid fa-t fa-1x"></i><i id="u" class="fa-solid fa-u fa-1x"></i><i id="e" class="fa-solid fa-e fa-1x"></i><i id="s" class="fa-solid fa-s fa-1x"></i>
+            </label>
             <input type="checkbox" id="tues" name="tues" style="width:auto; height: auto; font-size: 50px;" class="daysSelected"><br>
-            <label for="wed">Wednesday</label>
+            <label for="wed"><i id="Wednesday" class="fa-solid fa-w fa-1x"></i><i id="e" class="fa-solid fa-e fa-1x"></i><i id="d" class="fa-solid fa-d fa-1x"></i></label>
             <input type="checkbox" id="wed" name="wed" style="width:auto; height: auto; font-size: 50px;" class="daysSelected"><br>
-            <label for="thur">Thursday</label>
+            <label for="thur"><i id="Thurs" class="fa-solid fa-t fa-1x"></i><i id="thurs2" class="fa-solid fa-h fa-1x"></i><i id="u" class="fa-solid fa-u fa-1x"></i><i id="r" class="fa-solid fa-r fa-1x"></i><i id="s" class="fa-solid fa-s fa-1x"></i>
+            </label>
             <input type="checkbox" id="thur" name="thur" style="width:auto; height: auto; font-size: 50px;" class="daysSelected"><br>
-            <label for="fri">Friday</label>
+            <label for="fri"><i id="Friday" class="fa-solid fa-f fa-1x"></i><i id="r" class="fa-solid fa-r fa-1x"></i><i id="i" class="fa-solid fa-i fa-1x"></i></label>
             <input type="checkbox" id="fri" name="fri" style="width:auto; height: auto; font-size: 50px;" class="daysSelected"><br>
-            <label for="sat">Saturday</label>
+            <label for="sat"><i id="sat1" class="fa-solid fa-s fa-1x"></i><i id="a" class="fa-solid fa-a fa-1x"></i><i id="sat2" class="fa-solid fa-t fa-1x"></i></label>
             <input type="checkbox" id="sat" name="sat" style="width:auto; height: auto; font-size: 50px;" class="daysSelected">
           </div>
-      
+
           <button onclick="updateUserData()" style="width:auto; height: auto; font-size: 75px;" id="save-button">Save</button>
-          <br>
-        </div>
-        </div>
-        -->
-      
+          <br><br><br>
     </div>
+
+
+    <!-- Navigation bar -->
+    <div id="navLayout" class="navContainer">
+        <div class="navHome"><button style="width: 100%; height: 100%;" id="homeButton" onclick="navigateTo(this)"><i id="homeIcon" class="fa-solid fa-home fa-3x"></i></button></div>
+        <div class="navFitness"><button style="width: 100%; height: 100%;" id="fitnessButton" onclick="navigateTo(this)"><i id="fitnessIcon" class="fa-solid fa-dumbbell fa-3x"></i></button></button></div>
+        <div class="navDiet"><button style="width: 100%; height: 100%;" id="dietButton"><i id="dietIcon" class="fa-solid fa-apple-whole fa-3x"></i></button></button></div>
+        <div class="navHabits"><button style="width: 100%; height: 100%;" id="habitsButton" onclick="navigateTo(this)"><i id="habitsIcon" class="fa-solid fa-brain fa-3x"></i></button></button></div>
+        <div class="navSettings"><button style="width: 100%; height: 100%; background-color: #90EE90;" id="settingsButton" onclick="navigateTo(this)"><i id="settingsIcon" class="fa-solid fa-user fa-3x"></i></button></button></div>
+    </div>
+    <br>
 
     
 </body>
