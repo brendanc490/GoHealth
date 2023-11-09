@@ -16,59 +16,45 @@
         <!-- Weekly Bar -->
         <div class="weekBar">
             <div id="left" class="left">
-                <div id="leftPos" style="position: relative; top: 38%; left: 25%">
+                <button id="leftPos" style="position: relative; top: 38%; left: 25%; background-color: white;border: 0px;">
                     <i id="leftArrow" class="fa-solid fa-arrow-left fa-2x"></i>
-                </div>
+                </button>
             </div>
             <div id="week" class="week">
                 <button id="monday" class="monday" onclick="changeDate(this)">
                     <div id="monDate" class="dateBlock">10/16/23</div>
                     <div class="iconBlock"><i id="monIcon" class="fa-solid fa-check fa-2x" style="visibility: hidden"></i></div>
-                    <div class="iconBlock"><i id="monIconExercise" class="fa-solid fa-dumbbell fa-2x" style="visibility: hidden"></i></div>
-                    <div class="iconBlock"><i id="monIconRest" class="fa-solid fa-bed fa-2x"  style="visibility: hidden"></i></div>
                 </button>
                 <button id="tuesday" class="tuesday" onclick="changeDate(this)">
                     <div id="tueDate" class="dateBlock">10/17/23</div>
                     <div class="iconBlock"><i id="tueIcon" class="fa-solid fa-check fa-2x"  style="visibility: hidden"></i></div>
-                    <div class="iconBlock"><i id="tueIconExercise" class="fa-solid fa-dumbbell fa-2x"  style="visibility: hidden"></i></div>
-                    <div class="iconBlock"><i id="tueIconRest" class="fa-solid fa-bed fa-2x"  style="visibility: hidden"></i></div>
-
                 </button>
                 <button id="wednesday" class="wednesday" onclick="changeDate(this)">
                     <div id="wedDate" class="dateBlock">10/18/23</div>
-                    <div class="iconBlock"><i id="wedIcon" class="fa-solid fa-check fa-2x"  style="visibility: hidden"></i></div>
-                    <div class="iconBlock"><i id="wedIconExercise" class="fa-solid fa-dumbbell fa-2x"  style="visibility: hidden"></i></div>
-                    <div class="iconBlock"><i id="wedIconRest" class="fa-solid fa-bed fa-2x"  style="visibility: hidden"></i></div>
+                    <div class="iconBlock"><i id="wedIcon" class="fa-solid fa-check fa-2x"  style="visibility: visible"></i></div>
                 </button>
                 <button id="thursday" class="thursday" style="background-color: #90EE90;" onclick="changeDate(this)">
                     <div id="thuDate" class="dateBlock">10/19/23</div>
                     <div class="iconBlock"><i id="thuIcon" class="fa-solid fa-check fa-2x" style="visibility: hidden"></i></div>
-                    <div class="iconBlock"><i id="thuIconExercise" class="fa-solid fa-dumbbell fa-2x"  style="visibility: hidden"></i></div>
-                    <div class="iconBlock"><i id="thuIconRest" class="fa-solid fa-bed fa-2x"  style="visibility: hidden"></i></div>
                 </button>
                 <button id="friday" class="friday" onclick="changeDate(this)">
                     <div id="friDate" class="dateBlock">10/20/23</div>
                     <div class="iconBlock"><i id="friIcon" class="fa-solid fa-check fa-2x" style="visibility: hidden"></i></div>
-                    <div class="iconBlock"><i id="friIconExercise" class="fa-solid fa-dumbbell fa-2x"  style="visibility: hidden"></i></div>
-                    <div class="iconBlock"><i id="friIconRest" class="fa-solid fa-bed fa-2x"  style="visibility: hidden"></i></div>
                 </button>
                 <button id="saturday" class="saturday" onclick="changeDate(this)">
                     <div id="satDate" class="dateBlock">10/21/23</div>
                     <div class="iconBlock"><i id="satIcon" class="fa-solid fa-check fa-2x" style="visibility: hidden"></i></div>
-                    <div class="iconBlock"><i id="satIconExercise" class="fa-solid fa-dumbbell fa-2x"  style="visibility: hidden"></i></div>
-                    <div class="iconBlock"><i id="satIconRest" class="fa-solid fa-bed fa-2x"  style="visibility: hidden"></i></div>
                 </button>
                 <button id="sunday" class="sunday" onclick="changeDate(this)">
                     <div id="sunDate" class="dateBlock">10/22/23</div>
                     <div class="iconBlock"><i id="sunIcon" class="fa-solid fa-check fa-2x" style="visibility: hidden"></i></div>
-                    <div class="iconBlock"><i id="sunIconExercise" class="fa-solid fa-dumbbell fa-2x"  style="visibility: hidden"></i></div>
-                    <div class="iconBlock"><i id="sunIconRest" class="fa-solid fa-bed fa-2x"  style="visibility: hidden"></i></div>
                 </button>
+
             </div>
             <div id="right" class="right">
-                <div id="rightPos" style="position: relative; top: 38%; left: 17%">
+                <button id="rightPos" style="position: relative; top: 38%; left: 17%; background-color: white;border: 0px;">
                     <i id="rightArrow" class="fa-solid fa-arrow-right fa-2x"></i>
-                </div>
+                </button>
             </div>
         </div>
         <div id="workoutForm" style="position: absolute; font-size: 28px; top:22%; left: 7.5%;display: none;background-color: #eeeeee;border: 1px solid black; width: 85%;height: fit-content;z-index: 1;grid-template-areas: 'Header Header' 'MealName MealName' 'FoodName FoodName' 'List List';grid-template-columns: 50% 50%;grid-template-rows: 10% 15% 15% 60%;">
