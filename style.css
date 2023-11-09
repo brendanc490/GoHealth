@@ -83,21 +83,6 @@ fieldset{
     left:0;
 }
 
-#profile-info {
-    width: 190.5%;
-    height: 100%;
-    background-color: #f0f0f0;
-    padding: 20px;
-    
-  }
-
-  .customtopBar {
-    position: absolute;
-    width: 190.5%;
-    height: 14%;
-    top: 0;
-    left: 0;
-}
 
 .weekBar {
     grid-area: weekBar;
@@ -253,7 +238,7 @@ progress {
     position: relative;
     overflow-y: scroll;
     overflow-x: hidden;
-    font-size: 36px
+    font-size: 36px;
 }
 
 .exerciseList{
@@ -396,7 +381,7 @@ progress {
 }
 
 .edit-button {
-    position: fixed;
+    position: relative;
     top: 60px;
     right: 10px;
 }
