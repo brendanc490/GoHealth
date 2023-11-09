@@ -106,19 +106,20 @@ function isValidForm() {
 
 
     user['profile']['user_name'] = username.value
+    console.log(username.value)
 
     if(male.checked){
         user['profile']['gender'] = 'male'
-    } else if(female.checked = true){
+    } else if(female.checked){
         user['profile']['gender'] = 'female'
     } else {
         user['profile']['gender'] = 'Non-binary'
     }
 
-    user['profile']['age'] = age.value 
-    user['profile']['height']['feet'] = heightFeet.value
-    user['profile']['height']['inches'] = heightInches.value
-    user['profile']['weight'] = weight.value
+    user['profile']['age'] = parseInt(age.value)
+    user['profile']['height']['feet'] = parseInt(heightFeet.value)
+    user['profile']['height']['inches'] = parseInt(heightInches.value)
+    user['profile']['weight'] = parseInt(weight.value)
 
     if(beginner.checked == true){
         user['profile']['level'] = 'beginner'
@@ -158,8 +159,10 @@ function isValidForm() {
             sum++;
         }
     }
+
     if(user['profile']['days'].length == arr.length && sum == arr.length){
         // do nothing
+        
     } else {
         user['exercise']['oldSchedules'][selectedDate.textContent.split(' ')[1]] = user['profile']['days']
         user['profile']['days'] = arr

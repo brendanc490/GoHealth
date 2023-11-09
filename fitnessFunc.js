@@ -532,7 +532,7 @@ function checkGoalsCompleted(week){
                 //     arr.push(1)
                 // }
                 let reschedTime = new Date(Object.keys(user.exercise.oldSchedules)[x]).getTime()
-                if (time <= reschedTime) {
+                if (time < reschedTime) {
                     if (user.profile.days.includes(weekdays[day])){
                         arr.push(1)
                         break
@@ -549,7 +549,7 @@ function checkGoalsCompleted(week){
                         arr.push(1)
                         break
                     }
-                } else if (time > reschedTime && x < Object.keys(user.exercise.oldSchedules).length -1 && time <= new Date(Object.keys(user.exercise.oldSchedules)[x+1]).getTime()) {
+                } else if (time >= reschedTime && x < Object.keys(user.exercise.oldSchedules).length -1 && time < new Date(Object.keys(user.exercise.oldSchedules)[x+1]).getTime()) {
                     console.log(weekdays[day])
 
                     if(user.exercise.daysEntered[week[i]]) {
@@ -564,7 +564,7 @@ function checkGoalsCompleted(week){
                         break
                     }
                     
-                } else if (time > reschedTime && x == Object.keys(user.exercise.oldSchedules).length - 1) { 
+                } else if (time >= reschedTime && x == Object.keys(user.exercise.oldSchedules).length - 1) { 
                     if (user.profile.days.includes(weekdays[day])) {
                         arr.push(2)
                     } else if (user.exercise.daysEntered[week[i]]) {

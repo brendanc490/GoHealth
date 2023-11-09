@@ -67,8 +67,8 @@ function updateUI(){
     let workoutInfo = fetchNumberWorkouts()
 
     numberOfWorkouts.textContent = 'Exercises Completed: '+ workoutInfo[0]
-    completedWorkoutsCircleGraph.style = "display: block; position: relative;left: 50%;top: -55%;width: 150px;height: 150px;border-radius: 50%;background: radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(green "+Math.round(workoutInfo[0]/workoutInfo[1]*100)+"%, grey 0);"
-    workoutsPercentage.textContent = Math.round(workoutInfo[0]/workoutInfo[1]*100)+"%"
+    completedWorkoutsCircleGraph.style = "display: block; position: relative;left: 50%;top: -55%;width: 150px;height: 150px;border-radius: 50%;background: radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(green "+Math.min(Math.round(workoutInfo[0]/workoutInfo[1]*100),100)+"%, grey 0);"
+    workoutsPercentage.textContent = Math.min(Math.round(workoutInfo[0]/workoutInfo[1]*100),100)+"%"
 
 
 
@@ -78,16 +78,16 @@ function updateUI(){
     let dietInfo = fetchDiets()
 
     numberOfDiets.textContent = 'Days Completed: '+ dietInfo[0]
-    completedDietsCircleGraph.style = "display: block; position: relative;left: 50%;top: -55%;width: 150px;height: 150px;border-radius: 50%;background: radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(green "+Math.round(dietInfo[0]/dietInfo[1]*100)+"%, grey 0);"
-    dietPercentage.textContent = Math.round(dietInfo[0]/dietInfo[1]*100)+'%'
+    completedDietsCircleGraph.style = "display: block; position: relative;left: 50%;top: -55%;width: 150px;height: 150px;border-radius: 50%;background: radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(green "+Math.min(Math.round(dietInfo[0]/dietInfo[1]*100),100)+"%, grey 0);"
+    dietPercentage.textContent = Math.min(Math.round(dietInfo[0]/dietInfo[1]*100),100)+'%'
 
     currentHabitsLevel.textContent = 'Habits Level: ' + user.profile.level.charAt(0).toUpperCase() + user.profile.level.slice(1);
 
     let habitInfo = fetchNumberHabits()
 
     numberOfHabits.textContent = 'Habits Completed: '+ workoutInfo[0]
-    completedHabitsCircleGraph.style = "display: block; position: relative;left: 50%;top: -55%;width: 150px;height: 150px;border-radius: 50%;background: radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(green "+Math.round(habitInfo[0]/habitInfo[1]*100)+"%, grey 0);"
-    habitsPercentage.textContent = Math.round(habitInfo[0]/habitInfo[1]*100)+"%"
+    completedHabitsCircleGraph.style = "display: block; position: relative;left: 50%;top: -55%;width: 150px;height: 150px;border-radius: 50%;background: radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(green "+Math.min(Math.round(habitInfo[0]/habitInfo[1]*100),100)+"%, grey 0);"
+    habitsPercentage.textContent = Math.min(Math.round(habitInfo[0]/habitInfo[1]*100),100)+"%"
 }
 
 function fetchNumberWorkouts(){
