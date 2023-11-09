@@ -1,6 +1,6 @@
 const userInfo = document.getElementById('user-info');
 const editButton = document.getElementById('edit-button');
-const editForm = document.getElementById('edit-form');
+const editForm = document.getElementById('stuff-to-hide');
 const saveButton = document.getElementById('save-button');
 const pic = document.getElementById('pic');
 
@@ -17,7 +17,8 @@ function updateUserData(){
     const new_name = document.getElementById("name").value;
     const new_cals = document.getElementById("calories").value;
     const new_days = document.querySelector(".daysSelected").value;    
-
+    const new_gender = document.querySelector('input[name="gender"]:checked');
+    const other_gender = document.getElementById("other").value;
     if(new_age){
         user.profile.age = new_age;
     }
@@ -28,7 +29,7 @@ function updateUserData(){
         user.profile.height.inches = new_inches;
     }
     if(new_weight){
-        user.profile.height.feet = new_weight;
+        user.profile.weight = new_weight;
     }
     if(new_level){
         user.profile.level = new_level;
@@ -40,9 +41,13 @@ function updateUserData(){
         user.profile.calories = new_cals;
     }
     if(new_days){
-        user.profile.days = new_days
+        user.profile.days = new_days;
     }
-    
+    if(other_gender){
+        user.profile.gender = other_gender;
+    } else if(new_gender){
+        user.profile.gender = new_gender;
+    }
     console.log(user.profile);
 }
 
@@ -51,27 +56,18 @@ function toggleDisplay(element) {
 }
 
 window.onload = function () {
-    const bars = document.querySelectorAll('.bar');
-    const data = [10, 15, 8, 12];
-
-    bars.forEach((bar, index) => {
-        bar.style.height = `${data[index] * 10}px`;
-        bar.textContent = data[index];
-    });
-
-    const bmi = user.profile.weight/(user.profile.height.feet+(user.profile.height.inches/12))
-    console.log(bmi.toFixed(0))
+    const bmi = user.profile.weight/(Number(user.profile.height.feet)+Number(user.profile.height.inches/12))
+    console.log(bmi);
     const roundedBMI = bmi.toFixed(0);
     
     document.getElementById("user-name").innerHTML = user.profile.user_name;
     document.getElementById("user-height").innerHTML = user.profile.height.feet+" feet "+user.profile.height.inches+" inches";
+    console.log(user.profile.height.feet);
     document.getElementById("user-weight").innerHTML = user.profile.weight;
     document.getElementById("user-bmi").innerHTML = roundedBMI;
 
     document.getElementById("name").innerHTML = user.profile.user_name;
     document.getElementById("age").innerHTML = user.profile.age;
-    console.log(user.profile.height.feet);
-    console.log(user.profile.height.inches);
     document.getElementById("weight").innerHTML = user.profile.weight;
     document.getElementById("age").innerHTML = user.profile.age;
     document.getElementById("calories").innerHTML = user.profile.calories;
