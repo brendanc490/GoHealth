@@ -39,6 +39,7 @@ window.onload = function() {
     const animArr = checkGoalsCompleted(lastWeekAnim)
     i = 0 
     while (i < 7) {
+        console.log(week.children[i].children[1].children[0])
         if(animArr[i] == 0){
             week.children[i].children[1].children[0].className = 'fa-solid fa-check fa-2x'
             week.children[i].children[1].children[0].style.color ='green'
