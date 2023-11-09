@@ -55,7 +55,7 @@ window.onload = function() {
         }
         i++;
     }
-    updateHabits(selectedDate.innerText.split(', ')[1]);
+    updateHabits(selectedDate.textContent.split(', ')[1]);
 
     op = 0;
     body.style.visibility = 'visible'
@@ -90,11 +90,11 @@ function changeDate(el){
         i++;
     }
     el.style.backgroundColor = '#90EE90'
-    let dateText = selectedDate.innerText.split(', ')[1];
+    let dateText = selectedDate.textContent.split(', ')[1];
     let date = new Date(dateText);
-    let newDateText = el.children[0].innerText
+    let newDateText = el.children[0].textContent
     const newDay = new Date(newDateText);
-    selectedDate.children[0].innerText = dayOfTheWeek[newDay.getDay()] +", "+newDay.toLocaleDateString()
+    selectedDate.children[0].textContent = dayOfTheWeek[newDay.getDay()] +", "+newDay.toLocaleDateString()
     if (date.toString() !== newDay.toString()) {
         updateHabits(newDay.toLocaleDateString());
     } 
@@ -138,7 +138,7 @@ function updateHabits(date) {
             }
             called.add(randomNum);
             let randomHabit = healthyHabits[randomNum];
-            document.getElementById("todoContents").insertAdjacentHTML('beforeend', "<div class='entry'><input type='checkbox' id="+ i.toString() + "' class='largerCheckbox' onclick=\"updateCheck(this)\"><strong style='position: relative; top: -7%'>" + randomHabit + "</strong><button id='whyImportant' class='fa-solid fa-arrow-right fa-2x' style='margin-left: 20px; position: absolute; right: 5%; display: inline-block; font-size: 40px' onclick=displayForm(" + randomNum + ")></button></div><br>");
+            document.getElementById("todoContents").insertAdjacentHTML('beforeend', "<div class='entry'><input type='checkbox' id="+ i.toString() + "' class='largerCheckbox' onclick=\"updateCheck(this)\"><strong style='position: relative; top: -7%'>" + randomHabit + "</strong><button id='whyImportant' class='fa-solid fa-arrow-right fa-2x' style='background-color: transparent; background-repeat: no-repeat; border: none; overflow: hidden; outline: none; margin-left: 20px; position: absolute; right: 5%; display: inline-block; font-size: 40px' onclick=displayForm(" + randomNum + ")></button></div><br>");
             habitMap[0].push(randomNum);
             habitMap[1].push(false);
             total++;
@@ -170,7 +170,7 @@ cancelAddMeal.addEventListener('click', () => {
 
 function updateCheck(checkbox) {
     let index = parseInt(checkbox.id);
-    let currDate = selectedDate.innerText.split(', ')[1];
+    let currDate = selectedDate.textContent.split(', ')[1];
     
     if (user.habits.daysEntered[currDate][1][index] == true) {
         user.habits.daysEntered[currDate][1][index] = false;
@@ -259,7 +259,7 @@ leftArrowContainer.addEventListener("click",() => {
     let indCurr = -1;
     let lastWeekAnim = []
     while(i < week.childElementCount){
-        const date = new Date(week.children[i].children[0].innerText)
+        const date = new Date(week.children[i].children[0].textContent)
         const newDay = new Date(date.getTime() - 7 * 24 * 60 * 60 * 1000);
         let split = newDay.toLocaleDateString().split('/')
         lastWeek.push(split[0]+'/'+split[1]+'/'+(split[2].substring(2)))
@@ -277,8 +277,8 @@ leftArrowContainer.addEventListener("click",() => {
         if(pos >= (700 + offset)){
             let i = 0;
             while(i < week.childElementCount){
-                const date = new Date(week.children[i].children[0].innerText)
-                if(date.toLocaleDateString() == selectedDate.children[0].innerText.split(', ')[1]){
+                const date = new Date(week.children[i].children[0].textContent)
+                if(date.toLocaleDateString() == selectedDate.children[0].textContent.split(', ')[1]){
                     week.children[i].style.backgroundColor = '#90EE90'
                 } else {
                     week.children[i].style.backgroundColor = ''
@@ -290,7 +290,7 @@ leftArrowContainer.addEventListener("click",() => {
         }
         // set text to next week when day goes out of view
         if(counter <= 7 && pos >= (counter*100)){
-            week.children[counter-1].children[0].innerText = lastWeek[counter-1]
+            week.children[counter-1].children[0].textContent = lastWeek[counter-1]
             if(indCurr == counter-1){
                 week.children[indCurr].style.backgroundColor = ''
             }
@@ -339,7 +339,7 @@ rightArrowContainer.addEventListener("click",() => {
     let indCurr = -1;
     let nextWeekAnim = []
     while(i < week.childElementCount){
-        const date = new Date(week.children[i].children[0].innerText)
+        const date = new Date(week.children[i].children[0].textContent)
         const newDay = new Date(date.getTime() + 7 * 24 * 60 * 60 * 1000);
         let split = newDay.toLocaleDateString().split('/')
         nextWeek.push(split[0]+'/'+split[1]+'/'+(split[2].substring(2)))
@@ -356,8 +356,8 @@ rightArrowContainer.addEventListener("click",() => {
         if(pos >= (700 + offset)){
             let i = 0;
             while(i < week.childElementCount){
-                const date = new Date(week.children[i].children[0].innerText)
-                if(date.toLocaleDateString() == selectedDate.children[0].innerText.split(', ')[1]){
+                const date = new Date(week.children[i].children[0].textContent)
+                if(date.toLocaleDateString() == selectedDate.children[0].textContent.split(', ')[1]){
                     week.children[i].style.backgroundColor = '#90EE90'
                 } else {
                     week.children[i].style.backgroundColor = ''
@@ -369,7 +369,7 @@ rightArrowContainer.addEventListener("click",() => {
 
         // set text to next week when day goes out of view
         if(counter <= 7 && pos >= (counter*100)){
-            week.children[counter-1].children[0].innerText = nextWeek[counter-1]
+            week.children[counter-1].children[0].textContent = nextWeek[counter-1]
             if(indCurr == counter-1){
                 week.children[indCurr].style.backgroundColor = ''
             }
@@ -399,19 +399,9 @@ rightArrowContainer.addEventListener("click",() => {
     },16.7,animArr)
 });
 
-/*
-addTodoButton.onclick = displayPrompt;
-
-function displayPrompt() {
-    addTodoForm.style.display = 'block';
-}
-
-todoSubmitButton.onclick = addEntry;
-*/
-
 function addEntry() {
     let entry = document.getElementById("thingTodo").value;
-    let currDate = selectedDate.innerText.split(', ')[1];
+    let currDate = selectedDate.textContent.split(', ')[1];
     let index = (total - 1)
     addTodoForm.style.display = 'none';
     document.getElementById("thingTodo").value = "";
