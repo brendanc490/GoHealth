@@ -1,3 +1,19 @@
+body{
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body.fontChanged1 {
+    font-family: "Times New Roman", serif;
+}
+
+body.fontChanged2 {
+    font-family: 'Courier New', monospace;
+}
+
+body.fontChanged3 {
+    font-family: 'Brush Script MT', cursive;
+}
+
 .topBar {
     position: absolute;
     width: 100%;
@@ -70,12 +86,20 @@
     left:0;
 }
 
-.profileContainer {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 10px;
-    max-width: 640px;
-    margin: 0 auto;
+#profile-info {
+    width: 190.5%;
+    height: 100%;
+    background-color: #f0f0f0;
+    padding: 20px;
+    
+  }
+
+  .customtopBar {
+    position: absolute;
+    width: 190.5%;
+    height: 14%;
+    top: 0;
+    left: 0;
 }
 
 .weekBar {
@@ -364,7 +388,7 @@ progress {
 }
 
 .edit-button {
-    position: absolute;
+    position: fixed;
     top: 60px;
     right: 10px;
 }
@@ -372,39 +396,3 @@ progress {
 input[type=checkbox] {
     accent-color: green;
 }
-
-
-#data-display {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 10px;
-    max-width: 640px;
-    margin: 0 auto;
-  }
-
-  #user-info {
-    text-align: center;
-    font-size: 50px;
-    height: 100%;
-    width: 100%;
-  }
-
-  #pic {
-    text-align: center;
-    width: 100%;
-    height: 100%;
-    max-width: 640px;
-    max-height: 480px; /* Adjust the height as necessary */
-    margin: 0 auto;
-    display: block;
-  }
-
-  #edit-form {
-    font-size: 50px;
-    display: none;
-    height: 100%;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
