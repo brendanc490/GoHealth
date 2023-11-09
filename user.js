@@ -28,7 +28,7 @@ var user = {
             
                     }
                 ],
-                'totalCaloriesBurned': 280
+                'caloriesBurned': 280
             },
             "10/16/2023":{
                 'workouts': [
@@ -84,7 +84,7 @@ var user = {
             
                     }
                 ],
-                'totalCaloriesBurned': 100
+                'caloriesBurned': 100
             },
             "10/11/2023":{
                 'workouts': [
@@ -112,7 +112,7 @@ var user = {
             
                     }
                 ],
-                'totalCaloriesBurned': 130
+                'caloriesBurned': 130
             },
             "10/9/2023":{
                 'workouts': [
@@ -140,7 +140,7 @@ var user = {
             
                     }
                 ],
-                'totalCaloriesBurned': 280
+                'caloriesBurned': 280
             },
             "10/6/2023":{
                 'workouts': [
@@ -168,7 +168,7 @@ var user = {
             
                     }
                 ],
-                'totalCaloriesBurned': 150
+                'caloriesBurned': 150
             },
             "10/4/2023":{
                 'workouts': [
@@ -196,7 +196,7 @@ var user = {
             
                     }
                 ],
-                'totalCaloriesBurned': 280
+                'caloriesBurned': 280
             },
             "10/2/2023":{
                 'workouts': [
@@ -224,7 +224,7 @@ var user = {
             
                     }
                 ],
-                'totalCaloriesBurned': 280
+                'caloriesBurned': 280
             },
             "9/29/2023":{
                 'workouts': [
@@ -252,7 +252,7 @@ var user = {
             
                     }
                 ],
-                'totalCaloriesBurned': 180
+                'caloriesBurned': 180
             },
             "9/27/2023":{
                 'workouts': [
@@ -280,7 +280,7 @@ var user = {
             
                     }
                 ],
-                'totalCaloriesBurned': 150
+                'caloriesBurned': 150
             },
             "9/25/2023":{
                 'workouts': [
@@ -308,7 +308,7 @@ var user = {
             
                     }
                 ],
-                'totalCaloriesBurned': 250
+                'caloriesBurned': 250
             },
         }
     },
