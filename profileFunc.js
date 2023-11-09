@@ -85,7 +85,7 @@ function updateUI(){
 
     let habitInfo = fetchNumberHabits()
 
-    numberOfHabits.textContent = 'Exercises Completed: '+ workoutInfo[0]
+    numberOfHabits.textContent = 'Habits Completed: '+ workoutInfo[0]
     completedHabitsCircleGraph.style = "display: block; position: relative;left: 50%;top: -55%;width: 150px;height: 150px;border-radius: 50%;background: radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(green "+Math.round(habitInfo[0]/habitInfo[1]*100)+"%, grey 0);"
     habitsPercentage.textContent = Math.round(habitInfo[0]/habitInfo[1]*100)+"%"
 }
