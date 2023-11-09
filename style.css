@@ -83,9 +83,26 @@ fieldset{
     left:0;
 }
 
+#profile-info {
+    width: 190.5%;
+    height: 100%;
+    background-color: #f0f0f0;
+    padding: 20px;
+    
+  }
+
+  .customtopBar {
+    position: absolute;
+    width: 190.5%;
+    height: 14%;
+    top: 0;
+    left: 0;
+}
+
 .weekBar {
     grid-area: weekBar;
     display: grid;
+    
     border-bottom: 1px black;
     width: 100%;
     height: 100%;
@@ -379,7 +396,7 @@ progress {
 }
 
 .edit-button {
-    position: absolute;
+    position: fixed;
     top: 60px;
     right: 10px;
 }
@@ -399,6 +416,31 @@ progress {
 input[type=checkbox] {
     accent-color: green;
 }
+
+.profileContent {
+    display: grid;
+    grid-template-areas:
+    'Exercise'
+    'Diet'
+    'Habits'
+    'Graph';
+    font-size: 35px;
+    height: 88%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 8%;
+    grid-template-rows: 20% 20% 20% 40%;
+}
+
+.circularProgressBarSmall {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: 
+      radial-gradient(closest-side, white 79%, transparent 80% 100%),
+      conic-gradient(green 0%, grey 0);    
+  }
 
 .textSize {
     font-size: 35px;

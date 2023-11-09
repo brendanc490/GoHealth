@@ -853,7 +853,8 @@ var user = {
         "weight": 195,
         "level": "beginner",
         "calories": 2000,
-        "days": ["monday", "wednesday", "friday"]
+        "days": ["monday", "wednesday", "friday"],
+        "gender": "male"
     },
     "settings": {}
 }

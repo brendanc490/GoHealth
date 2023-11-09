@@ -91,7 +91,7 @@ while(i <= 4){
 
 // calendar related code
 function changeDate(el){
-    if(addMealForm.style.display == 'grid' || editMealForm.style.display == 'grid'){
+    if(addMealForm.style.display == 'grid' || editMealForm.style.display == 'grid' || notification.style.display == 'block'){
         return
     }
     let i = 0;
@@ -330,6 +330,11 @@ acknowledgeNotificationButton.addEventListener('click',() => {
     publishMealButton.disabled = false;
     editFoodButton.disabled = false
     editMealButton.disabled = false;
+    leftArrowContainer.disabled = false
+    rightArrowContainer.disabled = false
+    cancelAddMeal.disabled = false
+    cancelEditMeal.disabled = false
+
 })
 
 publishMealButton.addEventListener('click', () => {
@@ -337,6 +342,8 @@ publishMealButton.addEventListener('click', () => {
         notification.style.display = 'block'
         addFoodButton.disabled = true
         publishMealButton.disabled = true;
+        cancelAddMeal.disabled = true;
+        cancelEditMeal.disabled = true;
         return
     }
 
@@ -657,6 +664,8 @@ editMealButton.addEventListener('click', (e) => {
         notification.style.display = 'block'
         editFoodButton.disabled = true
         editMealButton.disabled = true;
+        cancelAddMeal.disabled = true;
+        cancelEditMeal.disabled = true;
         return
     }
 
