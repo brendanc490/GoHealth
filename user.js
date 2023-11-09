@@ -311,7 +311,7 @@ var user = {
             },
         },
         'oldSchedules': {
-            '10/19/2023': ['monday', 'wednesday', 'friday']
+            
         }
     },
     "diet": {
