@@ -63,7 +63,7 @@ window.addEventListener('load', () => {
     op = 0;
     body.style.visibility = 'visible'
     let fadeInt = setInterval(function(){
-        if(op == 1){
+        if(op >= 1){
             clearInterval(fadeInt)
         }
         body.style.opacity = op
