@@ -17,7 +17,10 @@
 
     <!-- 640x960-->
 
-    <div id="header" style="text-align: center; height: 80%; font-size: 55px; background-color: #90EE90;"><b style="position: relative; top:20%">User Profile</b></div>
+    <div id="topBar" class="topBar">
+        <div id="dietHeader" style="text-align: center; height: 60%; font-size: 45px; background-color: #90EE90;"><b>User Profile</b></div>
+        <div id="selectedDate" style="text-align: center; height: 35%; font-size: 35px;"><b>Thu, 10/19/2023</b></div>
+    </div>
     <button class="edit-button" id="edit-button" style="text-align: right;"><i id="settingsIcon" class="fa-solid fa-gear fa-3x"></i></button>
     <br>
     <!-- <div style="text-align: center; font-size: 20px;">Your BMI over Time</div> -->
@@ -25,7 +28,7 @@
     <!-- <img src="lib\bootlegweight.png" alt="Italian Trulli" style="text-align: center; scale: 100%;">
 -->
 
-    <div style="text-align: center; font-size: 50px; height: 100%; width: 100%; position: absolute;">
+    <div id="profileLayout" class="profilContainer">
         <div id="data-display">
             <div id="user-info" style="text-align: center; font-size: 50px; height: 100%; width: 100%;">
             <p><strong>Name:</strong> <span id="user-name"></span></p>
@@ -34,106 +37,107 @@
             <p><strong>BMI:</strong> <span id="user-bmi"></span></p>
             </div>
  
-            <img id="pic" src="Bmi-chart.jpg" alt="BMI chart" style="text-align: center; max-width: 75%; max-height: 75%;">
+            <img id="pic" src="Bmi-chart.jpg" alt="BMI chart" style="text-align: center; width: 100%; height: 100%;">
         </div>
 
     <br>
     <div id="data-entry">
-    <div style="font-size: 50px; display: none; height: 100%; width: 100%;" id="edit-form" >
-        <div style="border-style:inset; border-width: 5px;">
-        <label for="name">Enter user name:</label>
-        <input type="text" id="name" name="name" style="width:auto; height: auto;font-size: 50px;" value = ""><br>
-        </div>
-        
-        <hr>
-        <div style="border-style:inset; border-width: 5px;">
-        <label for="age">Enter user age:</label>
-        <input type="number" id="age" name="age" style="width:auto; height: auto;font-size: 50px;" value = ""><br>
-        </div>
-        
-        <hr>
-        <div style="border-style:inset; border-width: 5px;"> 
-        <label for="height_ft">Select user height:</label>
-        <select name="height_ft" id="height_ft" style="width:auto; height: auto;font-size: 50px;">
-            <option value=""> </option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-        </select>
-        feet
-        <select name="height_in" id="height_in" style="width:auto; height: auto;font-size: 50px;">
-            <option value=""> </option>
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-        </select>
-        inches
-        <br>
-        </div>
+        <div style="font-size: 50px; display: none; height: 100%; width: 100%;" id="edit-form">
+          <div style="border-style: inset; border-width: 5px;">
+            <label for="name">Enter user name:</label>
+            <input type="text" id="name" name="name" style="width:auto; height: auto; font-size: 50px;" value=""><br>
+          </div>
+      
+          <hr>
+      
+          <div style="border-style: inset; border-width: 5px;">
+            <label for="age">Enter user age:</label>
+            <input type="number" id="age" name="age" style="width:auto; height: auto; font-size: 50px;" value=""><br>
+          </div>
+      
+          <hr>
+      
+          <div style="font-size: 50px; height: 100%; width: 100%;">
+            <label for="height_ft">Select user height:</label>
+            <select name="height_ft" id="height_ft" style="font-size: 50px; height: 100%; width: 100%;">
+              <option value="4">4 feet</option>
+              <option value="5">5 feet</option>
+              <option value="6">6 feet</option>
+              <option value="7">7 feet</option>
+            </select>
+          
+            <select name="height_in" id="height_in" style="font-size: 50px; height: 100%; width: 100%;">
+              <option value="0">0 inches</option>
+              <option value="1">1 inch</option>
+              <option value="2">2 inches</option>
+              <option value="3">3 inches</option>
+              <option value="4">4 inches</option>
+              <option value="5">5 inches</option>
+              <option value="6">6 inches</option>
+              <option value="7">7 inches</option>
+              <option value="8">8 inches</option>
+              <option value="9">9 inches</option>
+              <option value="10">10 inches</option>
+              <option value="11">11 inches</option>
+            </select>
+          </div>
+      
+          <hr>
+      
+          <div style="border-style: inset; border-width: 5px;">
+            <label for="weight">Enter user weight in pounds:</label>
+            <input type="number" id="weight" name="weight" style="width:auto; height: auto; font-size: 50px;"><br>
+          </div>
+      
 
-        <hr>
-        <div style="border-style:inset; border-width: 5px;">
-        <label for="weight">Enter user weight in pounds:</label>
-        <input type="number" id="weight" name="weight" style="width:auto; height: auto;font-size: 50px;"><br>
+          <hr>
+      
+          <div style="border-style: inset; border-width: 5px;">
+            Choose experience level:
+            <br>
+            <input type="radio" id="beginner" name="level" value="1">
+            <label for="beginner">Beginner</label><br>
+            <input type="radio" id="intermediate" name="level" value="1">
+            <label for="intermediate">intermediate</label><br>
+            <input type="radio" id="advanced" name="level" value="3">
+            <label for="advanced">Advanced</label>
+            <br>
+          </div>
+      
+          <hr>
+      
+          <div style="border-style: inset; border-width: 5px;">
+            <label for="calories">Enter user target calories:</label>
+            <input type="number" id="calories" name="calories" style="width:auto; height: auto; font-size: 150px;"><br>
+          </div>
+      
+          <hr>
+      
+          <div style="border-style: inset; border-width: 5px;">
+            Select which days you want to workout:
+            <br>
+            <label for="sun">Sunday</label>
+            <input type="checkbox" id="sun" name="sun" style="width:auto; height: auto; font-size: 50px;" class="daysSelected"><br>
+            <label for="mon">Monday</label>
+            <input type="checkbox" id="mon" name="mon" style="width:auto; height: auto; font-size: 50px;" class="daysSelected"><br>
+            <label for="tues">Tuesday</label>
+            <input type="checkbox" id="tues" name="tues" style="width:auto; height: auto; font-size: 50px;" class="daysSelected"><br>
+            <label for="wed">Wednesday</label>
+            <input type="checkbox" id="wed" name="wed" style="width:auto; height: auto; font-size: 50px;" class="daysSelected"><br>
+            <label for="thur">Thursday</label>
+            <input type="checkbox" id="thur" name="thur" style="width:auto; height: auto; font-size: 50px;" class="daysSelected"><br>
+            <label for="fri">Friday</label>
+            <input type="checkbox" id="fri" name="fri" style="width:auto; height: auto; font-size: 50px;" class="daysSelected"><br>
+            <label for="sat">Saturday</label>
+            <input type="checkbox" id="sat" name="sat" style="width:auto; height: auto; font-size: 50px;" class="daysSelected"><br>
+          </div>
+      
+          <hr>
+      
+          <button onclick="updateUserData()" style="width:auto; height: auto; font-size: 50px;" id="save-button">Save</button>
+          <br>
         </div>
-
-        <hr>
-        <div style="border-style:inset; border-width: 5px;">
-        Choose experience level:
-        <br>
-        <input type="radio" id="beginner" name="level" value="1">
-        <label for="beginner">Beginner</label><br>
-        <input type="radio" id="intermediate" name="level" value="2">
-        <label for="intermediate">Intermediate</label><br>
-        <input type="radio" id="advanced" name="level" value="3">
-        <label for="advanced">Advanced</label>
-        <br>
-        </div>
-
-        <hr>
-        <div style="border-style:inset; border-width: 5px;">
-        <label for="calories">Enter user target calories:</label>
-        <input type="number" id="calories" name="calories" style="width:auto; height: auto;font-size: 150px;"><br>
-        </div>
-
-        <hr>
-        <div style="border-style:inset; border-width: 5px;">
-        Select which days you want to workout:
-        <br>
-        <label for="sun">Sunday</label>
-        <input type="checkbox" id="sun" name="sun" style="width:auto; height: auto;font-size: 50px;" class="daysSelected"><br>
-        <label for="mon">Monday</label>
-        <input type="checkbox" id="mon" name="mon" style="width:auto; height: auto;font-size: 50px;" class="daysSelected"><br>
-        <label for="tues">Tuesday</label>
-        <input type="checkbox" id="tues" name="tues" style="width:auto; height: auto;font-size: 50px;" class="daysSelected"><br>
-        <label for="wed">Wednesday</label>
-        <input type="checkbox" id="wed" name="wed" style="width:auto; height: auto;font-size: 50px;" class="daysSelected"><br>
-        <label for="thur">Thursday</label>
-        <input type="checkbox" id="thur" name="thur" style="width:auto; height: auto;font-size: 50px;" class="daysSelected"><br>
-        <label for="fri">Friday</label>
-        <input type="checkbox" id="fri" name="fri" style="width:auto; height: auto;font-size: 50px;" class="daysSelected"><br>
-        <label for="sat">Saturday</label>
-        <input type="checkbox" id="sat" name="sat" style="width:auto; height: auto;font-size: 50px;" class="daysSelected"><br>
-        </div>
-        
-        <hr>
-        <button onclick="updateUserData()" style="width:auto; height: auto;font-size: 50px;" id="save-button">Save</button>
-        <br>
-
-    </div>
-
-
-    </div>
+      </div>
     </div>
 
     
