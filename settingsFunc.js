@@ -2,6 +2,7 @@ const userInfo = document.getElementById('user-info');
 const editButton = document.getElementById('edit-button');
 const editForm = document.getElementById('edit-form');
 const saveButton = document.getElementById('save-button');
+const pic = document.getElementById('pic');
 
 // add this is to enable data persistence across screens
 // remove user.js script from html!!!
@@ -58,14 +59,20 @@ window.onload = function () {
         bar.textContent = data[index];
     });
 
+    const bmi = user.profile.weight/(user.profile.height.feet+(user.profile.height.inches/12))
+    console.log(bmi.toFixed(0))
+    const roundedBMI = bmi.toFixed(0);
+    
     document.getElementById("user-name").innerHTML = user.profile.user_name;
     document.getElementById("user-height").innerHTML = user.profile.height.feet+" feet "+user.profile.height.inches+" inches";
     document.getElementById("user-weight").innerHTML = user.profile.weight;
+    document.getElementById("user-bmi").innerHTML = roundedBMI;
 };
 
 editButton.addEventListener('click', () => {
     toggleDisplay(userInfo);
     toggleDisplay(editForm);
+    toggleDisplay(pic);
 });
 
 saveButton.addEventListener('click', (event) => {
