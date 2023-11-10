@@ -98,14 +98,14 @@ function updateUI(){
     // Update healthy habit portion of the UI
 
     document.querySelector('#habitsList').innerHTML = '';
-    for (let i = 0; i < user.habits.goals; i++) {
+    for (let i = 0; i < user.habits.daysEntered[currDate][0].length; i++) {
         let currHabit = healthyHabits[user.habits.daysEntered[currDate][0][i]];
         document.getElementById("habitsList").insertAdjacentHTML('beforeend', '<li>' + currHabit + '</li>');
     }
 
     let completed = true;
 
-    for (let i = 0; i < user.habits.goals; i++) {
+    for (let i = 0; i < user['habits']['daysEntered'][currDate][1].length; i++) {
         if (user['habits']['daysEntered'][currDate][1][i] == false) {
             completed = false;
             break;
