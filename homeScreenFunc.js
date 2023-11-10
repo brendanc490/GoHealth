@@ -53,9 +53,9 @@ window.addEventListener('load',() => {
 
 function updateUI(){
     header.children[0].textContent = 'Welcome back, '+user['profile']['user_name']+"!"
-
     // update diet info
     let goal = user['diet']['goal'].calories;
+    let weekdays = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']; 
     let burned = user['exercise']['daysEntered'][selectedDate.textContent.split(' ')[3]] ? user['exercise']['daysEntered'][selectedDate.textContent.split(' ')[3]].caloriesBurned : 0;
     let consumed = user['diet']['daysEntered'][selectedDate.textContent.split(' ')[3]] ? user['diet']['daysEntered'][selectedDate.textContent.split(' ')[3]].totalCalories : 0;
     let percent = Math.min(Math.round(consumed/(goal+burned)*100),100)
@@ -66,6 +66,11 @@ function updateUI(){
         for (let i = 0; i < user.exercise.daysEntered[currDate].workouts.length; i++) {
             let workout = user.exercise.daysEntered[currDate].workouts[i];
             console.log(workout)
+            document.getElementById("exerciseList").insertAdjacentHTML('beforeend', '<li>' + workout.name + ' ' + workout.duration + '</li>');
+        }
+    } else if (user.profile.days.includes(weekdays[new Date(currDate).getDay()])) {
+        for (let i = 0; i < exercises[user.profile.level].length; i++) {
+            let workout = exercises[user.profile.level][i];
             document.getElementById("exerciseList").insertAdjacentHTML('beforeend', '<li>' + workout.name + ' ' + workout.duration + '</li>');
         }
     } else {
