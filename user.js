@@ -855,7 +855,7 @@ var user = {
         "weight": 195,
         "level": "beginner",
         "calories": 2000,
-        "days": ["saturday", "sunday"],
+        "days": ["monday", "wednesday", "friday"],
         "gender": "male",
         "weight_track": []
     },

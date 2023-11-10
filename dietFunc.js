@@ -51,10 +51,15 @@ window.addEventListener('load', () => {
     let arr = ["10/16/2023","10/17/2023","10/18/2023","10/19/2023","10/20/2023","10/21/2023","10/22/2023"]
     let i = 0;
     while(i < arr.length){
-        if(user['diet']['daysEntered'][arr[i]] && user['diet']['daysEntered'][arr[i]].totalCalories >= user['diet']['goal'].calories){
-            week.children[i].children[1].children[0].style.visibilty = 'visible'
+        console.log(user['diet']['daysEntered'][arr[i]])
+        console.log(user['diet']['goal'].calories)
+        let burnedAmt = user['exercise']['daysEntered'][arr[i]] ? user['exercise']['daysEntered'][arr[i]].caloriesBurned : 0
+
+        if(user['diet']['daysEntered'][arr[i]] && user['diet']['daysEntered'][arr[i]].totalCalories >= user['diet']['goal'].calories+burnedAmt){
+            week.children[i].children[1].children[0].style.visibility = 'visible'
         } else {
-            week.children[i].children[1].children[0].style.visibilty = 'hidden'
+            console.log(arr[i])
+            week.children[i].children[1].children[0].style.visibility = 'hidden'
         }
         i++;
     }
